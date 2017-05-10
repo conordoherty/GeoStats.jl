@@ -25,11 +25,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "index.html#Usage-1",
+    "location": "index.html#Quick-example-1",
     "page": "Home",
-    "title": "Usage",
+    "title": "Quick example",
     "category": "section",
-    "text": "Below is a short example of usage:using GeoStats\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs); z = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a covariance model\ncov = GaussianCovariance(0.,1.,1.) # nugget, sill and range\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, cov, mean(z))\nordkrig = OrdinaryKriging(X, z, cov)\nunikrig = UniversalKriging(X, z, cov, 1)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nμ, σ² = estimate(ordkrig, xₒ)\nμ, σ² = estimate(unikrig, xₒ)"
+    "text": "Below is a quick example of usage:using GeoStats\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs); z = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a covariance model\ncov = GaussianCovariance(0.,1.,1.) # nugget, sill and range\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, cov, mean(z))\nordkrig = OrdinaryKriging(X, z, cov)\nunikrig = UniversalKriging(X, z, cov, 1)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nμ, σ² = estimate(ordkrig, xₒ)\nμ, σ² = estimate(unikrig, xₒ)"
 },
 
 ]}
