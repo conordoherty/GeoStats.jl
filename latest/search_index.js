@@ -29,15 +29,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Quick example",
     "category": "section",
-    "text": "Below is a quick example of usage:using GeoStats\n\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs); z = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a covariance model\ncov = GaussianCovariance(0.,1.,1.) # nugget, sill and range\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, cov, mean(z))\nordkrig = OrdinaryKriging(X, z, cov)\nunikrig = UniversalKriging(X, z, cov, 1)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
-},
-
-{
-    "location": "variograms.html#",
-    "page": "Variograms",
-    "title": "Variograms",
-    "category": "page",
-    "text": "TODO"
+    "text": "Below is a quick example of usage:using GeoStats\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs); z = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a covariance model\ncov = GaussianCovariance(0.,1.,1.) # nugget, sill and range\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, cov, mean(z))\nordkrig = OrdinaryKriging(X, z, cov)\nunikrig = UniversalKriging(X, z, cov, 1)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
 },
 
 {
@@ -94,6 +86,22 @@ var documenterSearchIndex = {"docs": [
     "title": "Universal Kriging",
     "category": "section",
     "text": "In Universal Kriging, the mean of the random field is assumed to be a polynomial:mu(x) = sum_k=1^N_d beta_k f_k(x)with N_d monomials f_k of degree up to d. For example, in 2D there are 6 monomials of degree up to 2:mu(x_1x_2) =  beta_1 1 + beta_2 x_1 + beta_3 x_2 + beta_4 x_1 x_2 + beta_5 x_1^2 + beta_6 x_2^2The choice of the degree d determines the size of the polynomial matrixnewcommandFboldsymbolF\nnewcommandfboldsymbolf\nF =\nbeginbmatrix\nf_1(x_1)  f_2(x_1)  cdots  f_N_d(x_1) \nf_1(x_2)  f_2(x_2)  cdots  f_N_d(x_2) \nvdots  vdots  ddots  vdots \nf_1(x_n)  f_2(x_n)  cdots  f_N_d(x_n)\nendbmatrixand polynomial vector f = beginbmatrix f_1(x_0)  f_2(x_0)  cdots  f_N_d(x_0) endbmatrix^top.The variogram matrix is constructed instead of the covariance matrix:newcommandGboldsymbolGamma\nnewcommandgboldsymbolgamma\nG =\nbeginbmatrix\ngamma(x_1x_1)  gamma(x_1x_2)  cdots  gamma(x_1x_n) \ngamma(x_2x_1)  gamma(x_2x_2)  cdots  gamma(x_2x_n) \nvdots  vdots  ddots  vdots \ngamma(x_nx_1)  gamma(x_nx_2)  cdots  gamma(x_nx_n)\nendbmatrixwith gamma(x_ix_j) = cov(x_0x_0) - cov(x_ix_j). The variogram is also evaluated at the estimation location g = beginbmatrix gamma(x_1x_0)  gamma(x_2x_0)  cdots  gamma(x_nx_0) endbmatrix^top.The resulting linear system is:beginbmatrix\nG  F \nF^top  boldsymbol0\nendbmatrix\nbeginbmatrix\nl \nboldsymbolnu\nendbmatrix\n=\nbeginbmatrix\ng \nf\nendbmatrixwith boldsymbolnu the Lagrange multipliers associated with the universal constraints. The mean and variance at location x_0 are given by:mu(x_0) = z^top lsigma^2(x_0) = beginbmatrixg  fendbmatrix^top beginbmatrixl  boldsymbolnuendbmatrixUniversalKriging"
+},
+
+{
+    "location": "variograms.html#",
+    "page": "Variograms",
+    "title": "Variograms",
+    "category": "page",
+    "text": "TODO"
+},
+
+{
+    "location": "library.html#",
+    "page": "Library",
+    "title": "Library",
+    "category": "page",
+    "text": ""
 },
 
 ]}
