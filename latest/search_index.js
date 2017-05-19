@@ -29,7 +29,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Quick example",
     "category": "section",
-    "text": "Below is a quick example of usage:using GeoStats\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs); z = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a covariance model\ncov = GaussianCovariance(0.,1.,1.) # nugget, sill and range\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, cov, mean(z))\nordkrig = OrdinaryKriging(X, z, cov)\nunikrig = UniversalKriging(X, z, cov, 1)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
+    "text": "Below is a quick example of usage:using GeoStats\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs); z = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a covariance model\ncov = GaussianCovariance(1.,1.,0.) # sill, range and nugget\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, cov, mean(z))\nordkrig = OrdinaryKriging(X, z, cov)\nunikrig = UniversalKriging(X, z, cov, 1)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
 },
 
 {
@@ -41,11 +41,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "estimation.html#GeoStats.estimate",
+    "page": "Estimation",
+    "title": "GeoStats.estimate",
+    "category": "Function",
+    "text": "estimate(estimator, xₒ)\n\nCompute mean and variance for the estimator at location xₒ.\n\n\n\n"
+},
+
+{
     "location": "estimation.html#Estimation-1",
     "page": "Estimation",
     "title": "Estimation",
     "category": "section",
-    "text": "A Kriging estimator has the form:newcommandxboldsymbolx\nhatZ(x_0) = lambda_1 Z(x_1) + lambda_2 Z(x_2) + cdots + lambda_n Z(x_n)quad x_i in mathbbR^m lambda_i in mathbbRwith Zcolon mathbbR^m times Omega to mathbbR a random field.This package implements the following Kriging variants:Simple Kriging\nOrdinary Kriging\nUniversal Kriging (polynomial drift for the mean)All these variants follow the same interface: an estimator object is first created with a given data configuration and covariance model, and then estimates are made at various locations.The object construction takes care of building the Kriging system and factorizing the LHS with an appropriate decomposition (e.g. Cholesky, LU). The estimate method performs the estimation at a given location:# build and factorize the system\nsimkrig = SimpleKriging(X, z, cov, mean(z))\n\n# estimate at various locations\nfor xₒ in locations\n  μ, σ² = estimate(simkrig, xₒ)\nendIn case the data configuration needs to be changed in a loop (e.g. sequential Gaussian simulation), one can keep all the parameters fixed and only update the factorization with the fit! method:fit!(simkrig, Xnew, znew)"
+    "text": "A Kriging estimator has the form:newcommandxboldsymbolx\nhatZ(x_0) = lambda_1 Z(x_1) + lambda_2 Z(x_2) + cdots + lambda_n Z(x_n)quad x_i in mathbbR^m lambda_i in mathbbRwith Zcolon mathbbR^m times Omega to mathbbR a random field.This package implements the following Kriging variants:Simple Kriging\nOrdinary Kriging\nUniversal Kriging (polynomial drift for the mean)All these variants follow the same interface: an estimator object is first created with a given data configuration and covariance model, and then estimates are made at various locations.The object construction takes care of building the Kriging system and factorizing the LHS with an appropriate decomposition (e.g. Cholesky, LU). The estimate method performs the estimation at a given location:estimate# build and factorize the system\nsimkrig = SimpleKriging(X, z, cov, mean(z))\n\n# estimate at various locations\nfor xₒ in locations\n  μ, σ² = estimate(simkrig, xₒ)\nendIn case the data configuration needs to be changed in a loop (e.g. sequential Gaussian simulation), one can keep all the parameters fixed and only update the factorization with the fit! method:fit!fit!(simkrig, Xnew, znew)For advanced users, the Kriging weights and Lagrange multipliers at a given location can be accessed with the weights method. This method returns an AbstractWeights object containing a field λ for the weights and a field ν for the Lagrange multipliers:weights# weights and Lagrange multipliers\nOKweights = weights(ordkrig, xₒ)\nOKweights.λ, OKweights.ν"
 },
 
 {
@@ -166,6 +174,22 @@ var documenterSearchIndex = {"docs": [
     "title": "Function Reference",
     "category": "page",
     "text": ""
+},
+
+{
+    "location": "library.html#Types-1",
+    "page": "Function Reference",
+    "title": "Types",
+    "category": "section",
+    "text": "Modules = [GeoStats]\nOrder = [:type]"
+},
+
+{
+    "location": "library.html#Functions-1",
+    "page": "Function Reference",
+    "title": "Functions",
+    "category": "section",
+    "text": "Modules = [GeoStats]\nOrder = [:function]"
 },
 
 ]}
