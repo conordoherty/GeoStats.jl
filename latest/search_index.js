@@ -117,7 +117,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.GaussianCovariance",
     "category": "Type",
-    "text": "GaussianCovariance(n, s, r)\n\nINPUTS:\n\n* n ∈ ℜ - nugget\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n\n\n\n"
+    "text": "GaussianCovariance(s, r, n)\n\nINPUTS:\n\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n* n ∈ ℜ - nugget\n\n\n\n"
 },
 
 {
@@ -133,7 +133,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.SphericalCovariance",
     "category": "Type",
-    "text": "SphericalCovariance(n, s, r)\n\nINPUTS:\n\n* n ∈ ℜ - nugget\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n\n\n\n"
+    "text": "SphericalCovariance(s, r, n)\n\nINPUTS:\n\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n* n ∈ ℜ - nugget\n\n\n\n"
 },
 
 {
@@ -149,7 +149,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.ExponentialCovariance",
     "category": "Type",
-    "text": "ExponentialCovariance(n, s, r)\n\nINPUTS:\n\n* n ∈ ℜ - nugget\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n\n\n\n"
+    "text": "ExponentialCovariance(s, r, n)\n\nINPUTS:\n\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n* n ∈ ℜ - nugget\n\n\n\n"
 },
 
 {
