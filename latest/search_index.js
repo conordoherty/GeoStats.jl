@@ -162,8 +162,8 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "library.html#",
-    "page": "Library",
-    "title": "Library",
+    "page": "Function Reference",
+    "title": "Function Reference",
     "category": "page",
     "text": ""
 },
