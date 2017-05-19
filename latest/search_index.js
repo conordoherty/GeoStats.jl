@@ -61,7 +61,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Estimation",
     "title": "GeoStats.SimpleKriging",
     "category": "Type",
-    "text": "SimpleKriging(X, z, cov, μ)\n\nINPUTS:\n\n* X ∈ ℜ^(mxn) - matrix of data locations\n* z ∈ ℜⁿ      - vector of observations for X\n* cov         - covariance model\n* μ ∈ ℜ       - mean of z\n\n\n\n"
+    "text": "SimpleKriging(X, z, cov, μ)\n\nINPUTS:\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\ncov         - covariance model\nμ ∈ ℜ       - mean of z\n\n\n\n"
 },
 
 {
@@ -77,7 +77,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Estimation",
     "title": "GeoStats.OrdinaryKriging",
     "category": "Type",
-    "text": "OrdinaryKriging(X, z, cov)\n\nINPUTS:\n\n* X ∈ ℜ^(mxn) - matrix of data locations\n* z ∈ ℜⁿ      - vector of observations for X\n* cov         - covariance model\n\n\n\n"
+    "text": "OrdinaryKriging(X, z, cov)\n\nINPUTS:\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\ncov         - covariance model\n\n\n\n"
 },
 
 {
@@ -93,7 +93,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Estimation",
     "title": "GeoStats.UniversalKriging",
     "category": "Type",
-    "text": "UniversalKriging(X, z, cov, degree)\n\nINPUTS:\n\n* X ∈ ℜ^(mxn) - matrix of data locations\n* z ∈ ℜⁿ      - vector of observations for X\n* cov         - covariance model\n* degree      - polynomial degree for the mean\n\nOrdinary Kriging is recovered for 0th degree polynomial.\n\n\n\n"
+    "text": "UniversalKriging(X, z, cov, degree)\n\nINPUTS:\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\ncov         - covariance model\ndegree      - polynomial degree for the mean\n\nOrdinary Kriging is recovered for 0th degree polynomial.\n\n\n\n"
 },
 
 {
@@ -125,7 +125,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.GaussianCovariance",
     "category": "Type",
-    "text": "GaussianCovariance(s, r, n)\n\nINPUTS:\n\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n* n ∈ ℜ - nugget\n\n\n\n"
+    "text": "GaussianCovariance(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
 },
 
 {
@@ -141,7 +141,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.SphericalCovariance",
     "category": "Type",
-    "text": "SphericalCovariance(s, r, n)\n\nINPUTS:\n\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n* n ∈ ℜ - nugget\n\n\n\n"
+    "text": "SphericalCovariance(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
 },
 
 {
@@ -157,7 +157,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.ExponentialCovariance",
     "category": "Type",
-    "text": "ExponentialCovariance(s, r, n)\n\nINPUTS:\n\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n* n ∈ ℜ - nugget\n\n\n\n"
+    "text": "ExponentialCovariance(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
 },
 
 {
