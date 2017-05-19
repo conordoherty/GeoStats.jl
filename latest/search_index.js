@@ -37,6 +37,14 @@ var documenterSearchIndex = {"docs": [
     "page": "Estimation",
     "title": "Estimation",
     "category": "page",
+    "text": ""
+},
+
+{
+    "location": "estimation.html#Estimation-1",
+    "page": "Estimation",
+    "title": "Estimation",
+    "category": "section",
     "text": "A Kriging estimator has the form:newcommandxboldsymbolx\nhatZ(x_0) = lambda_1 Z(x_1) + lambda_2 Z(x_2) + cdots + lambda_n Z(x_n)quad x_i in mathbbR^m lambda_i in mathbbRwith Zcolon mathbbR^m times Omega to mathbbR a random field.This package implements the following Kriging variants:Simple Kriging\nOrdinary Kriging\nUniversal Kriging (polynomial drift for the mean)All these variants follow the same interface: an estimator object is first created with a given data configuration and covariance model, and then estimates are made at various locations.The object construction takes care of building the Kriging system and factorizing the LHS with an appropriate decomposition (e.g. Cholesky, LU). The estimate method performs the estimation at a given location:# build and factorize the system\nsimkrig = SimpleKriging(X, z, cov, mean(z))\n\n# estimate at various locations\nfor xₒ in locations\n  μ, σ² = estimate(simkrig, xₒ)\nendIn case the data configuration needs to be changed in a loop (e.g. sequential Gaussian simulation), one can keep all the parameters fixed and only update the factorization with the fit! method:fit!(simkrig, Xnew, znew)"
 },
 
@@ -45,7 +53,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Estimation",
     "title": "GeoStats.SimpleKriging",
     "category": "Type",
-    "text": "Simple Kriging\n\nINPUTS:\n\nX  ∈ ℜ^(mxn) - matrix of data locations\nz  ∈ ℜⁿ      - vector of observations for X\ncov          - covariance model\nμ  ∈ ℜ       - mean of z\n\n\n\n"
+    "text": "SimpleKriging(X, z, cov, μ)\n\nINPUTS:\n\n* X ∈ ℜ^(mxn) - matrix of data locations\n* z ∈ ℜⁿ      - vector of observations for X\n* cov         - covariance model\n* μ ∈ ℜ       - mean of z\n\n\n\n"
 },
 
 {
@@ -61,7 +69,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Estimation",
     "title": "GeoStats.OrdinaryKriging",
     "category": "Type",
-    "text": "Ordinary Kriging\n\nINPUTS:\n\nX  ∈ ℜ^(mxn) - matrix of data locations\nz  ∈ ℜⁿ      - vector of observations for X\ncov          - covariance model\n\n\n\n"
+    "text": "OrdinaryKriging(X, z, cov)\n\nINPUTS:\n\n* X ∈ ℜ^(mxn) - matrix of data locations\n* z ∈ ℜⁿ      - vector of observations for X\n* cov         - covariance model\n\n\n\n"
 },
 
 {
@@ -77,7 +85,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Estimation",
     "title": "GeoStats.UniversalKriging",
     "category": "Type",
-    "text": "Universal Kriging (a.k.a. Kriging with drift)\n\nINPUTS:\n\nX  ∈ ℜ^(mxn) - matrix of data locations\nz  ∈ ℜⁿ      - vector of observations for X\ncov          - covariance model\ndegree       - polynomial degree for the mean\n\nOrdinary Kriging is recovered for 0th degree polynomial.\n\n\n\n"
+    "text": "UniversalKriging(X, z, cov, degree)\n\nINPUTS:\n\n* X ∈ ℜ^(mxn) - matrix of data locations\n* z ∈ ℜⁿ      - vector of observations for X\n* cov         - covariance model\n* degree      - polynomial degree for the mean\n\nOrdinary Kriging is recovered for 0th degree polynomial.\n\n\n\n"
 },
 
 {
@@ -93,7 +101,63 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "Variograms",
     "category": "page",
-    "text": "TODO"
+    "text": ""
+},
+
+{
+    "location": "variograms.html#Variograms-1",
+    "page": "Variograms",
+    "title": "Variograms",
+    "category": "section",
+    "text": "newcommandxboldsymbolxIn a stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in mathbbR^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related gamma(h) = cov(0) - cov(h). This package implements a few commonly used stationary models:"
+},
+
+{
+    "location": "variograms.html#GeoStats.GaussianCovariance",
+    "page": "Variograms",
+    "title": "GeoStats.GaussianCovariance",
+    "category": "Type",
+    "text": "GaussianCovariance(n, s, r)\n\nINPUTS:\n\n* n ∈ ℜ - nugget\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n\n\n\n"
+},
+
+{
+    "location": "variograms.html#Gaussian-1",
+    "page": "Variograms",
+    "title": "Gaussian",
+    "category": "section",
+    "text": "cov(h) = (s - n) cdot expleft(-left(frachrright)^2right)GaussianCovariance"
+},
+
+{
+    "location": "variograms.html#GeoStats.SphericalCovariance",
+    "page": "Variograms",
+    "title": "GeoStats.SphericalCovariance",
+    "category": "Type",
+    "text": "SphericalCovariance(n, s, r)\n\nINPUTS:\n\n* n ∈ ℜ - nugget\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n\n\n\n"
+},
+
+{
+    "location": "variograms.html#Spherical-1",
+    "page": "Variograms",
+    "title": "Spherical",
+    "category": "section",
+    "text": "cov(h) =\nbegincases\n(s - n) (1 - frac32left(frachrright) + frac12left(frachrright)^3)  textif  h leq r \n0  textotherwise\nendcasesSphericalCovariance"
+},
+
+{
+    "location": "variograms.html#GeoStats.ExponentialCovariance",
+    "page": "Variograms",
+    "title": "GeoStats.ExponentialCovariance",
+    "category": "Type",
+    "text": "ExponentialCovariance(n, s, r)\n\nINPUTS:\n\n* n ∈ ℜ - nugget\n* s ∈ ℜ - sill\n* r ∈ ℜ - range\n\n\n\n"
+},
+
+{
+    "location": "variograms.html#Exponential-1",
+    "page": "Variograms",
+    "title": "Exponential",
+    "category": "section",
+    "text": "cov(h) = (s - n) cdot expleft(-frachrright)ExponentialCovariance"
 },
 
 {
