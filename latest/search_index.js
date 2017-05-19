@@ -49,6 +49,22 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "estimation.html#GeoStats.fit!",
+    "page": "Estimation",
+    "title": "GeoStats.fit!",
+    "category": "Function",
+    "text": "fit!(estimator, X, z)\n\nBuild Kriging system from locations X with values z and save factorization in estimator.\n\n\n\n"
+},
+
+{
+    "location": "estimation.html#GeoStats.weights",
+    "page": "Estimation",
+    "title": "GeoStats.weights",
+    "category": "Function",
+    "text": "weights(estimator, xₒ)\n\nCompute the weights λ (and Lagrange multipliers ν) for the estimator at location xₒ.\n\n\n\n"
+},
+
+{
     "location": "estimation.html#Estimation-1",
     "page": "Estimation",
     "title": "Estimation",
