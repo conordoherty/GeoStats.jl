@@ -29,7 +29,71 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Quick example",
     "category": "section",
-    "text": "Below is a quick example of usage:using GeoStats\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs); z = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a covariance model\ncov = GaussianCovariance(1.,1.,0.) # sill, range and nugget\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, cov, mean(z))\nordkrig = OrdinaryKriging(X, z, cov)\nunikrig = UniversalKriging(X, z, cov, 1)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
+    "text": "Below is a quick example of usage:using GeoStats\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs); z = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a variogram model\nγ = GaussianVariogram(1.,1.,0.) # sill, range and nugget\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, γ, mean(z))\nordkrig = OrdinaryKriging(X, z, γ)\nunikrig = UniversalKriging(X, z, γ, 1)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
+},
+
+{
+    "location": "variograms.html#",
+    "page": "Variograms",
+    "title": "Variograms",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "variograms.html#Variograms-1",
+    "page": "Variograms",
+    "title": "Variograms",
+    "category": "section",
+    "text": "newcommandxboldsymbolx\nnewcommand1mathbb1In an intrinsically stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in mathbbR^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related gamma(h) = cov(0) - cov(h). This package implements a few commonly used stationary models:"
+},
+
+{
+    "location": "variograms.html#GeoStats.GaussianVariogram",
+    "page": "Variograms",
+    "title": "GeoStats.GaussianVariogram",
+    "category": "Type",
+    "text": "GaussianVariogram(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
+},
+
+{
+    "location": "variograms.html#Gaussian-1",
+    "page": "Variograms",
+    "title": "Gaussian",
+    "category": "section",
+    "text": "gamma(h) = (s - n) left1 - expleft(-left(frachrright)^2right)right + n cdot 1_(0infty)(h)GaussianVariogram"
+},
+
+{
+    "location": "variograms.html#GeoStats.SphericalVariogram",
+    "page": "Variograms",
+    "title": "GeoStats.SphericalVariogram",
+    "category": "Type",
+    "text": "SphericalVariogram(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
+},
+
+{
+    "location": "variograms.html#Spherical-1",
+    "page": "Variograms",
+    "title": "Spherical",
+    "category": "section",
+    "text": "gamma(h) = (s - n) leftleft(frac32left(frachrright) + frac12left(frachrright)^3right) cdot 1_(0r)(h) + 1_rinfty)(h)right + n cdot 1_(0infty)(h)SphericalVariogram"
+},
+
+{
+    "location": "variograms.html#GeoStats.ExponentialVariogram",
+    "page": "Variograms",
+    "title": "GeoStats.ExponentialVariogram",
+    "category": "Type",
+    "text": "ExponentialVariogram(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
+},
+
+{
+    "location": "variograms.html#Exponential-1",
+    "page": "Variograms",
+    "title": "Exponential",
+    "category": "section",
+    "text": "gamma(h) = (s - n) left1 - expleft(-frachrright)right + n cdot 1_(0infty)(h)\nExponentialVariogram"
 },
 
 {
@@ -77,7 +141,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Estimation",
     "title": "GeoStats.SimpleKriging",
     "category": "Type",
-    "text": "SimpleKriging(X, z, cov, μ)\n\nINPUTS:\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\ncov         - covariance model\nμ ∈ ℜ       - mean of z\n\n\n\n"
+    "text": "SimpleKriging(X, z, γ, μ)\n\nINPUTS:\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\nμ ∈ ℜ       - mean of z\n\n\n\n"
 },
 
 {
@@ -93,7 +157,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Estimation",
     "title": "GeoStats.OrdinaryKriging",
     "category": "Type",
-    "text": "OrdinaryKriging(X, z, cov)\n\nINPUTS:\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\ncov         - covariance model\n\n\n\n"
+    "text": "OrdinaryKriging(X, z, γ)\n\nINPUTS:\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\n\n\n\n"
 },
 
 {
@@ -109,7 +173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Estimation",
     "title": "GeoStats.UniversalKriging",
     "category": "Type",
-    "text": "UniversalKriging(X, z, cov, degree)\n\nINPUTS:\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\ncov         - covariance model\ndegree      - polynomial degree for the mean\n\nOrdinary Kriging is recovered for 0th degree polynomial.\n\n\n\n"
+    "text": "UniversalKriging(X, z, γ, degree)\n\nINPUTS:\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\ndegree      - polynomial degree for the mean\n\nOrdinary Kriging is recovered for 0th degree polynomial.\n\n\n\n"
 },
 
 {
@@ -118,70 +182,6 @@ var documenterSearchIndex = {"docs": [
     "title": "Universal Kriging",
     "category": "section",
     "text": "In Universal Kriging, the mean of the random field is assumed to be a polynomial:mu(x) = sum_k=1^N_d beta_k f_k(x)with N_d monomials f_k of degree up to d. For example, in 2D there are 6 monomials of degree up to 2:mu(x_1x_2) =  beta_1 1 + beta_2 x_1 + beta_3 x_2 + beta_4 x_1 x_2 + beta_5 x_1^2 + beta_6 x_2^2The choice of the degree d determines the size of the polynomial matrixnewcommandFboldsymbolF\nnewcommandfboldsymbolf\nF =\nbeginbmatrix\nf_1(x_1)  f_2(x_1)  cdots  f_N_d(x_1) \nf_1(x_2)  f_2(x_2)  cdots  f_N_d(x_2) \nvdots  vdots  ddots  vdots \nf_1(x_n)  f_2(x_n)  cdots  f_N_d(x_n)\nendbmatrixand polynomial vector f = beginbmatrix f_1(x_0)  f_2(x_0)  cdots  f_N_d(x_0) endbmatrix^top.The variogram matrix is constructed instead of the covariance matrix:newcommandGboldsymbolGamma\nnewcommandgboldsymbolgamma\nG =\nbeginbmatrix\ngamma(x_1x_1)  gamma(x_1x_2)  cdots  gamma(x_1x_n) \ngamma(x_2x_1)  gamma(x_2x_2)  cdots  gamma(x_2x_n) \nvdots  vdots  ddots  vdots \ngamma(x_nx_1)  gamma(x_nx_2)  cdots  gamma(x_nx_n)\nendbmatrixwith gamma(x_ix_j) = cov(x_0x_0) - cov(x_ix_j). The variogram is also evaluated at the estimation location g = beginbmatrix gamma(x_1x_0)  gamma(x_2x_0)  cdots  gamma(x_nx_0) endbmatrix^top.The resulting linear system is:beginbmatrix\nG  F \nF^top  boldsymbol0\nendbmatrix\nbeginbmatrix\nl \nboldsymbolnu\nendbmatrix\n=\nbeginbmatrix\ng \nf\nendbmatrixwith boldsymbolnu the Lagrange multipliers associated with the universal constraints. The mean and variance at location x_0 are given by:mu(x_0) = z^top lsigma^2(x_0) = beginbmatrixg  fendbmatrix^top beginbmatrixl  boldsymbolnuendbmatrixUniversalKriging"
-},
-
-{
-    "location": "variograms.html#",
-    "page": "Variograms",
-    "title": "Variograms",
-    "category": "page",
-    "text": ""
-},
-
-{
-    "location": "variograms.html#Variograms-1",
-    "page": "Variograms",
-    "title": "Variograms",
-    "category": "section",
-    "text": "newcommandxboldsymbolxIn a stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in mathbbR^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related gamma(h) = cov(0) - cov(h). This package implements a few commonly used stationary models:"
-},
-
-{
-    "location": "variograms.html#GeoStats.GaussianCovariance",
-    "page": "Variograms",
-    "title": "GeoStats.GaussianCovariance",
-    "category": "Type",
-    "text": "GaussianCovariance(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
-},
-
-{
-    "location": "variograms.html#Gaussian-1",
-    "page": "Variograms",
-    "title": "Gaussian",
-    "category": "section",
-    "text": "cov(h) = (s - n) cdot expleft(-left(frachrright)^2right)GaussianCovariance"
-},
-
-{
-    "location": "variograms.html#GeoStats.SphericalCovariance",
-    "page": "Variograms",
-    "title": "GeoStats.SphericalCovariance",
-    "category": "Type",
-    "text": "SphericalCovariance(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
-},
-
-{
-    "location": "variograms.html#Spherical-1",
-    "page": "Variograms",
-    "title": "Spherical",
-    "category": "section",
-    "text": "cov(h) =\nbegincases\n(s - n) (1 - frac32left(frachrright) + frac12left(frachrright)^3)  textif  h leq r \n0  textotherwise\nendcasesSphericalCovariance"
-},
-
-{
-    "location": "variograms.html#GeoStats.ExponentialCovariance",
-    "page": "Variograms",
-    "title": "GeoStats.ExponentialCovariance",
-    "category": "Type",
-    "text": "ExponentialCovariance(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
-},
-
-{
-    "location": "variograms.html#Exponential-1",
-    "page": "Variograms",
-    "title": "Exponential",
-    "category": "section",
-    "text": "cov(h) = (s - n) cdot expleft(-frachrright)ExponentialCovariance"
 },
 
 {
