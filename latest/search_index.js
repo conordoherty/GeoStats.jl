@@ -13,7 +13,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Overview",
     "category": "section",
-    "text": "This package provides efficient implementations of geostatistical algorithms in pure Julia. It is in its initial development, and currently only implements Kriging estimation methods. More features will be added as the Julia type system matures."
+    "text": "This package provides high-performance implementations of geostatistical algorithms for the Julia programming language. It is in its initial development, and currently only implements Kriging estimation methods. More features will be added as the Julia type system matures."
 },
 
 {
