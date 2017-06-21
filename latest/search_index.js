@@ -29,7 +29,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Quick example",
     "category": "section",
-    "text": "Below is a quick example of usage:using GeoStats\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs); z = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a variogram model\nγ = GaussianVariogram(1.,1.,0.) # sill, range and nugget\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, γ, mean(z))\nordkrig = OrdinaryKriging(X, z, γ)\nunikrig = UniversalKriging(X, z, γ, 0)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
+    "text": "Below is a quick example of usage:using GeoStats\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs)\nz = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a variogram model\nγ = GaussianVariogram(1.,1.,0.) # sill, range and nugget\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, γ, mean(z))\nordkrig = OrdinaryKriging(X, z, γ)\nunikrig = UniversalKriging(X, z, γ, 0)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
 },
 
 {
@@ -45,7 +45,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "Variograms",
     "category": "section",
-    "text": "newcommandxboldsymbolx\nnewcommand1mathbb1In an intrinsically stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in mathbbR^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related gamma(h) = cov(0) - cov(h). This package implements a few commonly used stationary models:"
+    "text": "newcommandxboldsymbolx\nnewcommand1mathbb1In an intrinsically stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in mathbbR^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related gamma(h) = cov(0) - cov(h). This package implements a few commonly used and other more excentric stationary models:"
 },
 
 {
@@ -94,6 +94,22 @@ var documenterSearchIndex = {"docs": [
     "title": "Exponential",
     "category": "section",
     "text": "gamma(h) = (s - n) left1 - expleft(-frachrright)right + n cdot 1_(0infty)(h)\nExponentialVariogram"
+},
+
+{
+    "location": "variograms.html#GeoStats.MaternVariogram",
+    "page": "Variograms",
+    "title": "GeoStats.MaternVariogram",
+    "category": "Type",
+    "text": "MaternVariogram(s, r, n, ν)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\nν ∈ ℜ - order of Bessel function\n\n\n\n"
+},
+
+{
+    "location": "variograms.html#Matern-1",
+    "page": "Variograms",
+    "title": "Matern",
+    "category": "section",
+    "text": "gamma(h) = (s - n) left1 - frac2^1-nuGamma(nu) left(sqrt2nufrachrright)^nu K_nuleft(sqrt2nufrachrright)rightSee the Wikipedia page on Matérn covariance functions.MaternVariogram"
 },
 
 {
