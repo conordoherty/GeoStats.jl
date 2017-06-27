@@ -29,7 +29,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Quick example",
     "category": "section",
-    "text": "Below is a quick example of usage:using GeoStats\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs)\nz = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a variogram model\nγ = GaussianVariogram(1.,1.,0.) # sill, range and nugget\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, γ, mean(z))\nordkrig = OrdinaryKriging(X, z, γ)\nunikrig = UniversalKriging(X, z, γ, 0)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
+    "text": "Below is a quick example of usage:using GeoStats\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs)\nz = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a variogram model\nγ = GaussianVariogram(sill=1., range=1., nugget=0.)\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, γ, mean(z))\nordkrig = OrdinaryKriging(X, z, γ)\nunikrig = UniversalKriging(X, z, γ, 0)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
 },
 
 {
@@ -53,7 +53,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.GaussianVariogram",
     "category": "Type",
-    "text": "GaussianVariogram(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
+    "text": "GaussianVariogram(s, r, n)\n\nA Gaussian variogram with sill s, range r and nugget n.\n\n\n\n"
 },
 
 {
@@ -69,7 +69,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.SphericalVariogram",
     "category": "Type",
-    "text": "SphericalVariogram(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
+    "text": "SphericalVariogram(s, r, n)\n\nA spherical variogram with sill s, range r and nugget n.\n\n\n\n"
 },
 
 {
@@ -85,7 +85,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.ExponentialVariogram",
     "category": "Type",
-    "text": "ExponentialVariogram(s, r, n)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\n\n\n\n"
+    "text": "ExponentialVariogram(s, r, n)\n\nAn exponential variogram with sill s, range r and nugget n.\n\n\n\n"
 },
 
 {
@@ -101,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.MaternVariogram",
     "category": "Type",
-    "text": "MaternVariogram(s, r, n, ν)\n\nINPUTS:\n\ns ∈ ℜ - sill\nr ∈ ℜ - range\nn ∈ ℜ - nugget\nν ∈ ℜ - order of Bessel function\n\n\n\n"
+    "text": "MaternVariogram(s, r, n, ν)\n\nA Matérn variogram with sill s, range r and nugget n. The parameter ν is the order of the Bessel function.\n\n\n\n"
 },
 
 {
