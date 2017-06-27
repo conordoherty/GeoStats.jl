@@ -45,7 +45,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "Variograms",
     "category": "section",
-    "text": "newcommandxboldsymbolx\nnewcommand1mathbb1In an intrinsically stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in mathbbR^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related gamma(h) = cov(0) - cov(h). This package implements a few commonly used and other more excentric stationary models:"
+    "text": "newcommandxboldsymbolx\nnewcommandRmathbbR\nnewcommand1mathbb1In an intrinsically stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in R^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related via gamma(h) = cov(0) - cov(h).Anisotropic models are easily obtained by defining an anisotropic distance function d colon R^m times R^m mapsto R that maps any two points x_1x_2 in R^m into a scalar d(x_1x_2) in R.Custom distance functions are particularly useful if the data is embedded on a map by means of a non-trivial projection. In this case, a geodesic distance can be defined to properly account for spatial distortions.This package implements a few commonly used and other more excentric stationary models:Gaussian\nSpherical\nExponential\nMatérn (see Matérn covariance functions)They all share the same default parameters of sill=1, range=1, nugget=0, distance=Euclidean. Some of them have extra parameters that can be set with keyword arguments:GaussianVariogram(nugget=.1) # add nugget effect\nMaternVariogram(order=1) # set order of Bessel function"
 },
 
 {
@@ -53,7 +53,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.GaussianVariogram",
     "category": "Type",
-    "text": "GaussianVariogram(s, r, n)\n\nA Gaussian variogram with sill s, range r and nugget n.\n\n\n\n"
+    "text": "GaussianVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA Gaussian variogram with sill s, range r and nugget n. For anisotropic model, use a custom distance function d.\n\n\n\n"
 },
 
 {
@@ -69,7 +69,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.SphericalVariogram",
     "category": "Type",
-    "text": "SphericalVariogram(s, r, n)\n\nA spherical variogram with sill s, range r and nugget n.\n\n\n\n"
+    "text": "SphericalVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA spherical variogram with sill s, range r and nugget n. For anisotropic model, use a custom distance function d.\n\n\n\n"
 },
 
 {
@@ -85,7 +85,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.ExponentialVariogram",
     "category": "Type",
-    "text": "ExponentialVariogram(s, r, n)\n\nAn exponential variogram with sill s, range r and nugget n.\n\n\n\n"
+    "text": "ExponentialVariogram(sill=s, range=r, nugget=n, distance=d)\n\nAn exponential variogram with sill s, range r and nugget n. For anisotropic model, use a custom distance function d.\n\n\n\n"
 },
 
 {
@@ -101,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "GeoStats.MaternVariogram",
     "category": "Type",
-    "text": "MaternVariogram(s, r, n, ν)\n\nA Matérn variogram with sill s, range r and nugget n. The parameter ν is the order of the Bessel function.\n\n\n\n"
+    "text": "MaternVariogram(sill=s, range=r, nugget=n, order=ν, distance=d)\n\nA Matérn variogram with sill s, range r and nugget n. The parameter ν is the order of the Bessel function. For anisotropic model, use a custom distance function d.\n\n\n\n"
 },
 
 {
@@ -109,7 +109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "Matern",
     "category": "section",
-    "text": "gamma(h) = (s - n) left1 - frac2^1-nuGamma(nu) left(sqrt2nufrachrright)^nu K_nuleft(sqrt2nufrachrright)rightSee the Wikipedia page on Matérn covariance functions.MaternVariogram"
+    "text": "gamma(h) = (s - n) left1 - frac2^1-nuGamma(nu) left(sqrt2nufrachrright)^nu K_nuleft(sqrt2nufrachrright)rightMaternVariogram"
 },
 
 {
@@ -149,7 +149,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Estimation",
     "title": "Estimation",
     "category": "section",
-    "text": "A Kriging estimator has the form:newcommandxboldsymbolx\nhatZ(x_0) = lambda_1 Z(x_1) + lambda_2 Z(x_2) + cdots + lambda_n Z(x_n)quad x_i in mathbbR^m lambda_i in mathbbRwith Zcolon mathbbR^m times Omega to mathbbR a random field.This package implements the following Kriging variants:Simple Kriging\nOrdinary Kriging\nUniversal Kriging (polynomial drift for the mean)All these variants follow the same interface: an estimator object is first created with a given data configuration and variogram model, and then estimates are made at various locations.The object construction takes care of building the Kriging system and factorizing the LHS with an appropriate decomposition (e.g. Cholesky, LU). The estimate method performs the estimation at a given location:estimateA typical use of the interface is as follows:# build and factorize the system\nsimkrig = SimpleKriging(X, z, cov, mean(z))\n\n# estimate at various locations\nfor xₒ in locations\n  μ, σ² = estimate(simkrig, xₒ)\nendIn case the data configuration needs to be changed in a loop (e.g. sequential Gaussian simulation), one can keep all the parameters fixed and only update the factorization with the fit! method:fit!For advanced users, the Kriging weights and Lagrange multipliers at a given location can be accessed with the weights method. This method returns an AbstractWeights object containing a field λ for the weights and a field ν for the Lagrange multipliers:weights# weights and Lagrange multipliers\nOKweights = weights(ordkrig, xₒ)\nOKweights.λ, OKweights.ν"
+    "text": "A Kriging estimator has the form:newcommandxboldsymbolx\nnewcommandRmathbbR\nhatZ(x_0) = lambda_1 Z(x_1) + lambda_2 Z(x_2) + cdots + lambda_n Z(x_n)quad x_i in R^m lambda_i in Rwith Zcolon R^m times Omega to R a random field.This package implements the following Kriging variants:Simple Kriging\nOrdinary Kriging\nUniversal Kriging (polynomial drift for the mean)All these variants follow the same interface: an estimator object is first created with a given data configuration and variogram model, and then estimates are made at various locations.The object construction takes care of building the Kriging system and factorizing the LHS with an appropriate decomposition (e.g. Cholesky, LU). The estimate method performs the estimation at a given location:estimateA typical use of the interface is as follows:# build and factorize the system\nsimkrig = SimpleKriging(X, z, cov, mean(z))\n\n# estimate at various locations\nfor xₒ in locations\n  μ, σ² = estimate(simkrig, xₒ)\nendIn case the data configuration needs to be changed in a loop (e.g. sequential Gaussian simulation), one can keep all the parameters fixed and only update the factorization with the fit! method:fit!For advanced users, the Kriging weights and Lagrange multipliers at a given location can be accessed with the weights method. This method returns an AbstractWeights object containing a field λ for the weights and a field ν for the Lagrange multipliers:weights# weights and Lagrange multipliers\nOKweights = weights(ordkrig, xₒ)\nOKweights.λ, OKweights.ν"
 },
 
 {
