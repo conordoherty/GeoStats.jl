@@ -45,7 +45,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "Variograms",
     "category": "section",
-    "text": "newcommandxboldsymbolx\nnewcommandRmathbbR\nnewcommand1mathbb1In an intrinsically stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in R^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related via gamma(h) = cov(0) - cov(h).Anisotropic models are easily obtained by defining an anisotropic distance function d colon R^m times R^m mapsto R that maps any two points x_1x_2 in R^m into a scalar d(x_1x_2) in R.Custom distance functions are particularly useful if the data is embedded on a map by means of a non-trivial projection. In this case, a geodesic distance can be defined to properly account for spatial distortions.This package implements a few commonly used and other more excentric stationary models:Gaussian\nSpherical\nExponential\nMatérn (see Matérn covariance functions)They all share the same default parameters of sill=1, range=1, nugget=0, distance=Euclidean. Some of them have extra parameters that can be set with keyword arguments:GaussianVariogram(nugget=.1) # add nugget effect\nMaternVariogram(order=1) # set order of Bessel function"
+    "text": "newcommandxboldsymbolx\nnewcommandRmathbbR\nnewcommand1mathbb1In an intrinsically stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in R^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related via gamma(h) = cov(0) - cov(h).Anisotropic models are easily obtained by defining an anisotropic distance function d colon R^m times R^m mapsto R that maps any two points x_1x_2 in R^m into a scalar d(x_1x_2) in R.Custom distance functions are particularly useful if the data is embedded on a map by means of a non-trivial projection. In this case, a geodesic distance can be defined to properly account for spatial distortions.This package implements a few commonly used and other more excentric stationary models:Gaussian\nSpherical\nExponential\nMatérn (see Matérn covariance functions)They all share the same default parameters of sill=1, range=1, nugget=0, distance=Euclidean. Some of them have extra parameters that can be set with keyword arguments:GaussianVariogram(nugget=.1) # add nugget effect\nMaternVariogram(order=1) # set order of Bessel functionAdditionally, a composite (additive) variogram model gamma(h) = gamma_1(h) + gamma_2(h) + cdots gamma_n(h) can be constructed from a vector of variogram models:CompositeVariogram([GaussianVariogram(), ExponentialVariogram()])Like the other variogram models, a composite variogram gamma can be evaluated as an isotropic model gamma(h) or as a model with a custom distance defined by taking into account its components gamma(x_1x_2)."
 },
 
 {
@@ -110,6 +110,22 @@ var documenterSearchIndex = {"docs": [
     "title": "Matern",
     "category": "section",
     "text": "gamma(h) = (s - n) left1 - frac2^1-nuGamma(nu) left(sqrt2nufrachrright)^nu K_nuleft(sqrt2nufrachrright)rightMaternVariogram"
+},
+
+{
+    "location": "variograms.html#GeoStats.CompositeVariogram",
+    "page": "Variograms",
+    "title": "GeoStats.CompositeVariogram",
+    "category": "Type",
+    "text": "CompositeVariogram(γ₁, γ₂, ..., γₙ)\n\nA composite (additive) model of variograms γ(h) = γ₁(h) + γ₂(h) + ⋯ + γₙ(h).\n\n\n\n"
+},
+
+{
+    "location": "variograms.html#Composite-1",
+    "page": "Variograms",
+    "title": "Composite",
+    "category": "section",
+    "text": "CompositeVariogram"
 },
 
 {
