@@ -45,7 +45,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Variograms",
     "title": "Variograms",
     "category": "section",
-    "text": "newcommandxboldsymbolx\nnewcommandRmathbbR\nnewcommand1mathbb1In an intrinsically stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in R^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related via gamma(h) = cov(0) - cov(h).Anisotropic models are easily obtained by defining an anisotropic distance function d colon R^m times R^m mapsto R that maps any two points x_1x_2 in R^m into a scalar d(x_1x_2) in R.Custom distance functions are particularly useful if the data is embedded on a map by means of a non-trivial projection. In this case, a geodesic distance can be defined to properly account for spatial distortions.This package implements a few commonly used and other more excentric stationary models:Gaussian\nSpherical\nExponential\nMatérn (see Matérn covariance functions)They all share the same default parameters of sill=1, range=1, nugget=0, distance=Euclidean. Some of them have extra parameters that can be set with keyword arguments:GaussianVariogram(nugget=.1) # add nugget effect\nMaternVariogram(order=1) # set order of Bessel functionAdditionally, a composite (additive) variogram model gamma(h) = gamma_1(h) + gamma_2(h) + cdots gamma_n(h) can be constructed from a vector of variogram models:CompositeVariogram([GaussianVariogram(), ExponentialVariogram()])Like the other variogram models, a composite variogram gamma can be evaluated as an isotropic model gamma(h) or as a model with a custom distance defined by taking into account its components gamma(x_1x_2)."
+    "text": "newcommandxboldsymbolx\nnewcommandRmathbbR\nnewcommand1mathbb1In an intrinsically stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in R^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related via gamma(h) = cov(0) - cov(h).Anisotropic models are easily obtained by defining an ellipsoid distance in place of the Euclidean distance. For a list of available distances, please see Distances.Custom distance functions are particularly useful if 3D locations are projected on a 2D map by means of a non-trivial transformation. In this case, a geodesic distance can be defined to properly account for spatial distortions at large scales.This package implements a few commonly used and other more excentric stationary models:Gaussian\nSpherical\nExponential\nMatérn (see Matérn covariance functions)They all share the same default parameters of sill=1, range=1, nugget=0, distance=EuclideanDistance(). Some of them have extra parameters that can be set with keyword arguments:GaussianVariogram(nugget=.1) # add nugget effect\nMaternVariogram(order=1) # set order of Bessel functionAdditionally, a composite (additive) variogram model gamma(h) = gamma_1(h) + gamma_2(h) + cdots gamma_n(h) can be constructed from a list of variogram models:CompositeVariogram(GaussianVariogram(), ExponentialVariogram())Like the other variogram models, a composite variogram gamma can be evaluated as an isotropic model gamma(h) or as a model with a custom distance implicitly defined by taking into account its individual components gamma(x_1x_2)."
 },
 
 {
@@ -214,6 +214,54 @@ var documenterSearchIndex = {"docs": [
     "title": "Universal Kriging",
     "category": "section",
     "text": "In Universal Kriging, the mean of the random field is assumed to be a polynomial:mu(x) = sum_k=1^N_d beta_k f_k(x)with N_d monomials f_k of degree up to d. For example, in 2D there are 6 monomials of degree up to 2:mu(x_1x_2) =  beta_1 1 + beta_2 x_1 + beta_3 x_2 + beta_4 x_1 x_2 + beta_5 x_1^2 + beta_6 x_2^2The choice of the degree d determines the size of the polynomial matrixnewcommandFboldsymbolF\nnewcommandfboldsymbolf\nF =\nbeginbmatrix\nf_1(x_1)  f_2(x_1)  cdots  f_N_d(x_1) \nf_1(x_2)  f_2(x_2)  cdots  f_N_d(x_2) \nvdots  vdots  ddots  vdots \nf_1(x_n)  f_2(x_n)  cdots  f_N_d(x_n)\nendbmatrixand polynomial vector f = beginbmatrix f_1(x_0)  f_2(x_0)  cdots  f_N_d(x_0) endbmatrix^top.The variogram matrix is constructed instead of the covariance matrix:newcommandGboldsymbolGamma\nnewcommandgboldsymbolgamma\nG =\nbeginbmatrix\ngamma(x_1x_1)  gamma(x_1x_2)  cdots  gamma(x_1x_n) \ngamma(x_2x_1)  gamma(x_2x_2)  cdots  gamma(x_2x_n) \nvdots  vdots  ddots  vdots \ngamma(x_nx_1)  gamma(x_nx_2)  cdots  gamma(x_nx_n)\nendbmatrixwith gamma(x_ix_j) = cov(x_0x_0) - cov(x_ix_j). The variogram is also evaluated at the estimation location g = beginbmatrix gamma(x_1x_0)  gamma(x_2x_0)  cdots  gamma(x_nx_0) endbmatrix^top.The resulting linear system is:beginbmatrix\nG  F \nF^top  boldsymbol0\nendbmatrix\nbeginbmatrix\nl \nboldsymbolnu\nendbmatrix\n=\nbeginbmatrix\ng \nf\nendbmatrixwith boldsymbolnu the Lagrange multipliers associated with the universal constraints. The mean and variance at location x_0 are given by:mu(x_0) = z^top lsigma^2(x_0) = beginbmatrixg  fendbmatrix^top beginbmatrixl  boldsymbolnuendbmatrixUniversalKriging"
+},
+
+{
+    "location": "distances.html#",
+    "page": "Distances",
+    "title": "Distances",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "distances.html#Distances-1",
+    "page": "Distances",
+    "title": "Distances",
+    "category": "section",
+    "text": "newcommandxboldsymbolx\nnewcommandyboldsymbolyA set of commonly used distance functions is provided in this package:Euclidean\nEllipsoidThese can be used to model anisotropy (e.g. ellipsoid distance), to perform geostatistical simulation on non-Euclidean coordinate systems (e.g. geodesic distance between latitude/longitude marks), or to handle arbitrary manifolds."
+},
+
+{
+    "location": "distances.html#GeoStats.EuclideanDistance",
+    "page": "Distances",
+    "title": "GeoStats.EuclideanDistance",
+    "category": "Type",
+    "text": "EuclideanDistance\n\nThe Euclidean distance ||x-y||₂\n\n\n\n"
+},
+
+{
+    "location": "distances.html#Euclidean-1",
+    "page": "Distances",
+    "title": "Euclidean",
+    "category": "section",
+    "text": "d(xy) = sqrt(x-y)^top (x-y)EuclideanDistance"
+},
+
+{
+    "location": "distances.html#GeoStats.EllipsoidDistance",
+    "page": "Distances",
+    "title": "GeoStats.EllipsoidDistance",
+    "category": "Type",
+    "text": "EllipsoidDistance(semiaxes, angles)\n\nA distance defined by an ellipsoid with given semiaxes and rotation angles.\n\nFor 2D ellipsoids, there are two semiaxes and one rotation angle.\nFor 3D ellipsoids, there are three semiaxes and three rotation angles.\n\nExamples\n\n2D ellipsoid making 45ᵒ with the horizontal axis:\n\njulia> EllipsoidDistance([1.0,0.5], [π/2])\n\n3D ellipsoid rotated by 45ᵒ in the xy plane:\n\njulia> EllipsoidDistance([1.0,0.5,0.5], [π/2,0.0,0.0])\n\nNotes\n\nThe positive definite matrix representing the ellipsoid is assembled once during object construction and cached for fast evaluation.\n\n\n\n"
+},
+
+{
+    "location": "distances.html#Ellipsoid-1",
+    "page": "Distances",
+    "title": "Ellipsoid",
+    "category": "section",
+    "text": "d(xy) = sqrt(x-y)^top boldsymbolA (x-y)EllipsoidDistance"
 },
 
 {
