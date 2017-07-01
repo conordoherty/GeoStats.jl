@@ -229,7 +229,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Distances",
     "title": "Distances",
     "category": "section",
-    "text": "newcommandxboldsymbolx\nnewcommandyboldsymbolyA set of commonly used distance functions is provided in this package:Euclidean\nEllipsoidThese can be used to model anisotropy (e.g. ellipsoid distance), to perform geostatistical simulation on non-Euclidean coordinate systems (e.g. geodesic distance between latitude/longitude marks), or to handle arbitrary manifolds."
+    "text": "newcommandxboldsymbolx\nnewcommandyboldsymbolyA set of commonly used distance functions is provided in this package for use in geostatistical algorithms. They can be passed to variograms in order to:Model anisotropy (e.g. ellipsoid distance)\nPerform geostatistical simulation on non-Euclidean coordinate systems (e.g. haversine distance)\netc."
 },
 
 {
@@ -261,7 +261,23 @@ var documenterSearchIndex = {"docs": [
     "page": "Distances",
     "title": "Ellipsoid",
     "category": "section",
-    "text": "d(xy) = sqrt(x-y)^top boldsymbolA (x-y)EllipsoidDistance"
+    "text": "The ellipsoid distance can be used to model anisotropy. The semiaxes of the ellipsoid represent correlation lengths that can be rotated and aligned with target directions.d(xy) = sqrt(x-y)^top boldsymbolA (x-y)EllipsoidDistance"
+},
+
+{
+    "location": "distances.html#GeoStats.HaversineDistance",
+    "page": "Distances",
+    "title": "GeoStats.HaversineDistance",
+    "category": "Type",
+    "text": "HaversineDistance(radius)\n\nThe haversine distance between two locations on a sphere of given radius.\n\nLocations are described with latitude and longitude in degrees and the radius of the Earth is used by default (≈ 6371km). The computed distance has the same units as that of the radius.\n\nNotes\n\nThe haversine formula is widely used to approximate the geodesic distance between two points at the surface of the Earth. The error from approximating the Earth as a sphere is typically negligible for most applications. It is no more than 0.3%.\n\n\n\n"
+},
+
+{
+    "location": "distances.html#Haversine-1",
+    "page": "Distances",
+    "title": "Haversine",
+    "category": "section",
+    "text": "The haversine distance can be used to perform geostatistical simulation directly on a sphere. It approximates the geodesic distance between two pairs of latitude/longitude.HaversineDistance"
 },
 
 {
