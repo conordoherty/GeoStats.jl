@@ -325,7 +325,23 @@ var documenterSearchIndex = {"docs": [
     "page": "Examples",
     "title": "Examples",
     "category": "section",
-    "text": "A set of examples in the form of Jupyter notebook is made available in the examples folder of the project. They are distributed with GeoStats.jl and can be run locally for full interactivity.We are always happy to include new use cases. Please check Contributing before submitting a pull request."
+    "text": "A set of Jupyter notebooks demonstrating the current functionality of the package is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().We are always happy to include new use cases. Please check Contributing before submitting a pull request."
+},
+
+{
+    "location": "plotting.html#",
+    "page": "Plotting",
+    "title": "Plotting",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "plotting.html#Plotting-1",
+    "page": "Plotting",
+    "title": "Plotting",
+    "category": "section",
+    "text": "GeoStats.jl is integrated with the Julia Plots.jl API. This means that many objects defined in the package can be plotted directly without data format conversions.For example, below we plot various theoretical variograms with the plot command from Plots.jl:using GeoStats\nusing Plots\ngr(size=(600,400)) # hide\n\nplot(GaussianVariogram(), maxlag=3., label=\"Gaussian\")\nplot!(ExponentialVariogram(), maxlag=3., label=\"Exponential\")\nplot!(SphericalVariogram(), maxlag=3., label=\"Spherical\")\nplot!(MaternVariogram(), maxlag=3., label=\"Matern\")\npng(\"images/variograms.png\") # hide(Image: )"
 },
 
 {
