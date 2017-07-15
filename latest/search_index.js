@@ -77,7 +77,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Theoretical variograms",
     "title": "Theoretical variograms",
     "category": "section",
-    "text": "newcommandxboldsymbolx\nnewcommandRmathbbR\nnewcommand1mathbb1In an intrinsically stationary isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in R^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)The same holds for the covariance, which is directly related via gamma(h) = cov(0) - cov(h).Anisotropic models are easily obtained by defining an ellipsoid distance in place of the Euclidean distance. For a list of available distances, please see Distance functions.Custom distance functions are particularly useful if 3D locations are projected on a 2D map by means of a non-trivial transformation. In this case, a geodesic distance can be defined to properly account for spatial distortions at large scales.This package implements a few commonly used and other more excentric stationary models:Gaussian\nSpherical\nExponential\nMatérn (see Matérn covariance functions)They all share the same default parameters of sill=1, range=1, nugget=0, distance=EuclideanDistance(). Some of them have extra parameters that can be set with keyword arguments:GaussianVariogram(nugget=.1) # add nugget effect\nMaternVariogram(order=1) # set order of Bessel functionAdditionally, a composite (additive) variogram model gamma(h) = gamma_1(h) + gamma_2(h) + cdots gamma_n(h) can be constructed from a list of variogram models:CompositeVariogram(GaussianVariogram(), ExponentialVariogram())Like the other variogram models, a composite variogram gamma can be evaluated as an isotropic model gamma(h) or as a model with a custom distance implicitly defined by taking into account its individual components gamma(x_1x_2)."
+    "text": "newcommandxboldsymbolx\nnewcommandRmathbbR\nnewcommand1mathbb1In an intrinsic isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in R^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)Under the additional assumption of 2nd order stationarity, the well-known covariance is directly related via gamma(h) = cov(0) - cov(h). Anisotropic models are easily obtained by defining an ellipsoid distance in place of the Euclidean distance. For a list of available distances, please see Distance functions.This package implements a few commonly used and other more excentric variogram models:Gaussian\nSpherical\nExponential\nMatérn (see Matérn covariance functions)They all share the same default parameters of sill=1, range=1, nugget=0, distance=EuclideanDistance(). Some of them have extra parameters that can be set with keyword arguments:GaussianVariogram(nugget=.1) # add nugget effect\nMaternVariogram(order=1) # set order of Bessel functionAdditionally, a composite (additive) variogram model gamma(h) = gamma_1(h) + gamma_2(h) + cdots gamma_n(h) can be constructed from a list of variogram models:CompositeVariogram(GaussianVariogram(), ExponentialVariogram())Like the other variogram models, a composite variogram gamma can be evaluated as an isotropic model gamma(h) or as a model with a custom distance implicitly defined by taking into account its individual components gamma(x_1x_2)."
 },
 
 {
@@ -205,7 +205,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimation",
     "title": "GeoStats.SimpleKriging",
     "category": "Type",
-    "text": "SimpleKriging(X, z, γ, μ)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\nμ ∈ ℜ       - mean of z\n\n\n\n"
+    "text": "SimpleKriging(X, z, γ, μ)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\nμ ∈ ℜ       - mean of z\n\nNotes\n\nSimple Kriging requires stationary variograms\n\n\n\n"
 },
 
 {
@@ -213,7 +213,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimation",
     "title": "Simple Kriging",
     "category": "section",
-    "text": "In Simple Kriging, the mean mu of the random field is assumed to be constant and known. The resulting linear system is:newcommandGboldsymbolGamma\nnewcommandgboldsymbolgamma\nnewcommandlboldsymbollambda\nnewcommand1boldsymbol1\nnewcommandzboldsymbolz\nbeginbmatrix\ngamma(x_1x_2)  gamma(x_1x_2)  cdots  gamma(x_1x_n) \ngamma(x_2x_1)  gamma(x_2x_2)  cdots  gamma(x_2x_n) \nvdots  vdots  ddots  vdots \ngamma(x_nx_1)  gamma(x_nx_2)  cdots  gamma(x_nx_n)\nendbmatrix\nbeginbmatrix\nlambda_1 \nlambda_2 \nvdots \nlambda_n\nendbmatrix\n=\nbeginbmatrix\ngamma(x_1x_0) \ngamma(x_2x_0) \nvdots \ngamma(x_nx_0)\nendbmatrixor in matricial form Gl = g. We subtract the given mean from the observations boldsymboly = z - mu 1 and compute the mean and variance at location x_0:mu(x_0) = mu + boldsymboly^top lsigma^2(x_0) = g^top lSimpleKriging"
+    "text": "In Simple Kriging, the mean mu of the random field is assumed to be constant and known. The resulting linear system is:newcommandCboldsymbolC\nnewcommandcboldsymbolc\nnewcommandlboldsymbollambda\nnewcommand1boldsymbol1\nnewcommandzboldsymbolz\nbeginbmatrix\ncov(x_1x_2)  cov(x_1x_2)  cdots  cov(x_1x_n) \ncov(x_2x_1)  cov(x_2x_2)  cdots  cov(x_2x_n) \nvdots  vdots  ddots  vdots \ncov(x_nx_1)  cov(x_nx_2)  cdots  cov(x_nx_n)\nendbmatrix\nbeginbmatrix\nlambda_1 \nlambda_2 \nvdots \nlambda_n\nendbmatrix\n=\nbeginbmatrix\ncov(x_1x_0) \ncov(x_2x_0) \nvdots \ncov(x_nx_0)\nendbmatrixor in matricial form Cl = c. We subtract the given mean from the observations boldsymboly = z - mu 1 and compute the mean and variance at location x_0:mu(x_0) = mu + boldsymboly^top lsigma^2(x_0) = cov(0) - c^top lSimpleKriging"
 },
 
 {
@@ -229,7 +229,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimation",
     "title": "Ordinary Kriging",
     "category": "section",
-    "text": "In Ordinary Kriging the mean of the random field is assumed to be constant and unknown. The resulting linear system is:beginbmatrix\nG  1 \n1^top  0\nendbmatrix\nbeginbmatrix\nl \nnu\nendbmatrix\n=\nbeginbmatrix\ng \n1\nendbmatrixwith nu the Lagrange multiplier associated with the constraint 1^top l = 1. The mean and variance at location x_0 are given by:mu(x_0) = z^top lambdasigma^2(x_0) =  beginbmatrix g  1 endbmatrix^top beginbmatrix l  nu endbmatrixOrdinaryKriging"
+    "text": "In Ordinary Kriging the mean of the random field is assumed to be constant and unknown. The resulting linear system is:newcommandGboldsymbolGamma\nnewcommandgboldsymbolgamma\nbeginbmatrix\nG  1 \n1^top  0\nendbmatrix\nbeginbmatrix\nl \nnu\nendbmatrix\n=\nbeginbmatrix\ng \n1\nendbmatrixwith nu the Lagrange multiplier associated with the constraint 1^top l = 1. The mean and variance at location x_0 are given by:mu(x_0) = z^top lambdasigma^2(x_0) =  beginbmatrix g  1 endbmatrix^top beginbmatrix l  nu endbmatrixOrdinaryKriging"
 },
 
 {
@@ -253,7 +253,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimation",
     "title": "GeoStats.ExternalDriftKriging",
     "category": "Type",
-    "text": "ExternalDriftKriging(X, z, γ, ms)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\nms          - vector of external drift functions m: ℜᵐ ↦ ℜ\n\nNotes\n\nExternal drift functions should be smooth\nKriging system with external drift is often unstable\nOrdinaryKriging is recovered for ms = [x->1]\nFor polynomial mean, see UniversalKriging\n\n\n\n"
+    "text": "ExternalDriftKriging(X, z, γ, ms)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\nms          - vector of external drift functions m: ℜᵐ ↦ ℜ\n\nNotes\n\nExternal drift functions should be smooth\nKriging system with external drift is often unstable\nInclude a constant drift (e.g. x->1) for unbiased estimation\nOrdinaryKriging is recovered for ms = [x->1]\nFor polynomial mean, see UniversalKriging\n\n\n\n"
 },
 
 {
@@ -277,7 +277,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Distance functions",
     "title": "Distance functions",
     "category": "section",
-    "text": "newcommandxboldsymbolx\nnewcommandyboldsymbolyA set of commonly used distance functions is provided in this package for use in geostatistical algorithms. They can be passed to variograms in order to:Model anisotropy (e.g. ellipsoid distance)\nPerform geostatistical simulation on non-Euclidean coordinate systems (e.g. haversine distance)\netc."
+    "text": "A set of commonly used distance functions is provided in this package for use in geostatistical algorithms. They can be passed to variograms in order to:Model anisotropy (e.g. ellipsoid distance)\nPerform geostatistical simulation on non-Euclidean coordinate systems (e.g. haversine distance)Custom distance functions are particularly useful if 3D locations are projected on a 2D map by means of a non-trivial transformation. In this case, a geodesic distance can be defined to properly account for spatial distortions at large scales."
 },
 
 {
@@ -293,7 +293,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Distance functions",
     "title": "Euclidean",
     "category": "section",
-    "text": "d(xy) = sqrt(x-y)^top (x-y)EuclideanDistance"
+    "text": "newcommandxboldsymbolx\nnewcommandyboldsymboly\nd(xy) = sqrt(x-y)^top (x-y)EuclideanDistance"
 },
 
 {
