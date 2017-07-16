@@ -169,6 +169,22 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "theoretical_variograms.html#GeoStats.PentasphericalVariogram",
+    "page": "Theoretical variograms",
+    "title": "GeoStats.PentasphericalVariogram",
+    "category": "Type",
+    "text": "PentasphericalVariogram\n\nA pentaspherical variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
+},
+
+{
+    "location": "theoretical_variograms.html#Pentaspherical-1",
+    "page": "Theoretical variograms",
+    "title": "Pentaspherical",
+    "category": "section",
+    "text": "gamma(h) = (s - n) leftleft(frac158left(frachrright) - frac54left(frachrright)^3 + frac38left(frachrright)^5right) cdot 1_(0r)(h) + 1_rinfty)(h)right + n cdot 1_(0infty)(h)PentasphericalVariogram"
+},
+
+{
     "location": "theoretical_variograms.html#GeoStats.PowerVariogram",
     "page": "Theoretical variograms",
     "title": "GeoStats.PowerVariogram",
@@ -182,6 +198,22 @@ var documenterSearchIndex = {"docs": [
     "title": "Power",
     "category": "section",
     "text": "gamma(h) = sh^a + nPowerVariogram"
+},
+
+{
+    "location": "theoretical_variograms.html#GeoStats.SineHoleVariogram",
+    "page": "Theoretical variograms",
+    "title": "GeoStats.SineHoleVariogram",
+    "category": "Type",
+    "text": "SineHoleVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA sine hole variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
+},
+
+{
+    "location": "theoretical_variograms.html#Sine-hole-1",
+    "page": "Theoretical variograms",
+    "title": "Sine hole",
+    "category": "section",
+    "text": "gamma(h) = (s - n) left1 - fracsin(pi h  r)pi h  rright + n cdot 1_(0infty)(h)SineHoleVariogram"
 },
 
 {
