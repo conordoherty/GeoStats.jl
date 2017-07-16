@@ -105,22 +105,6 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStats.SphericalVariogram",
-    "page": "Theoretical variograms",
-    "title": "GeoStats.SphericalVariogram",
-    "category": "Type",
-    "text": "SphericalVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA spherical variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
-},
-
-{
-    "location": "theoretical_variograms.html#Spherical-1",
-    "page": "Theoretical variograms",
-    "title": "Spherical",
-    "category": "section",
-    "text": "gamma(h) = (s - n) leftleft(frac32left(frachrright) + frac12left(frachrright)^3right) cdot 1_(0r)(h) + 1_rinfty)(h)right + n cdot 1_(0infty)(h)SphericalVariogram"
-},
-
-{
     "location": "theoretical_variograms.html#GeoStats.ExponentialVariogram",
     "page": "Theoretical variograms",
     "title": "GeoStats.ExponentialVariogram",
@@ -149,7 +133,39 @@ var documenterSearchIndex = {"docs": [
     "page": "Theoretical variograms",
     "title": "Matern",
     "category": "section",
-    "text": "gamma(h) = (s - n) left1 - frac2^1-nuGamma(nu) left(sqrt2nufrachrright)^nu K_nuleft(sqrt2nufrachrright)rightMaternVariogram"
+    "text": "gamma(h) = (s - n) left1 - frac2^1-nuGamma(nu) left(sqrt2nufrachrright)^nu K_nuleft(sqrt2nufrachrright)right + n cdot 1_(0infty)(h)MaternVariogram"
+},
+
+{
+    "location": "theoretical_variograms.html#GeoStats.SphericalVariogram",
+    "page": "Theoretical variograms",
+    "title": "GeoStats.SphericalVariogram",
+    "category": "Type",
+    "text": "SphericalVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA spherical variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
+},
+
+{
+    "location": "theoretical_variograms.html#Spherical-1",
+    "page": "Theoretical variograms",
+    "title": "Spherical",
+    "category": "section",
+    "text": "gamma(h) = (s - n) leftleft(frac32left(frachrright) + frac12left(frachrright)^3right) cdot 1_(0r)(h) + 1_rinfty)(h)right + n cdot 1_(0infty)(h)SphericalVariogram"
+},
+
+{
+    "location": "theoretical_variograms.html#GeoStats.CubicVariogram",
+    "page": "Theoretical variograms",
+    "title": "GeoStats.CubicVariogram",
+    "category": "Type",
+    "text": "CubicVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA cubic variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
+},
+
+{
+    "location": "theoretical_variograms.html#Cubic-1",
+    "page": "Theoretical variograms",
+    "title": "Cubic",
+    "category": "section",
+    "text": "gamma(h) = (s - n) leftleft(7left(frachrright)^2 - frac354left(frachrright)^3 + frac72left(frachrright)^5 - frac34left(frachrright)^7right) cdot 1_(0r)(h) + 1_rinfty)(h)right + n cdot 1_(0infty)(h)CubicVariogram"
 },
 
 {
