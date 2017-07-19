@@ -197,7 +197,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Theoretical variograms",
     "title": "Power",
     "category": "section",
-    "text": "gamma(h) = sh^a + nPowerVariogram"
+    "text": "gamma(h) = sh^a + n cdot 1_(0infty)(h)PowerVariogram"
 },
 
 {
