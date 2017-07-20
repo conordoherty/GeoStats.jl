@@ -197,7 +197,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Theoretical variograms",
     "title": "Power",
     "category": "section",
-    "text": "gamma(h) = sh^a + nPowerVariogram"
+    "text": "gamma(h) = sh^a + n cdot 1_(0infty)(h)PowerVariogram"
 },
 
 {
@@ -501,7 +501,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Author",
     "title": "Author",
     "category": "page",
-    "text": "Júlio Hoffimann MendesI am a Ph.D. candidate in the Department of Energy Resources Engineering at Stanford University. You can find more about my research on my website. Below are some ways that we can connect:ResearchGate\nLinkedIn"
+    "text": "Júlio Hoffimann MendesI am a Ph.D. candidate in the Department of Energy Resources Engineering at Stanford University. You can find more about my research on my website. Below are some ways that we can connect:ResearchGate\nLinkedIn\nGitHub"
 },
 
 {
