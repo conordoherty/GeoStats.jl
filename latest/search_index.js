@@ -389,7 +389,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Distance functions",
     "title": "GeoStats.HaversineDistance",
     "category": "Type",
-    "text": "HaversineDistance(radius)\n\nThe haversine distance between two locations on a sphere of given radius.\n\nLocations are described with latitude and longitude in degrees and the radius of the Earth is used by default (≈ 6371km). The computed distance has the same units as that of the radius.\n\nNotes\n\nThe haversine formula is widely used to approximate the geodesic distance between two points at the surface of the Earth. The error from approximating the Earth as a sphere is typically negligible for most applications. It is no more than 0.3%.\n\n\n\n"
+    "text": "HaversineDistance(radius)\n\nThe haversine distance between two locations on a sphere of given radius.\n\nLocations are described with longitude and latitude in degrees and the radius of the Earth is used by default (≈ 6371km). The computed distance has the same units as that of the radius.\n\nNotes\n\nThe haversine formula is widely used to approximate the geodesic distance between two points at the surface of the Earth. The error from approximating the Earth as a sphere is typically negligible for most applications. It is no more than 0.3%.\n\n\n\n"
 },
 
 {
