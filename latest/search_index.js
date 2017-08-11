@@ -53,7 +53,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Empirical variograms",
     "title": "GeoStats.EmpiricalVariogram",
     "category": "Type",
-    "text": "EmpiricalVariogram(X, z, [optional parameters])\n\nComputes the empirical (a.k.a. experimental) omnidirectional (semi-)variogram from data locations X and values z.\n\nOptional parameters\n\nnbins - number of bins (default to 20)\nmaxlag - maximum lag distance (default to maximum lag of data)\ndistance - custom distance function\n\n\n\n"
+    "text": "EmpiricalVariogram(X, z, [optional parameters])\nEmpiricalVariogram(geodata, var, [optional parameters])\n\nComputes the empirical (a.k.a. experimental) omnidirectional (semi-)variogram from data locations X and values z.\n\nAlternatively, compute the variogram the variable var stored on a GeoDataFrame object geodata.\n\nParameters\n\nnbins - number of bins (default to 20)\nmaxlag - maximum lag distance (default to maximum lag of data)\ndistance - custom distance function\n\n\n\n"
 },
 
 {
