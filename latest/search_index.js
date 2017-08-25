@@ -245,7 +245,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimators",
     "title": "GeoStats.estimate",
     "category": "Function",
-    "text": "estimate(estimator, xₒ)\n\nCompute mean and variance for the estimator at location xₒ.\n\n\n\n"
+    "text": "estimate(estimator, xₒ)\n\nCompute mean and variance for the estimator at coordinates xₒ.\n\n\n\n"
 },
 
 {
@@ -261,7 +261,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimators",
     "title": "GeoStats.weights",
     "category": "Function",
-    "text": "weights(estimator, xₒ)\n\nCompute the weights λ (and Lagrange multipliers ν) for the estimator at location xₒ.\n\n\n\n"
+    "text": "weights(estimator, xₒ)\n\nCompute the weights λ (and Lagrange multipliers ν) for the estimator at coordinates xₒ.\n\n\n\n"
 },
 
 {
