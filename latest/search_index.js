@@ -5,7 +5,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Home",
     "category": "page",
-    "text": "(Image: GeoStatsLogo)(Image: Build Status) (Image: GeoStats) (Image: Coverage Status) (Image: Stable Documentation) (Image: Latest Documentation)"
+    "text": "(Image: GeoStatsLogo)(Image: Build Status) (Image: GeoStats) (Image: Coverage Status) (Image: Stable Documentation) (Image: Latest Documentation)High-performance implementations of geostatistical algorithms for the Julia programming language."
 },
 
 {
@@ -13,7 +13,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Overview",
     "category": "section",
-    "text": "High-performance implementations of geostatistical algorithms for the Julia programming language. This package is in its initial development, and currently only contains Kriging estimation methods. More features will be added as the Julia type system matures."
+    "text": "Geostatistics (a.k.a. spatial statistics) is the branch of statistics that deals with spatial data. In many fields of science, such as mining engineering, hidrogeology, petroleum engineering, and environmental sciences, traditional regression techniques fail to capture spatiotemporal correlation, and therefore are not satisfactory tools for decision making.GeoStats.jl is an attempt to bring together bleeding-edge research in the geostatistics community into a comprehensive framework, and to empower researchers and practioners with a toolkit for fast assessment of different modeling approaches.The design of this package is the result of many years developing geostatistical software. I hope that it can serve to promote more collaboration between geostatisticians around the globe and to standardize this incredible science.If you would like to help support the project, please star the repository on GitHub and share it with your colleagues. If you are a developer, please check GeoStatsBase.jl."
 },
 
 {
@@ -25,11 +25,171 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "index.html#Project-organization-1",
+    "page": "Home",
+    "title": "Project organization",
+    "category": "section",
+    "text": "The project is split into various packages:Package Description\nGeoStats.jl Main package containing Kriging-based solvers, and other geostatistical tools.\nGeoStatsImages.jl Training images for multiple-point geostatistical simulation.\nGslibIO.jl Utilities to read/write extended GSLIB files.\nGeoStatsBase.jl Base package for developers.The main package (i.e. GeoStats.jl) is self-contained, and provides high-performance Kriging-based estimation/simulation algorithms over arbitrary domains. Other packages can be installed from the list above for additional functionality."
+},
+
+{
     "location": "index.html#Quick-example-1",
     "page": "Home",
     "title": "Quick example",
     "category": "section",
-    "text": "Below is a quick example of usage:using GeoStats\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs)\nz = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a variogram model\nγ = GaussianVariogram(sill=1., range=1., nugget=0.)\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, γ, mean(z))\nordkrig = OrdinaryKriging(X, z, γ)\nunikrig = UniversalKriging(X, z, γ, 0)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
+    "text": "Below is a quick preview of the high-level API, for the full example, please see Examples.using GeoStats\nusing Plots\n\n# data.csv:\n#    x,    y,       station, precipitation\n# 25.0, 25.0,     palo alto,           1.0\n# 50.0, 75.0,  redwood city,           0.0\n# 75.0, 50.0, mountain view,           1.0\n\n# read spreadsheet file containing spatial data\ngeodata = readtable(\"data.csv\", coordnames=[:x,:y])\n\n# define spatial domain (e.g. regular grid, point collection)\ngrid = RegularGrid{Float64}(100, 100)\n\n# define estimation problem for any data column(s) (e.g. :precipitation)\nproblem = EstimationProblem(geodata, grid, :precipitation)\n\n# solve the problem with any solver\nsolution = solve(problem, Kriging())\n\n# plot the solution\nplot(solution)(Image: EstimationSolution)"
+},
+
+{
+    "location": "index.html#Low-level-API-1",
+    "page": "Home",
+    "title": "Low-level API",
+    "category": "section",
+    "text": "If you are interested in finer control, Kriging estimators can also be used directly:using GeoStats\nsrand(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs)\nz = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a variogram model\nγ = GaussianVariogram(sill=1., range=1., nugget=0.)\n\n# define an estimator (i.e. build the Kriging system)\nsimkrig = SimpleKriging(X, z, γ, mean(z))\nordkrig = OrdinaryKriging(X, z, γ)\nunikrig = UniversalKriging(X, z, γ, 0)\n\n# estimate at target location\nμ, σ² = estimate(simkrig, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ordkrig, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(unikrig, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
+},
+
+{
+    "location": "problems_and_solvers.html#",
+    "page": "Problems and solvers",
+    "title": "Problems and solvers",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "problems_and_solvers.html#Problems-and-solvers-1",
+    "page": "Problems and solvers",
+    "title": "Problems and solvers",
+    "category": "section",
+    "text": "One of the greatest features of GeoStats.jl is the ability to define geostatistical problems independently of the solution strategy. This design allows researchers and practioners to perform fair comparisons between different solvers. It is perhaps the single most important contribution of this project.If you are an experienced user of geostatistics or if you do research in the field, you know how hard it is to compare algorithms fairly. Often a new algorithm is proposed in the literature, and yet the task of comparing it with the state of the art is quite demanding. Even when a comparison is made by the author after a great amount of effort, it is inevitably biased.Part of this issue is attributed to the fact that a general definition of the problem is missing. What is it that we call an \"estimation problem\" in geostatistics? What about \"stochastic simulation\"? The answer to these questions is given below in the form of code."
+},
+
+{
+    "location": "problems_and_solvers.html#GeoStatsBase.EstimationProblem",
+    "page": "Problems and solvers",
+    "title": "GeoStatsBase.EstimationProblem",
+    "category": "Type",
+    "text": "EstimationProblem(spatialdata, domain, targetvars)\n\nA spatial estimation problem on a given domain in which the variables to be estimated are listed in targetvars. The data of the problem is stored in spatialdata.\n\n\n\n"
+},
+
+{
+    "location": "problems_and_solvers.html#Estimation-1",
+    "page": "Problems and solvers",
+    "title": "Estimation",
+    "category": "section",
+    "text": "An estimation problem in geostatitsics is a triplet:Spatial data (i.e. data with coordinates)\nSpatial domain (e.g. regular grid, point collection)\nTarget variables (or variables to be estimated)Each of these components is constructed separately, and then grouped (no memory is copied) in an EstimationProblem.EstimationProblemPlease check Spatial data and Domains for currently implemented data and domain types."
+},
+
+{
+    "location": "problems_and_solvers.html#GeoStatsBase.SimulationProblem",
+    "page": "Problems and solvers",
+    "title": "GeoStatsBase.SimulationProblem",
+    "category": "Type",
+    "text": "SimulationProblem(spatialdata, domain, targetvars, nreals)\nSimulationProblem(domain, targetvars, nreals)\n\nA spatial simulation problem on a given domain in which the variables to be simulated are listed in targetvars.\n\nFor conditional simulation, the data of the problem is stored in spatialdata.\n\nFor unconditional simulation, a dictionary targetvars must be provided mapping variable names to their types.\n\nIn both cases, a number nreals of realizations is requested.\n\nExamples\n\nCreate a conditional simulation problem for porosity and permeability with 100 realizations:\n\njulia> SimulationProblem(spatialdata, domain, [:porosity,:permeability], 100)\n\nCreate an unconditional simulation problem for porosity and facies type with 100 realizations:\n\njulia> SimulationProblem(domain, Dict(:porosity => Float64, :facies => Int), 100)\n\nNotes\n\nTo check if a simulation problem has data (i.e. conditional vs. unconditional) use the hasdata method.\n\n\n\n"
+},
+
+{
+    "location": "problems_and_solvers.html#GeoStatsBase.hasdata",
+    "page": "Problems and solvers",
+    "title": "GeoStatsBase.hasdata",
+    "category": "Function",
+    "text": "hasdata(problem)\n\nReturn true if simulation problem has data.\n\n\n\n"
+},
+
+{
+    "location": "problems_and_solvers.html#Simulation-1",
+    "page": "Problems and solvers",
+    "title": "Simulation",
+    "category": "section",
+    "text": "Likewise, a stochastic simulation problem in geostatistics is represented with the same triplet. However, the spatial data in this case is optional in order to accomodate the concept of conditional versus unconditional simulation.SimulationProblemhasdata"
+},
+
+{
+    "location": "spatialdata.html#",
+    "page": "Spatial data",
+    "title": "Spatial data",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "spatialdata.html#Spatial-data-1",
+    "page": "Spatial data",
+    "title": "Spatial data",
+    "category": "section",
+    "text": "In GeoStats.jl, data and domain are disconnected one from another. This design enables levels of parallelism that would be difficult or even impossible to implement otherwise.The data is accessed by solvers only if strictly necessary. One of our goals is to be able to handle massive datasets that may not fit in random-access memory (RAM)."
+},
+
+{
+    "location": "spatialdata.html#GeoStats.GeoDataFrame",
+    "page": "Spatial data",
+    "title": "GeoStats.GeoDataFrame",
+    "category": "Type",
+    "text": "GeoDataFrame(data, coordnames)\n\nA dataframe object data with additional metadata for tracking the columns coordnames that represent spatial coordinates.\n\nExamples\n\nIf the data was already loaded in a normal DataFrame data, and there exists columns named x, y and z, wrap the data and specify the column names:\n\njulia> GeoDataFrame(data, [:x,:y,:z])\n\nAlternatively, load the data directly into a GeoDataFrame object by using the method readtable.\n\nNotes\n\nThis type is a lightweight wrapper over Julia's DataFrame types. No additional storage is required other than a vector of symbols with the columns names representing spatial coordinates.\n\n\n\n"
+},
+
+{
+    "location": "spatialdata.html#GeoStats.readtable",
+    "page": "Spatial data",
+    "title": "GeoStats.readtable",
+    "category": "Function",
+    "text": "readtable(args; coordnames=[:x,:y,:z], kwargs)\n\nRead data from disk using DataFrames.readtable, optionally specifying the columns coordnames with spatial coordinates.\n\nThe arguments args and keyword arguments kwargs are forwarded to the DataFrames.readtable function, please check their documentation for more details.\n\nThis function returns a GeoDataFrame object.\n\n\n\n"
+},
+
+{
+    "location": "spatialdata.html#GeoDataFrame-1",
+    "page": "Spatial data",
+    "title": "GeoDataFrame",
+    "category": "section",
+    "text": "For point (or hard) data in spreadsheet format (e.g. CSV, TSV), the GeoDataFrame object is a lightweight wrapper over Julia's DataFrame types.GeoDataFramereadtable"
+},
+
+{
+    "location": "domains.html#",
+    "page": "Domains",
+    "title": "Domains",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "domains.html#Domains-1",
+    "page": "Domains",
+    "title": "Domains",
+    "category": "section",
+    "text": "Although estimators such as Kriging do not require equally spaced samples, many software packages for geostatistical estimation/simulation restrict their implementations to regular grids. This is a big limitation, however; given that sampling campaigns and resource exploration is rarely regular.In GeoStats.jl, estimation/simulation can be performed on arbitrary domain types such as simple point collections, unstructured meshes, and tesselations. These types are implemented \"analytically\" in order to minimize memory access and maximize performance. In a regular grid, for example, the coordinates of a given location are known, and one can perform search without ever constructing a grid.Below is the list of currently implemented domain types. More options will be available in future releases."
+},
+
+{
+    "location": "domains.html#GeoStats.RegularGrid",
+    "page": "Domains",
+    "title": "GeoStats.RegularGrid",
+    "category": "Type",
+    "text": "RegularGrid(dims, origin, spacing)\nRegularGrid{T}(dims)\n\nA regular grid with dimensions dims, lower left corner at origin and cell spacing spacing. The three arguments must have the same length.\n\nIn the first constructor, all the arguments are specified as vectors. In the second constructor, one needs to specify the type of the coordinates and the dimensions of the grid. In that case, the origin and spacing default to (0,0,...) and (1,1,...), respectively.\n\nExamples\n\nCreate a 3D regular grid with 100x100x50 locations:\n\njulia> RegularGrid{Float64}(100,100,50)\n\nCreate a 2D grid with 100x100 locations and origin at (10.,20.) units:\n\njulia> RegularGrid([100,100],[10.,20.],[1.,1.])\n\nNotes\n\nInternally, the vectors that are passed as arguments are converted into tuples that are stored in the stack instead of in the memory heap.\n\n\n\n"
+},
+
+{
+    "location": "domains.html#Regular-grid-1",
+    "page": "Domains",
+    "title": "Regular grid",
+    "category": "section",
+    "text": "RegularGrid"
+},
+
+{
+    "location": "domains.html#GeoStats.PointCollection",
+    "page": "Domains",
+    "title": "GeoStats.PointCollection",
+    "category": "Type",
+    "text": "PointCollection(coords)\n\nA collection of points with coordinate matrix coords. The number of rows is the dimensionality of the domain whereas the number of columns is the number of points.\n\n\n\n"
+},
+
+{
+    "location": "domains.html#Point-collection-1",
+    "page": "Domains",
+    "title": "Point collection",
+    "category": "section",
+    "text": "PointCollection"
 },
 
 {
@@ -413,7 +573,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Examples",
     "title": "Examples",
     "category": "section",
-    "text": "A set of Jupyter notebooks demonstrating the current functionality of the package is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check Contributing before submitting a pull request."
+    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check the Contributing page before submitting a pull request. Contributions are very welcome, specially if they educate other users."
 },
 
 {
@@ -469,7 +629,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Contributing",
     "title": "Contributing",
     "category": "section",
-    "text": "First off, thank you for considering contributing to GeoStats.jl. It’s people like you that make this project so much fun."
+    "text": "First off, thank you for considering contributing to GeoStats.jl. It’s people like you that make this project so much fun. Below are a few suggestions to speed up the collaboration process."
 },
 
 {
