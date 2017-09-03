@@ -113,11 +113,43 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "problems_and_solvers.html#GeoStats.Kriging",
+    "page": "Problems and solvers",
+    "title": "GeoStats.Kriging",
+    "category": "Type",
+    "text": "Kriging(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm Kriging estimation solver.\n\nEach pair var=>param specifies the KrigParam param for the Kriging variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead.\n\nExamples\n\nSolve the variable :var₁ with Simple Kriging by specifying the mean, and the variable :var₂ with Universal Kriging by specifying the degree and the variogram model.\n\njulia> Kriging(\n  :var₁ => @NT(mean=1.),\n  :var₂ => @NT(degree=1, variogram=SphericalVariogram(range=20.))\n)\n\nSolve all variables of the problem with the default parameters (i.e. Ordinary Kriging with unit Gaussian variogram):\n\njulia> Kriging()\n\nNotes\n\nThe prefix @NT extends for NamedTuple. It won't be necessary in Julia v0.7 and beyond.\n\n\n\n"
+},
+
+{
+    "location": "problems_and_solvers.html#GeoStats.KrigParam",
+    "page": "Problems and solvers",
+    "title": "GeoStats.KrigParam",
+    "category": "Type",
+    "text": "KrigParam\n\nA set of parameters for a Kriging variable.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying ds, the user is telling the algorithm to ignore d and m. If no option is specified, Ordinary Kriging is used by default with the variogram v only.\n\n\n\n"
+},
+
+{
     "location": "problems_and_solvers.html#Estimation-2",
     "page": "Problems and solvers",
     "title": "Estimation",
     "category": "section",
-    "text": "Solver Description References\nKriging Polyalgorithm Kriging (SK, OK, UK, EDK) Matheron 1971, Journel 1978"
+    "text": "KrigingGeoStats.KrigParam"
+},
+
+{
+    "location": "problems_and_solvers.html#GeoStats.SeqGaussSim",
+    "page": "Problems and solvers",
+    "title": "GeoStats.SeqGaussSim",
+    "category": "Type",
+    "text": "SeqGaussSim(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm sequential Gaussian simulation solver.\n\nEach pair var=>param specifies the SGSParam param for the simulation variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead. See Kriging documentation for examples.\n\n\n\n"
+},
+
+{
+    "location": "problems_and_solvers.html#GeoStats.SGSParam",
+    "page": "Problems and solvers",
+    "title": "GeoStats.SGSParam",
+    "category": "Type",
+    "text": "SGSParam\n\nA set of parameters for a simulation variable.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying ds, the user is telling the algorithm to ignore d and m. If no option is specified, Ordinary Kriging is used by default with the variogram v only.\n\npath         - Simulation path (default to :random)\nneighradius  - Radius of search neighborhood (default to 10.)\nmaxneighbors - Maximum number of neighbors (default to 10)\n\n\n\n"
 },
 
 {
@@ -125,7 +157,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "Simulation",
     "category": "section",
-    "text": "Solver Description References\nSeqGaussSim Sequential Gaussian simulation Deutsch 1997, Olea 1999"
+    "text": "SeqGaussSimGeoStats.SGSParam"
 },
 
 {
