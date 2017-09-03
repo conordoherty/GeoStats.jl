@@ -105,6 +105,30 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "problems_and_solvers.html#Solvers-1",
+    "page": "Problems and solvers",
+    "title": "Solvers",
+    "category": "section",
+    "text": ""
+},
+
+{
+    "location": "problems_and_solvers.html#Estimation-2",
+    "page": "Problems and solvers",
+    "title": "Estimation",
+    "category": "section",
+    "text": "Solver Description References\nKriging Polyalgorithm Kriging (SK, OK, UK, EDK) Matheron 1971, Journel 1978"
+},
+
+{
+    "location": "problems_and_solvers.html#Simulation-2",
+    "page": "Problems and solvers",
+    "title": "Simulation",
+    "category": "section",
+    "text": "Solver Description References\nSeqGaussSim Sequential Gaussian simulation Deutsch 1997, Olea 1999"
+},
+
+{
     "location": "spatialdata.html#",
     "page": "Spatial data",
     "title": "Spatial data",
