@@ -69,7 +69,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "GeoStatsBase.EstimationProblem",
     "category": "Type",
-    "text": "EstimationProblem(spatialdata, domain, targetvars)\n\nA spatial estimation problem on a given domain in which the variables to be estimated are listed in targetvars. The data of the problem is stored in spatialdata.\n\n\n\n"
+    "text": "EstimationProblem(spatialdata, domain, targetvars)\n\nA spatial estimation problem on a given domain in which the variables to be estimated are listed in targetvars. The data of the problem is stored in spatialdata.\n\nExamples\n\nCreate an estimation problem for rainfall precipitation measurements:\n\njulia> EstimationProblem(spatialdata, domain, :precipitation)\n\n\n\n"
 },
 
 {
