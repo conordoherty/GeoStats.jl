@@ -177,17 +177,17 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "spatialdata.html#GeoStats.GeoDataFrame",
+    "location": "spatialdata.html#GeoStatsDevTools.GeoDataFrame",
     "page": "Spatial data",
-    "title": "GeoStats.GeoDataFrame",
+    "title": "GeoStatsDevTools.GeoDataFrame",
     "category": "Type",
     "text": "GeoDataFrame(data, coordnames)\n\nA dataframe object data with additional metadata for tracking the columns coordnames that represent spatial coordinates.\n\nExamples\n\nIf the data was already loaded in a normal DataFrame data, and there exists columns named x, y and z, wrap the data and specify the column names:\n\njulia> GeoDataFrame(data, [:x,:y,:z])\n\nAlternatively, load the data directly into a GeoDataFrame object by using the method readtable.\n\nNotes\n\nThis type is a lightweight wrapper over Julia's DataFrame types. No additional storage is required other than a vector of symbols with the columns names representing spatial coordinates.\n\n\n\n"
 },
 
 {
-    "location": "spatialdata.html#GeoStats.readtable",
+    "location": "spatialdata.html#GeoStatsDevTools.readtable",
     "page": "Spatial data",
-    "title": "GeoStats.readtable",
+    "title": "GeoStatsDevTools.readtable",
     "category": "Function",
     "text": "readtable(args; coordnames=[:x,:y,:z], kwargs)\n\nRead data from disk using DataFrames.readtable, optionally specifying the columns coordnames with spatial coordinates.\n\nThe arguments args and keyword arguments kwargs are forwarded to the DataFrames.readtable function, please check their documentation for more details.\n\nThis function returns a GeoDataFrame object.\n\n\n\n"
 },
@@ -217,9 +217,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "domains.html#GeoStats.RegularGrid",
+    "location": "domains.html#GeoStatsDevTools.RegularGrid",
     "page": "Domains",
-    "title": "GeoStats.RegularGrid",
+    "title": "GeoStatsDevTools.RegularGrid",
     "category": "Type",
     "text": "RegularGrid(dims, origin, spacing)\nRegularGrid{T}(dims)\n\nA regular grid with dimensions dims, lower left corner at origin and cell spacing spacing. The three arguments must have the same length.\n\nIn the first constructor, all the arguments are specified as vectors. In the second constructor, one needs to specify the type of the coordinates and the dimensions of the grid. In that case, the origin and spacing default to (0,0,...) and (1,1,...), respectively.\n\nExamples\n\nCreate a 3D regular grid with 100x100x50 locations:\n\njulia> RegularGrid{Float64}(100,100,50)\n\nCreate a 2D grid with 100x100 locations and origin at (10.,20.) units:\n\njulia> RegularGrid([100,100],[10.,20.],[1.,1.])\n\nNotes\n\nInternally, the vectors that are passed as arguments are converted into tuples that are stored in the stack instead of in the memory heap.\n\n\n\n"
 },
@@ -233,9 +233,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "domains.html#GeoStats.PointCollection",
+    "location": "domains.html#GeoStatsDevTools.PointCollection",
     "page": "Domains",
-    "title": "GeoStats.PointCollection",
+    "title": "GeoStatsDevTools.PointCollection",
     "category": "Type",
     "text": "PointCollection(coords)\n\nA collection of points with coordinate matrix coords. The number of rows is the dimensionality of the domain whereas the number of columns is the number of points.\n\n\n\n"
 },
