@@ -69,7 +69,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "GeoStatsBase.EstimationProblem",
     "category": "Type",
-    "text": "EstimationProblem(spatialdata, domain, targetvars)\n\nA spatial estimation problem on a given domain in which the variables to be estimated are listed in targetvars. The data of the problem is stored in spatialdata.\n\nExamples\n\nCreate an estimation problem for rainfall precipitation measurements:\n\njulia> EstimationProblem(spatialdata, domain, :precipitation)\n\n\n\n"
+    "text": "EstimationProblem(spatialdata, domain, targetvars)\n\nA spatial estimation problem on a given domain in which the variables to be estimated are listed in targetvars. The data of the problem is stored in spatialdata.\n\nExamples\n\nCreate an estimation problem for rainfall precipitation measurements:\n\njulia> EstimationProblem(spatialdata, domain, :precipitation)\n\nCreate an estimation problem for precipitation and CO₂:\n\njulia> EstimationProblem(spatialdata, domain, [:precipitation, :CO₂])\n\n\n\n"
 },
 
 {
@@ -109,7 +109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "Solvers",
     "category": "section",
-    "text": ""
+    "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the main project page."
 },
 
 {
@@ -117,15 +117,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "GeoStats.Kriging",
     "category": "Type",
-    "text": "Kriging(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm Kriging estimation solver.\n\nEach pair var=>param specifies the KrigParam param for the Kriging variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead.\n\nExamples\n\nSolve the variable :var₁ with Simple Kriging by specifying the mean, and the variable :var₂ with Universal Kriging by specifying the degree and the variogram model.\n\njulia> Kriging(\n  :var₁ => @NT(mean=1.),\n  :var₂ => @NT(degree=1, variogram=SphericalVariogram(range=20.))\n)\n\nSolve all variables of the problem with the default parameters (i.e. Ordinary Kriging with unit Gaussian variogram):\n\njulia> Kriging()\n\nNotes\n\nThe prefix @NT extends for NamedTuple. It won't be necessary in Julia v0.7 and beyond.\n\n\n\n"
-},
-
-{
-    "location": "problems_and_solvers.html#GeoStats.KrigParam",
-    "page": "Problems and solvers",
-    "title": "GeoStats.KrigParam",
-    "category": "Type",
-    "text": "KrigParam\n\nA set of parameters for a Kriging variable.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying ds, the user is telling the algorithm to ignore d and m. If no option is specified, Ordinary Kriging is used by default with the variogram v only.\n\n\n\n"
+    "text": "Kriging(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm Kriging estimation solver.\n\nEach pair var=>param specifies the KrigingParam param for the Kriging variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying drifts, the user is telling the algorithm to ignore degree and mean. If no option is specified, Ordinary Kriging is used by default with the variogram only.\n\nExamples\n\nSolve the variable :var₁ with Simple Kriging by specifying the mean, and the variable :var₂ with Universal Kriging by specifying the degree and the variogram model.\n\njulia> Kriging(\n  :var₁ => @NT(mean=1.),\n  :var₂ => @NT(degree=1, variogram=SphericalVariogram(range=20.))\n)\n\nSolve all variables of the problem with the default parameters (i.e. Ordinary Kriging with unit Gaussian variogram):\n\njulia> Kriging()\n\nNotes\n\nThe prefix @NT extends for NamedTuple. It won't be necessary in Julia v0.7 and beyond.\n\n\n\n\n\n"
 },
 
 {
@@ -133,7 +125,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "Estimation",
     "category": "section",
-    "text": "KrigingGeoStats.KrigParam"
+    "text": "Kriging"
 },
 
 {
@@ -141,15 +133,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "GeoStats.SeqGaussSim",
     "category": "Type",
-    "text": "SeqGaussSim(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm sequential Gaussian simulation solver.\n\nEach pair var=>param specifies the SGSParam param for the simulation variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead. See Kriging documentation for examples.\n\n\n\n"
-},
-
-{
-    "location": "problems_and_solvers.html#GeoStats.SGSParam",
-    "page": "Problems and solvers",
-    "title": "GeoStats.SGSParam",
-    "category": "Type",
-    "text": "SGSParam\n\nA set of parameters for a simulation variable.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying ds, the user is telling the algorithm to ignore d and m. If no option is specified, Ordinary Kriging is used by default with the variogram v only.\n\npath         - Simulation path (default to :random)\nneighradius  - Radius of search neighborhood (default to 10.)\nmaxneighbors - Maximum number of neighbors (default to 10)\n\n\n\n"
+    "text": "SeqGaussSim(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm sequential Gaussian simulation solver.\n\nEach pair var=>param specifies the SeqGaussSimParam param for the simulation variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead. See Kriging documentation for examples.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying drifts, the user is telling the algorithm to ignore degree and mean. If no option is specified, Ordinary Kriging is used by default with the variogram only.\n\npath         - Simulation path (default to :random)\nneighradius  - Radius of search neighborhood (default to 10.)\nmaxneighbors - Maximum number of neighbors (default to 10)\n\n\n\n\n\n"
 },
 
 {
@@ -157,7 +141,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "Simulation",
     "category": "section",
-    "text": "SeqGaussSimGeoStats.SGSParam"
+    "text": "SeqGaussSim"
 },
 
 {
@@ -177,17 +161,17 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "spatialdata.html#GeoStats.GeoDataFrame",
+    "location": "spatialdata.html#GeoStatsDevTools.GeoDataFrame",
     "page": "Spatial data",
-    "title": "GeoStats.GeoDataFrame",
+    "title": "GeoStatsDevTools.GeoDataFrame",
     "category": "Type",
     "text": "GeoDataFrame(data, coordnames)\n\nA dataframe object data with additional metadata for tracking the columns coordnames that represent spatial coordinates.\n\nExamples\n\nIf the data was already loaded in a normal DataFrame data, and there exists columns named x, y and z, wrap the data and specify the column names:\n\njulia> GeoDataFrame(data, [:x,:y,:z])\n\nAlternatively, load the data directly into a GeoDataFrame object by using the method readtable.\n\nNotes\n\nThis type is a lightweight wrapper over Julia's DataFrame types. No additional storage is required other than a vector of symbols with the columns names representing spatial coordinates.\n\n\n\n"
 },
 
 {
-    "location": "spatialdata.html#GeoStats.readtable",
+    "location": "spatialdata.html#GeoStatsDevTools.readtable",
     "page": "Spatial data",
-    "title": "GeoStats.readtable",
+    "title": "GeoStatsDevTools.readtable",
     "category": "Function",
     "text": "readtable(args; coordnames=[:x,:y,:z], kwargs)\n\nRead data from disk using DataFrames.readtable, optionally specifying the columns coordnames with spatial coordinates.\n\nThe arguments args and keyword arguments kwargs are forwarded to the DataFrames.readtable function, please check their documentation for more details.\n\nThis function returns a GeoDataFrame object.\n\n\n\n"
 },
@@ -217,9 +201,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "domains.html#GeoStats.RegularGrid",
+    "location": "domains.html#GeoStatsDevTools.RegularGrid",
     "page": "Domains",
-    "title": "GeoStats.RegularGrid",
+    "title": "GeoStatsDevTools.RegularGrid",
     "category": "Type",
     "text": "RegularGrid(dims, origin, spacing)\nRegularGrid{T}(dims)\n\nA regular grid with dimensions dims, lower left corner at origin and cell spacing spacing. The three arguments must have the same length.\n\nIn the first constructor, all the arguments are specified as vectors. In the second constructor, one needs to specify the type of the coordinates and the dimensions of the grid. In that case, the origin and spacing default to (0,0,...) and (1,1,...), respectively.\n\nExamples\n\nCreate a 3D regular grid with 100x100x50 locations:\n\njulia> RegularGrid{Float64}(100,100,50)\n\nCreate a 2D grid with 100x100 locations and origin at (10.,20.) units:\n\njulia> RegularGrid([100,100],[10.,20.],[1.,1.])\n\nNotes\n\nInternally, the vectors that are passed as arguments are converted into tuples that are stored in the stack instead of in the memory heap.\n\n\n\n"
 },
@@ -233,9 +217,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "domains.html#GeoStats.PointCollection",
+    "location": "domains.html#GeoStatsDevTools.PointCollection",
     "page": "Domains",
-    "title": "GeoStats.PointCollection",
+    "title": "GeoStatsDevTools.PointCollection",
     "category": "Type",
     "text": "PointCollection(coords)\n\nA collection of points with coordinate matrix coords. The number of rows is the dimensionality of the domain whereas the number of columns is the number of points.\n\n\n\n"
 },
