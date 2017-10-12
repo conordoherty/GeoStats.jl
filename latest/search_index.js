@@ -301,7 +301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Theoretical variograms",
     "title": "Gaussian",
     "category": "section",
-    "text": "gamma(h) = (s - n) left1 - expleft(-left(frachrright)^2right)right + n cdot 1_(0infty)(h)GaussianVariogram"
+    "text": "gamma(h) = (s - n) left1 - expleft(-3left(frachrright)^2right)right + n cdot 1_(0infty)(h)GaussianVariogram"
 },
 
 {
@@ -317,7 +317,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Theoretical variograms",
     "title": "Exponential",
     "category": "section",
-    "text": "gamma(h) = (s - n) left1 - expleft(-frachrright)right + n cdot 1_(0infty)(h)\nExponentialVariogram"
+    "text": "gamma(h) = (s - n) left1 - expleft(-3left(frachrright)right)right + n cdot 1_(0infty)(h)\nExponentialVariogram"
 },
 
 {
