@@ -29,7 +29,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Project organization",
     "category": "section",
-    "text": "The project is split into various packages:Package Description\nGeoStats.jl Main package containing Kriging-based solvers, and other geostatistical tools.\nGeoStatsImages.jl Training images for multiple-point geostatistical simulation.\nGslibIO.jl Utilities to read/write extended GSLIB files.\nGeoStatsBase.jl Base package for developers.The main package (i.e. GeoStats.jl) is self-contained, and provides high-performance Kriging-based estimation/simulation algorithms over arbitrary domains. Other packages can be installed from the list above for additional functionality."
+    "text": "The project is split into various packages:Package Description\nGeoStats.jl Main package containing Kriging-based solvers, and other geostatistical tools.\nGeoStatsImages.jl Training images for multiple-point geostatistical simulation.\nGslibIO.jl Utilities to read/write extended GSLIB files.\nGeoStatsBase.jl Base package containing problem and solution specifications (for developers).\nGeoStatsDevTools.jl Developer tools for writing new solvers (for developers).The main package (i.e. GeoStats.jl) is self-contained, and provides high-performance Kriging-based estimation/simulation algorithms over arbitrary domains. Other packages can be installed from the list above for additional functionality."
 },
 
 {
@@ -109,7 +109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "Solvers",
     "category": "section",
-    "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the main project page."
+    "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the project page on GitHub."
 },
 
 {
@@ -301,7 +301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Theoretical variograms",
     "title": "Gaussian",
     "category": "section",
-    "text": "gamma(h) = (s - n) left1 - expleft(-left(frachrright)^2right)right + n cdot 1_(0infty)(h)GaussianVariogram"
+    "text": "gamma(h) = (s - n) left1 - expleft(-3left(frachrright)^2right)right + n cdot 1_(0infty)(h)GaussianVariogram"
 },
 
 {
@@ -317,7 +317,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Theoretical variograms",
     "title": "Exponential",
     "category": "section",
-    "text": "gamma(h) = (s - n) left1 - expleft(-frachrright)right + n cdot 1_(0infty)(h)\nExponentialVariogram"
+    "text": "gamma(h) = (s - n) left1 - expleft(-3left(frachrright)right)right + n cdot 1_(0infty)(h)\nExponentialVariogram"
 },
 
 {
