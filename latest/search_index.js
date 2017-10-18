@@ -109,7 +109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "Solvers",
     "category": "section",
-    "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the main project page."
+    "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the project page on GitHub."
 },
 
 {
