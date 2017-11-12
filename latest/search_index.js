@@ -245,7 +245,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Empirical variograms",
     "title": "Empirical variograms",
     "category": "section",
-    "text": "An empirical variogram has the form:newcommandxboldsymbolx\nhatgamma(h) = frac12N(h) sum_(ij) in N(h) (z_i - z_j)^2where N(h) = left(ij) mid x_i - x_j = hright is the set of pairs of locations at a distance h and N(h) is the cardinality of the set.This package currently implements a simple ominidirectional variogram. Other more flexible types are planned for future releases.Empirical variograms can be estimated using general distance functions, please see Distance functions."
+    "text": "An empirical variogram has the form:newcommandxboldsymbolx\nhatgamma(h) = frac12N(h) sum_(ij) in N(h) (z_i - z_j)^2where N(h) = left(ij) mid x_i - x_j = hright is the set of pairs of locations at a distance h and N(h) is the cardinality of the set.This package currently implements a simple ominidirectional variogram. Other more flexible types are planned for future releases.As a unique feature, empirical variograms can be estimated using general distance functions. These can be used in order to for example:Model anisotropy (e.g. ellipsoid distance)\nPerform geostatistical simulation on spherical coordinate systems (e.g. haversine distance)Please see Distances.jl for a complete list of options."
 },
 
 {
@@ -285,7 +285,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Theoretical variograms",
     "title": "Theoretical variograms",
     "category": "section",
-    "text": "newcommandxboldsymbolx\nnewcommandRmathbbR\nnewcommand1mathbb1In an intrinsic isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in R^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)Under the additional assumption of 2nd-order stationarity, the well-known covariance is directly related via gamma(h) = cov(0) - cov(h). Anisotropic models are easily obtained by defining an ellipsoid distance in place of the Euclidean distance. For a list of available distances, please see Distance functions.This package implements a few commonly used and other more excentric variogram models. They all share the same default parameters:sill=1\nrange=1\nnugget=0\ndistance=EuclideanDistance()Some of them have extra parameters that can be set with keyword arguments:GaussianVariogram(nugget=.1) # set nugget effect\nMaternVariogram(order=1) # set order of Bessel functionAdditionally, a composite (additive) variogram model gamma(h) = gamma_1(h) + gamma_2(h) + cdots gamma_n(h) can be constructed from a list of variogram models:CompositeVariogram(GaussianVariogram(), ExponentialVariogram())Like the other variogram models, a composite variogram gamma can be evaluated as an isotropic model gamma(h) or as a model with a custom distance implicitly defined by taking into account its individual components gamma(x_1x_2).Finally, the 2nd-order stationarity property of a variogram can be checked with the isstationary method:isstationary"
+    "text": "newcommandxboldsymbolx\nnewcommandRmathbbR\nnewcommand1mathbb1In an intrinsic isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in R^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)Under the additional assumption of 2nd-order stationarity, the well-known covariance is directly related via gamma(h) = cov(0) - cov(h). Anisotropic models are easily obtained by defining an ellipsoid distance in place of the Euclidean distance. For a list of available distances, please see Distances.jl.This package implements a few commonly used and other more excentric variogram models. They all share the same default parameters:sill=1\nrange=1\nnugget=0\ndistance=Euclidean()Some of them have extra parameters that can be set with keyword arguments:GaussianVariogram(nugget=.1) # set nugget effect\nMaternVariogram(order=1) # set order of Bessel functionAdditionally, a composite (additive) variogram model gamma(h) = gamma_1(h) + gamma_2(h) + cdots gamma_n(h) can be constructed from a list of variogram models:CompositeVariogram(GaussianVariogram(), ExponentialVariogram())Like the other variogram models, a composite variogram gamma can be evaluated as an isotropic model gamma(h) or as a model with a custom distance implicitly defined by taking into account its individual components gamma(x_1x_2).Finally, the 2nd-order stationarity property of a variogram can be checked with the isstationary method:isstationary"
 },
 
 {
@@ -534,70 +534,6 @@ var documenterSearchIndex = {"docs": [
     "title": "External Drift Kriging",
     "category": "section",
     "text": "In External Drift Kriging, the mean of the random field is assumed to be a combination of known smooth functions:mu(x) = sum_k beta_k m_k(x)Differently than Universal Kriging, the functions m_k are not necessarily polynomials of the spatial coordinates. In practice, they represent a list of variables that is strongly correlated (and co-located) with the variable being estimated.External drifts are known to cause numerical instability. Give preference to other Kriging variants if possible.ExternalDriftKriging"
-},
-
-{
-    "location": "distances.html#",
-    "page": "Distance functions",
-    "title": "Distance functions",
-    "category": "page",
-    "text": ""
-},
-
-{
-    "location": "distances.html#Distance-functions-1",
-    "page": "Distance functions",
-    "title": "Distance functions",
-    "category": "section",
-    "text": "A set of commonly used distance functions is provided in this package for use in geostatistical algorithms. They can be passed to variograms in order to:Model anisotropy (e.g. ellipsoid distance)\nPerform geostatistical simulation on non-Euclidean coordinate systems (e.g. haversine distance)Custom distance functions are particularly useful if 3D locations are projected on a 2D map by means of a non-trivial transformation. In this case, a geodesic distance can be defined to properly account for spatial distortions at large scales."
-},
-
-{
-    "location": "distances.html#GeoStats.EuclideanDistance",
-    "page": "Distance functions",
-    "title": "GeoStats.EuclideanDistance",
-    "category": "Type",
-    "text": "EuclideanDistance\n\nThe Euclidean distance ||x-y||₂\n\n\n\n"
-},
-
-{
-    "location": "distances.html#Euclidean-1",
-    "page": "Distance functions",
-    "title": "Euclidean",
-    "category": "section",
-    "text": "newcommandxboldsymbolx\nnewcommandyboldsymboly\nd(xy) = sqrt(x-y)^top (x-y)EuclideanDistance"
-},
-
-{
-    "location": "distances.html#GeoStats.EllipsoidDistance",
-    "page": "Distance functions",
-    "title": "GeoStats.EllipsoidDistance",
-    "category": "Type",
-    "text": "EllipsoidDistance(semiaxes, angles)\n\nA distance defined by an ellipsoid with given semiaxes and rotation angles.\n\nFor 2D ellipsoids, there are two semiaxes and one rotation angle.\nFor 3D ellipsoids, there are three semiaxes and three rotation angles.\n\nExamples\n\n2D ellipsoid making 45ᵒ with the horizontal axis:\n\njulia> EllipsoidDistance([1.0,0.5], [π/2])\n\n3D ellipsoid rotated by 45ᵒ in the xy plane:\n\njulia> EllipsoidDistance([1.0,0.5,0.5], [π/2,0.0,0.0])\n\nNotes\n\nThe positive definite matrix representing the ellipsoid is assembled once during object construction and cached for fast evaluation.\n\n\n\n"
-},
-
-{
-    "location": "distances.html#Ellipsoid-1",
-    "page": "Distance functions",
-    "title": "Ellipsoid",
-    "category": "section",
-    "text": "The ellipsoid distance can be used to model anisotropy. The semiaxes of the ellipsoid represent correlation lengths that can be rotated and aligned with target directions.d(xy) = sqrt(x-y)^top boldsymbolA (x-y)EllipsoidDistance"
-},
-
-{
-    "location": "distances.html#GeoStats.HaversineDistance",
-    "page": "Distance functions",
-    "title": "GeoStats.HaversineDistance",
-    "category": "Type",
-    "text": "HaversineDistance(radius)\n\nThe haversine distance between two locations on a sphere of given radius.\n\nLocations are described with longitude and latitude in degrees and the radius of the Earth is used by default (≈ 6371km). The computed distance has the same units as that of the radius.\n\nNotes\n\nThe haversine formula is widely used to approximate the geodesic distance between two points at the surface of the Earth. The error from approximating the Earth as a sphere is typically negligible for most applications. It is no more than 0.3%.\n\n\n\n"
-},
-
-{
-    "location": "distances.html#Haversine-1",
-    "page": "Distance functions",
-    "title": "Haversine",
-    "category": "section",
-    "text": "The haversine distance can be used to perform geostatistical simulation directly on a sphere. It approximates the geodesic distance between two pairs of latitude/longitude.HaversineDistance"
 },
 
 {
