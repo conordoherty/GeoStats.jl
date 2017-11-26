@@ -173,7 +173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Spatial data",
     "title": "GeoStatsDevTools.readtable",
     "category": "Function",
-    "text": "readtable(args; coordnames=[:x,:y,:z], kwargs)\n\nRead data from disk using DataFrames.readtable, optionally specifying the columns coordnames with spatial coordinates.\n\nThe arguments args and keyword arguments kwargs are forwarded to the DataFrames.readtable function, please check their documentation for more details.\n\nThis function returns a GeoDataFrame object.\n\n\n\n"
+    "text": "readtable(args; coordnames=[:x,:y,:z], kwargs)\n\nRead data from disk using CSV.read, optionally specifying the columns coordnames with spatial coordinates.\n\nThe arguments args and keyword arguments kwargs are forwarded to the CSV.read function, please check their documentation for more details.\n\nThis function returns a GeoDataFrame object.\n\n\n\n"
 },
 
 {
@@ -205,7 +205,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Domains",
     "title": "GeoStatsDevTools.RegularGrid",
     "category": "Type",
-    "text": "RegularGrid(dims, origin, spacing)\nRegularGrid{T}(dims)\n\nA regular grid with dimensions dims, lower left corner at origin and cell spacing spacing. The three arguments must have the same length.\n\nIn the first constructor, all the arguments are specified as vectors. In the second constructor, one needs to specify the type of the coordinates and the dimensions of the grid. In that case, the origin and spacing default to (0,0,...) and (1,1,...), respectively.\n\nExamples\n\nCreate a 3D regular grid with 100x100x50 locations:\n\njulia> RegularGrid{Float64}(100,100,50)\n\nCreate a 2D grid with 100x100 locations and origin at (10.,20.) units:\n\njulia> RegularGrid([100,100],[10.,20.],[1.,1.])\n\nNotes\n\nInternally, the vectors that are passed as arguments are converted into tuples that are stored in the stack instead of in the memory heap.\n\n\n\n"
+    "text": "RegularGrid(dims, origin, spacing)\nRegularGrid{T}(dims)\n\nA regular grid with dimensions dims, lower left corner at origin and cell spacing spacing. The three arguments must have the same length.\n\nIn the first constructor, all the arguments are specified as vectors. In the second constructor, one needs to specify the type of the coordinates and the dimensions of the grid. In that case, the origin and spacing default to (0,0,...) and (1,1,...), respectively.\n\nExamples\n\nCreate a 3D regular grid with 100x100x50 locations:\n\njulia> RegularGrid{Float64}(100,100,50)\n\nCreate a 2D grid with 100x100 locations and origin at (10.,20.) units:\n\njulia> RegularGrid([100,100],[10.,20.],[1.,1.])\n\n\n\n"
 },
 
 {
@@ -245,7 +245,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Empirical variograms",
     "title": "Empirical variograms",
     "category": "section",
-    "text": "An empirical variogram has the form:newcommandxboldsymbolx\nhatgamma(h) = frac12N(h) sum_(ij) in N(h) (z_i - z_j)^2where N(h) = left(ij) mid x_i - x_j = hright is the set of pairs of locations at a distance h and N(h) is the cardinality of the set.This package currently implements a simple ominidirectional variogram. Other more flexible types are planned for future releases.As a unique feature, empirical variograms can be estimated using general distance functions. These can be used in order to for example:Model anisotropy (e.g. ellipsoid distance)\nPerform geostatistical simulation on spherical coordinate systems (e.g. haversine distance)Please see Distances.jl for a complete list of options."
+    "text": "An empirical variogram has the form:newcommandxboldsymbolx\nhatgamma(h) = frac12N(h) sum_(ij) in N(h) (z_i - z_j)^2where N(h) = left(ij) mid x_i - x_j = hright is the set of pairs of locations at a distance h and N(h) is the cardinality of the set.This package currently implements a simple ominidirectional (cross-)variogram. Other more flexible types are planned for future releases.As a unique feature, empirical variograms can be estimated using general distance functions. These can be used in order to for example:Model anisotropy (e.g. ellipsoid distance)\nPerform geostatistical simulation on spherical coordinate systems (e.g. haversine distance)Please see Distances.jl for a complete list of options."
 },
 
 {
@@ -257,9 +257,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "empirical_variograms.html#Omnidirectional-1",
+    "location": "empirical_variograms.html#Omnidirectional-(cross-)variogram-1",
     "page": "Empirical variograms",
-    "title": "Omnidirectional",
+    "title": "Omnidirectional (cross-)variogram",
     "category": "section",
     "text": "EmpiricalVariogram"
 },
@@ -534,6 +534,54 @@ var documenterSearchIndex = {"docs": [
     "title": "External Drift Kriging",
     "category": "section",
     "text": "In External Drift Kriging, the mean of the random field is assumed to be a combination of known smooth functions:mu(x) = sum_k beta_k m_k(x)Differently than Universal Kriging, the functions m_k are not necessarily polynomials of the spatial coordinates. In practice, they represent a list of variables that is strongly correlated (and co-located) with the variable being estimated.External drifts are known to cause numerical instability. Give preference to other Kriging variants if possible.ExternalDriftKriging"
+},
+
+{
+    "location": "comparisons.html#",
+    "page": "Solver comparisons",
+    "title": "Solver comparisons",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "comparisons.html#Solver-comparisons-1",
+    "page": "Solver comparisons",
+    "title": "Solver comparisons",
+    "category": "section",
+    "text": "GeoStats.jl was designed to, among other things, facilitate rigorous scientific comparison of different geostatistical solvers in the literature. As a user of geostatistics, you may be interested in applying various solvers on a given data set and pick the ones with best performance. As a researcher in the field, you may be interested in benchmarking your new algorithm against other established methods.Typically, this task would demand a great amount of time from the practitioner, which would become responsible for pre/post processing the data himself/herself before it can be fed into the software. But that is not the only issue, quantitative comparison of geostatistical solvers is an area of active research. Although a few comparison methods exist, their implementation is not necessarily straighforward.In this project, solvers can be compared without effort. Below is a list of currenlty implemented comparison methods. For examples of usage, please consult Examples."
+},
+
+{
+    "location": "comparisons.html#GeoStats.VisualComparison",
+    "page": "Solver comparisons",
+    "title": "GeoStats.VisualComparison",
+    "category": "Type",
+    "text": "VisualComparison([plot options])\n\nCompare solvers by plotting the results side by side.\n\nExamples\n\njulia> compare([solver₁, solver₂], problem, VisualComparison())\n\n\n\n"
+},
+
+{
+    "location": "comparisons.html#Visual-comparison-1",
+    "page": "Solver comparisons",
+    "title": "Visual comparison",
+    "category": "section",
+    "text": "Visual comparison can be useful for qualitivative assessment of solver performance and for debugging purposes. In this case, solvers are used to solve a problem and their solutions are plotted side by side.VisualComparison"
+},
+
+{
+    "location": "comparisons.html#GeoStats.CrossValidation",
+    "page": "Solver comparisons",
+    "title": "GeoStats.CrossValidation",
+    "category": "Type",
+    "text": "CrossValidation(k, shuffle)\n\nCompare estimation solvers using k-fold cross validation.\n\nThe result of the comparison is a dictionary mapping each variable of the problem to a vector of validation errors for each solver being compared.\n\nParameters\n\nk       - number of folds for cross-validation\nshuffle - whether or not to shuffle the data\n\nExamples\n\nCompare solver₁ and solver₂ on a problem with variable :var using 10 folds. Plot error distribution:\n\njulia> results = compare([solver₁, solver₂], problem, CrossValidation(10))\n\njulia> plt₁ = histogram(results[:var][1], label=\"solver₁\")\njulia> plt₂ = histogram(results[:var][2], label=\"solver₂\")\n\njulia> plot(plt₁, plt₂, title=\"Error distribution for each solver\")\n\nSelect solver with smallest absolute mean validation error:\n\njulia> mean_err₁ = abs(mean(results[:var][1]))\njulia> mean_err₂ = abs(mean(results[:var][2]))\n\njulia> solver = mean_err₁ < mean_err₂ ? solver₁ : solver₂\n\n\n\n"
+},
+
+{
+    "location": "comparisons.html#Cross-validation-1",
+    "page": "Solver comparisons",
+    "title": "Cross-validation",
+    "category": "section",
+    "text": "k-fold cross-validation is a popular statistical method for quantitative comparison of estimation solvers. The spatial data is split into k folds as the name implies and the solvers are used to estimate (or predict) one of the folds given the others.CrossValidation"
 },
 
 {
