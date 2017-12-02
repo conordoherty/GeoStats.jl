@@ -617,30 +617,6 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "library.html#",
-    "page": "Library",
-    "title": "Library",
-    "category": "page",
-    "text": ""
-},
-
-{
-    "location": "library.html#Types-1",
-    "page": "Library",
-    "title": "Types",
-    "category": "section",
-    "text": "Modules = [GeoStats]\nOrder = [:type]"
-},
-
-{
-    "location": "library.html#Functions-1",
-    "page": "Library",
-    "title": "Functions",
-    "category": "section",
-    "text": "Modules = [GeoStats]\nOrder = [:function]"
-},
-
-{
     "location": "contributing.html#",
     "page": "Contributing",
     "title": "Contributing",
