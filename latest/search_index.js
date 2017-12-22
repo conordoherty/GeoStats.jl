@@ -73,9 +73,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "problems_and_solvers.html#Estimation-1",
+    "location": "problems_and_solvers.html#Estimation-problem-1",
     "page": "Problems and solvers",
-    "title": "Estimation",
+    "title": "Estimation problem",
     "category": "section",
     "text": "An estimation problem in geostatitsics is a triplet:Spatial data (i.e. data with coordinates)\nSpatial domain (e.g. regular grid, point collection)\nTarget variables (or variables to be estimated)Each of these components is constructed separately, and then grouped (no memory is copied) in an EstimationProblem.EstimationProblemPlease check Spatial data and Domains for currently implemented data and domain types."
 },
@@ -97,17 +97,17 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "problems_and_solvers.html#Simulation-1",
+    "location": "problems_and_solvers.html#Simulation-problem-1",
     "page": "Problems and solvers",
-    "title": "Simulation",
+    "title": "Simulation problem",
     "category": "section",
     "text": "Likewise, a stochastic simulation problem in geostatistics is represented with the same triplet. However, the spatial data in this case is optional in order to accomodate the concept of conditional versus unconditional simulation.SimulationProblemhasdata"
 },
 
 {
-    "location": "problems_and_solvers.html#Solvers-1",
+    "location": "problems_and_solvers.html#List-of-solvers-1",
     "page": "Problems and solvers",
-    "title": "Solvers",
+    "title": "List of solvers",
     "category": "section",
     "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the project page on GitHub."
 },
@@ -121,7 +121,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "problems_and_solvers.html#Estimation-2",
+    "location": "problems_and_solvers.html#Estimation-1",
     "page": "Problems and solvers",
     "title": "Estimation",
     "category": "section",
@@ -137,7 +137,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "problems_and_solvers.html#Simulation-2",
+    "location": "problems_and_solvers.html#Simulation-1",
     "page": "Problems and solvers",
     "title": "Simulation",
     "category": "section",
@@ -585,22 +585,6 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "examples.html#",
-    "page": "Examples",
-    "title": "Examples",
-    "category": "page",
-    "text": ""
-},
-
-{
-    "location": "examples.html#Examples-1",
-    "page": "Examples",
-    "title": "Examples",
-    "category": "section",
-    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check the Contributing page before submitting a pull request. Contributions are very welcome, specially if they educate other users."
-},
-
-{
     "location": "plotting.html#",
     "page": "Plotting",
     "title": "Plotting",
@@ -614,6 +598,22 @@ var documenterSearchIndex = {"docs": [
     "title": "Plotting",
     "category": "section",
     "text": "GeoStats.jl is integrated with the Julia Plots.jl API. This means that many objects defined in the package can be plotted directly without data format conversions.For example, below we plot various theoretical variograms with the plot command from Plots.jl:using GeoStats\nusing Plots\ngr(size=(600,400)) # hide\n\nplot(GaussianVariogram(), maxlag=3., label=\"Gaussian\")\nplot!(ExponentialVariogram(), maxlag=3., label=\"Exponential\")\nplot!(SphericalVariogram(), maxlag=3., label=\"Spherical\")\nplot!(MaternVariogram(), maxlag=3., label=\"Matern\")\npng(\"images/variograms.png\") # hide(Image: )"
+},
+
+{
+    "location": "examples.html#",
+    "page": "Examples",
+    "title": "Examples",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "examples.html#Examples-1",
+    "page": "Examples",
+    "title": "Examples",
+    "category": "section",
+    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check the Contributing page before submitting a pull request. Contributions are very welcome, specially if they educate other users."
 },
 
 {
