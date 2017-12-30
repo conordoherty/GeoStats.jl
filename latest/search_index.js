@@ -453,7 +453,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimators",
     "title": "GeoStats.fit!",
     "category": "Function",
-    "text": "fit!(estimator, X, z)\n\nBuild Kriging system from locations X with values z and save factorization in estimator.\n\n\n\n"
+    "text": "fit!(estimator, X, z)\n\nBuild LHS of Kriging system from coordinates X with values z and save factorization in estimator.\n\n\n\n"
 },
 
 {
