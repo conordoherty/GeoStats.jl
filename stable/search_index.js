@@ -73,9 +73,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "problems_and_solvers.html#Estimation-1",
+    "location": "problems_and_solvers.html#Estimation-problem-1",
     "page": "Problems and solvers",
-    "title": "Estimation",
+    "title": "Estimation problem",
     "category": "section",
     "text": "An estimation problem in geostatitsics is a triplet:Spatial data (i.e. data with coordinates)\nSpatial domain (e.g. regular grid, point collection)\nTarget variables (or variables to be estimated)Each of these components is constructed separately, and then grouped (no memory is copied) in an EstimationProblem.EstimationProblemPlease check Spatial data and Domains for currently implemented data and domain types."
 },
@@ -97,17 +97,17 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "problems_and_solvers.html#Simulation-1",
+    "location": "problems_and_solvers.html#Simulation-problem-1",
     "page": "Problems and solvers",
-    "title": "Simulation",
+    "title": "Simulation problem",
     "category": "section",
     "text": "Likewise, a stochastic simulation problem in geostatistics is represented with the same triplet. However, the spatial data in this case is optional in order to accomodate the concept of conditional versus unconditional simulation.SimulationProblemhasdata"
 },
 
 {
-    "location": "problems_and_solvers.html#Solvers-1",
+    "location": "problems_and_solvers.html#List-of-solvers-1",
     "page": "Problems and solvers",
-    "title": "Solvers",
+    "title": "List of solvers",
     "category": "section",
     "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the project page on GitHub."
 },
@@ -121,7 +121,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "problems_and_solvers.html#Estimation-2",
+    "location": "problems_and_solvers.html#Estimation-1",
     "page": "Problems and solvers",
     "title": "Estimation",
     "category": "section",
@@ -137,7 +137,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "problems_and_solvers.html#Simulation-2",
+    "location": "problems_and_solvers.html#Simulation-1",
     "page": "Problems and solvers",
     "title": "Simulation",
     "category": "section",
@@ -453,7 +453,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimators",
     "title": "GeoStats.fit!",
     "category": "Function",
-    "text": "fit!(estimator, X, z)\n\nBuild Kriging system from locations X with values z and save factorization in estimator.\n\n\n\n"
+    "text": "fit!(estimator, X, z)\n\nBuild LHS of Kriging system from coordinates X with values z and save factorization in estimator.\n\n\n\n"
 },
 
 {
@@ -469,7 +469,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimators",
     "title": "Kriging estimators",
     "category": "section",
-    "text": "A Kriging estimator has the form:newcommandxboldsymbolx\nnewcommandRmathbbR\nhatZ(x_0) = lambda_1 Z(x_1) + lambda_2 Z(x_2) + cdots + lambda_n Z(x_n)quad x_i in R^m lambda_i in Rwith Zcolon R^m times Omega to R a random field.This package implements the following Kriging variants:Simple Kriging\nOrdinary Kriging\nUniversal Kriging\nExternal Drift KrigingAll these variants follow the same interface: an estimator object is first created with a given data configuration and variogram model, and then estimates are made at various locations.The object construction takes care of building the Kriging system and factorizing the LHS with an appropriate decomposition (e.g. Cholesky, LU). The estimate method performs the estimation at a given location:estimateA typical use of the interface is as follows:# build and factorize the system\nsimkrig = SimpleKriging(X, z, γ, mean(z))\n\n# estimate at various locations\nfor xₒ in locations\n  μ, σ² = estimate(simkrig, xₒ)\nendIn case the data configuration needs to be changed in a loop (e.g. sequential Gaussian simulation), one can keep all the parameters fixed and only update the factorization with the fit! method:fit!For advanced users, the Kriging weights and Lagrange multipliers at a given location can be accessed with the weights method. This method returns an AbstractWeights object containing a field λ for the weights and a field ν for the Lagrange multipliers:weights# weights and Lagrange multipliers\nOKweights = weights(ordkrig, xₒ)\nOKweights.λ, OKweights.ν"
+    "text": "A Kriging estimator has the form:newcommandxboldsymbolx\nnewcommandRmathbbR\nhatZ(x_0) = lambda_1 Z(x_1) + lambda_2 Z(x_2) + cdots + lambda_n Z(x_n)quad x_i in R^m lambda_i in Rwith Zcolon R^m times Omega to R a random field.This package implements the following Kriging variants:Simple Kriging\nOrdinary Kriging\nUniversal Kriging\nExternal Drift KrigingAll these variants follow the same interface: an estimator object is first created with a given data configuration and variogram model, and then estimates are made at various locations.The object construction takes care of building the Kriging system and factorizing the LHS with an appropriate decomposition (e.g. Cholesky, LU). The estimate method performs the estimation at a given location:estimateA typical use of the interface is as follows:# build and factorize the system\nsimkrig = SimpleKriging(X, z, γ, mean(z))\n\n# estimate at various locations\nfor xₒ in locations\n  μ, σ² = estimate(simkrig, xₒ)\nendIn case the data configuration needs to be changed in a loop (e.g. sequential Gaussian simulation), one can keep all the parameters fixed and only update the factorization with the fit! method:fit!For advanced users, the Kriging weights and Lagrange multipliers at a given location can be accessed with the weights method. This method returns an AbstractWeights object containing a field λ for the weights and a field ν for the Lagrange multipliers:weightsFor example with Ordinary Kriging:# weights and Lagrange multipliers\nOKweights = weights(ordkrig, xₒ)\nOKweights.λ, OKweights.ν"
 },
 
 {
@@ -585,6 +585,30 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "plotting.html#",
+    "page": "Plotting",
+    "title": "Plotting",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "plotting.html#Plotting-1",
+    "page": "Plotting",
+    "title": "Plotting",
+    "category": "section",
+    "text": "GeoStats.jl is integrated with the Julia Plots.jl API. This means that many objects defined in the package can be plotted directly without data format conversions.For example, below we plot various theoretical variograms with the plot command from Plots.jl:using GeoStats\nusing Plots\ngr(size=(600,400)) # hide\n\nplot(GaussianVariogram(), maxlag=3., label=\"Gaussian\")\nplot!(ExponentialVariogram(), maxlag=3., label=\"Exponential\")\nplot!(SphericalVariogram(), maxlag=3., label=\"Spherical\")\nplot!(MaternVariogram(), maxlag=3., label=\"Matern\")\npng(\"images/variograms.png\") # hide(Image: )Besides plotting GeoStats.jl objects directly, a few other plots are provided for exploring spatial data."
+},
+
+{
+    "location": "plotting.html#h-scatter-1",
+    "page": "Plotting",
+    "title": "h-scatter",
+    "category": "section",
+    "text": "A h-scatter plot between two variables var1 and var2 (possibly with var2 = var1) is a simple scatter plot in which the dots represent all ordered pairs of values of var1 and var2 at a given lag h.using GeoStats\nusing Plots\n\nhscatter(geodata, :value, lags=[0.,1.,2.,3.])(Image: )"
+},
+
+{
     "location": "examples.html#",
     "page": "Examples",
     "title": "Examples",
@@ -598,22 +622,6 @@ var documenterSearchIndex = {"docs": [
     "title": "Examples",
     "category": "section",
     "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check the Contributing page before submitting a pull request. Contributions are very welcome, specially if they educate other users."
-},
-
-{
-    "location": "plotting.html#",
-    "page": "Plotting",
-    "title": "Plotting",
-    "category": "page",
-    "text": ""
-},
-
-{
-    "location": "plotting.html#Plotting-1",
-    "page": "Plotting",
-    "title": "Plotting",
-    "category": "section",
-    "text": "GeoStats.jl is integrated with the Julia Plots.jl API. This means that many objects defined in the package can be plotted directly without data format conversions.For example, below we plot various theoretical variograms with the plot command from Plots.jl:using GeoStats\nusing Plots\ngr(size=(600,400)) # hide\n\nplot(GaussianVariogram(), maxlag=3., label=\"Gaussian\")\nplot!(ExponentialVariogram(), maxlag=3., label=\"Exponential\")\nplot!(SphericalVariogram(), maxlag=3., label=\"Spherical\")\nplot!(MaternVariogram(), maxlag=3., label=\"Matern\")\npng(\"images/variograms.png\") # hide(Image: )"
 },
 
 {
