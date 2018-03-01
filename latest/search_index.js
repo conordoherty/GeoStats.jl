@@ -677,7 +677,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Community",
     "title": "Community",
     "category": "page",
-    "text": "All GeoStats.jl users are welcome to join our community on the gitter channel. There you can ask questions, share issues, or just chat about geostatistics. =)If you are a developer, please check GeoStatsBase.jl and GeoStatsDevTools.jl. There you can find documentation on how to write your own geostatistical solvers in a way that the community can readily use."
+    "text": "All GeoStats.jl users are welcome to join our community on the gitter channel. There you can ask questions, share issues, or just chat about geostatistics.If you are a developer, please check GeoStatsBase.jl and GeoStatsDevTools.jl. There you can find documentation on how to write your own geostatistical solvers in a way that the community can readily use."
 },
 
 {
