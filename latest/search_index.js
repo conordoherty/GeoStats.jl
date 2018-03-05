@@ -68,7 +68,7 @@ var documenterSearchIndex = {"docs": [
     "location": "problems_and_solvers.html#GeoStatsBase.EstimationProblem",
     "page": "Problems and solvers",
     "title": "GeoStatsBase.EstimationProblem",
-    "category": "Type",
+    "category": "type",
     "text": "EstimationProblem(spatialdata, domain, targetvars)\n\nA spatial estimation problem on a given domain in which the variables to be estimated are listed in targetvars. The data of the problem is stored in spatialdata.\n\nExamples\n\nCreate an estimation problem for rainfall precipitation measurements:\n\njulia> EstimationProblem(spatialdata, domain, :precipitation)\n\nCreate an estimation problem for precipitation and CO₂:\n\njulia> EstimationProblem(spatialdata, domain, [:precipitation, :CO₂])\n\n\n\n"
 },
 
@@ -84,7 +84,7 @@ var documenterSearchIndex = {"docs": [
     "location": "problems_and_solvers.html#GeoStatsBase.SimulationProblem",
     "page": "Problems and solvers",
     "title": "GeoStatsBase.SimulationProblem",
-    "category": "Type",
+    "category": "type",
     "text": "SimulationProblem(spatialdata, domain, targetvars, nreals)\nSimulationProblem(domain, targetvars, nreals)\n\nA spatial simulation problem on a given domain in which the variables to be simulated are listed in targetvars.\n\nFor conditional simulation, the data of the problem is stored in spatialdata.\n\nFor unconditional simulation, a dictionary targetvars must be provided mapping variable names to their types.\n\nIn both cases, a number nreals of realizations is requested.\n\nExamples\n\nCreate a conditional simulation problem for porosity and permeability with 100 realizations:\n\njulia> SimulationProblem(spatialdata, domain, [:porosity,:permeability], 100)\n\nCreate an unconditional simulation problem for porosity and facies type with 100 realizations:\n\njulia> SimulationProblem(domain, Dict(:porosity => Float64, :facies => Int), 100)\n\nNotes\n\nTo check if a simulation problem has data (i.e. conditional vs. unconditional) use the hasdata method.\n\n\n\n"
 },
 
@@ -92,7 +92,7 @@ var documenterSearchIndex = {"docs": [
     "location": "problems_and_solvers.html#GeoStatsBase.hasdata",
     "page": "Problems and solvers",
     "title": "GeoStatsBase.hasdata",
-    "category": "Function",
+    "category": "function",
     "text": "hasdata(problem)\n\nReturn true if simulation problem has data.\n\n\n\n"
 },
 
@@ -116,7 +116,7 @@ var documenterSearchIndex = {"docs": [
     "location": "problems_and_solvers.html#GeoStats.Kriging",
     "page": "Problems and solvers",
     "title": "GeoStats.Kriging",
-    "category": "Type",
+    "category": "type",
     "text": "Kriging(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm Kriging estimation solver.\n\nEach pair var=>param specifies the KrigingParam param for the Kriging variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying drifts, the user is telling the algorithm to ignore degree and mean. If no option is specified, Ordinary Kriging is used by default with the variogram only.\n\nExamples\n\nSolve the variable :var₁ with Simple Kriging by specifying the mean, and the variable :var₂ with Universal Kriging by specifying the degree and the variogram model.\n\njulia> Kriging(\n  :var₁ => @NT(mean=1.),\n  :var₂ => @NT(degree=1, variogram=SphericalVariogram(range=20.))\n)\n\nSolve all variables of the problem with the default parameters (i.e. Ordinary Kriging with unit Gaussian variogram):\n\njulia> Kriging()\n\nNotes\n\nThe prefix @NT extends for NamedTuple. It won\'t be necessary in Julia v0.7 and beyond.\n\n\n\n\n\n"
 },
 
@@ -132,7 +132,7 @@ var documenterSearchIndex = {"docs": [
     "location": "problems_and_solvers.html#GeoStats.SeqGaussSim",
     "page": "Problems and solvers",
     "title": "GeoStats.SeqGaussSim",
-    "category": "Type",
+    "category": "type",
     "text": "SeqGaussSim(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm sequential Gaussian simulation solver.\n\nEach pair var=>param specifies the SeqGaussSimParam param for the simulation variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead. See Kriging documentation for examples.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying drifts, the user is telling the algorithm to ignore degree and mean. If no option is specified, Ordinary Kriging is used by default with the variogram only.\n\npath         - Simulation path (default to :random)\nneighradius  - Radius of search neighborhood (default to 10.)\nmaxneighbors - Maximum number of neighbors (default to 10)\n\n\n\n\n\n"
 },
 
@@ -164,7 +164,7 @@ var documenterSearchIndex = {"docs": [
     "location": "spatialdata.html#GeoStatsDevTools.GeoDataFrame",
     "page": "Spatial data",
     "title": "GeoStatsDevTools.GeoDataFrame",
-    "category": "Type",
+    "category": "type",
     "text": "GeoDataFrame(data, coordnames)\n\nA dataframe object data with additional metadata for tracking the columns coordnames that represent spatial coordinates.\n\nExamples\n\nIf the data was already loaded in a normal DataFrame data, and there exists columns named x, y and z, wrap the data and specify the column names:\n\njulia> GeoDataFrame(data, [:x,:y,:z])\n\nAlternatively, load the data directly into a GeoDataFrame object by using the method readtable.\n\nNotes\n\nThis type is a lightweight wrapper over Julia\'s DataFrame types. No additional storage is required other than a vector of symbols with the columns names representing spatial coordinates.\n\n\n\n"
 },
 
@@ -172,7 +172,7 @@ var documenterSearchIndex = {"docs": [
     "location": "spatialdata.html#GeoStatsDevTools.readtable",
     "page": "Spatial data",
     "title": "GeoStatsDevTools.readtable",
-    "category": "Function",
+    "category": "function",
     "text": "readtable(args; coordnames=[:x,:y,:z], kwargs)\n\nRead data from disk using CSV.read, optionally specifying the columns coordnames with spatial coordinates.\n\nThe arguments args and keyword arguments kwargs are forwarded to the CSV.read function, please check their documentation for more details.\n\nThis function returns a GeoDataFrame object.\n\n\n\n"
 },
 
@@ -204,7 +204,7 @@ var documenterSearchIndex = {"docs": [
     "location": "domains.html#GeoStatsDevTools.RegularGrid",
     "page": "Domains",
     "title": "GeoStatsDevTools.RegularGrid",
-    "category": "Type",
+    "category": "type",
     "text": "RegularGrid(dims, origin, spacing)\nRegularGrid{T}(dims)\n\nA regular grid with dimensions dims, lower left corner at origin and cell spacing spacing. The three arguments must have the same length.\n\nIn the first constructor, all the arguments are specified as vectors. In the second constructor, one needs to specify the type of the coordinates and the dimensions of the grid. In that case, the origin and spacing default to (0,0,...) and (1,1,...), respectively.\n\nExamples\n\nCreate a 3D regular grid with 100x100x50 locations:\n\njulia> RegularGrid{Float64}(100,100,50)\n\nCreate a 2D grid with 100x100 locations and origin at (10.,20.) units:\n\njulia> RegularGrid([100,100],[10.,20.],[1.,1.])\n\n\n\n"
 },
 
@@ -220,7 +220,7 @@ var documenterSearchIndex = {"docs": [
     "location": "domains.html#GeoStatsDevTools.PointCollection",
     "page": "Domains",
     "title": "GeoStatsDevTools.PointCollection",
-    "category": "Type",
+    "category": "type",
     "text": "PointCollection(coords)\n\nA collection of points with coordinate matrix coords. The number of rows is the dimensionality of the domain whereas the number of columns is the number of points.\n\n\n\n"
 },
 
@@ -252,7 +252,7 @@ var documenterSearchIndex = {"docs": [
     "location": "empirical_variograms.html#GeoStats.EmpiricalVariogram",
     "page": "Empirical variograms",
     "title": "GeoStats.EmpiricalVariogram",
-    "category": "Type",
+    "category": "type",
     "text": "EmpiricalVariogram(X, z₁, z₂=z₁; [optional parameters])\n\nComputes the empirical (a.k.a. experimental) omnidirectional (cross-)variogram from data locations X and values z₁ and z₂.\n\nEmpiricalVariogram(spatialdata, var₁, var₂=var₁; [optional parameters])\n\nAlternatively, compute the (cross-)variogram for the variables var₁ and var₂ stored in a spatialdata object.\n\nParameters\n\nnbins - number of bins (default to 20)\nmaxlag - maximum lag distance (default to maximum lag of data)\ndistance - custom distance function\n\n\n\n"
 },
 
@@ -276,7 +276,7 @@ var documenterSearchIndex = {"docs": [
     "location": "theoretical_variograms.html#GeoStats.isstationary",
     "page": "Theoretical variograms",
     "title": "GeoStats.isstationary",
-    "category": "Function",
+    "category": "function",
     "text": "isstationary(γ)\n\nCheck if variogram γ possesses the 2nd-order stationary property.\n\n\n\n"
 },
 
@@ -292,7 +292,7 @@ var documenterSearchIndex = {"docs": [
     "location": "theoretical_variograms.html#GeoStats.GaussianVariogram",
     "page": "Theoretical variograms",
     "title": "GeoStats.GaussianVariogram",
-    "category": "Type",
+    "category": "type",
     "text": "GaussianVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA Gaussian variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
 
@@ -308,7 +308,7 @@ var documenterSearchIndex = {"docs": [
     "location": "theoretical_variograms.html#GeoStats.ExponentialVariogram",
     "page": "Theoretical variograms",
     "title": "GeoStats.ExponentialVariogram",
-    "category": "Type",
+    "category": "type",
     "text": "ExponentialVariogram(sill=s, range=r, nugget=n, distance=d)\n\nAn exponential variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
 
@@ -324,7 +324,7 @@ var documenterSearchIndex = {"docs": [
     "location": "theoretical_variograms.html#GeoStats.MaternVariogram",
     "page": "Theoretical variograms",
     "title": "GeoStats.MaternVariogram",
-    "category": "Type",
+    "category": "type",
     "text": "MaternVariogram(sill=s, range=r, nugget=n, order=ν, distance=d)\n\nA Matérn variogram with sill s, range r and nugget n. The parameter ν is the order of the Bessel function. Optionally, use a custom distance d.\n\n\n\n"
 },
 
@@ -340,7 +340,7 @@ var documenterSearchIndex = {"docs": [
     "location": "theoretical_variograms.html#GeoStats.SphericalVariogram",
     "page": "Theoretical variograms",
     "title": "GeoStats.SphericalVariogram",
-    "category": "Type",
+    "category": "type",
     "text": "SphericalVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA spherical variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
 
@@ -356,7 +356,7 @@ var documenterSearchIndex = {"docs": [
     "location": "theoretical_variograms.html#GeoStats.CubicVariogram",
     "page": "Theoretical variograms",
     "title": "GeoStats.CubicVariogram",
-    "category": "Type",
+    "category": "type",
     "text": "CubicVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA cubic variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
 
@@ -372,7 +372,7 @@ var documenterSearchIndex = {"docs": [
     "location": "theoretical_variograms.html#GeoStats.PentasphericalVariogram",
     "page": "Theoretical variograms",
     "title": "GeoStats.PentasphericalVariogram",
-    "category": "Type",
+    "category": "type",
     "text": "PentasphericalVariogram\n\nA pentaspherical variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
 
@@ -388,7 +388,7 @@ var documenterSearchIndex = {"docs": [
     "location": "theoretical_variograms.html#GeoStats.PowerVariogram",
     "page": "Theoretical variograms",
     "title": "GeoStats.PowerVariogram",
-    "category": "Type",
+    "category": "type",
     "text": "PowerVariogram(scaling=s, exponent=a, nugget=n, distance=d)\n\nA power variogram with scaling s, exponent a and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
 
@@ -404,7 +404,7 @@ var documenterSearchIndex = {"docs": [
     "location": "theoretical_variograms.html#GeoStats.SineHoleVariogram",
     "page": "Theoretical variograms",
     "title": "GeoStats.SineHoleVariogram",
-    "category": "Type",
+    "category": "type",
     "text": "SineHoleVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA sine hole variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
 
@@ -420,7 +420,7 @@ var documenterSearchIndex = {"docs": [
     "location": "theoretical_variograms.html#GeoStats.CompositeVariogram",
     "page": "Theoretical variograms",
     "title": "GeoStats.CompositeVariogram",
-    "category": "Type",
+    "category": "type",
     "text": "CompositeVariogram(γ₁, γ₂, ..., γₙ)\n\nA composite (additive) model of variograms γ(h) = γ₁(h) + γ₂(h) + ⋯ + γₙ(h).\n\n\n\n"
 },
 
@@ -444,7 +444,7 @@ var documenterSearchIndex = {"docs": [
     "location": "estimators.html#GeoStats.estimate",
     "page": "Kriging estimators",
     "title": "GeoStats.estimate",
-    "category": "Function",
+    "category": "function",
     "text": "estimate(estimator, xₒ)\n\nCompute mean and variance for the estimator at coordinates xₒ.\n\n\n\n"
 },
 
@@ -452,7 +452,7 @@ var documenterSearchIndex = {"docs": [
     "location": "estimators.html#GeoStats.fit!",
     "page": "Kriging estimators",
     "title": "GeoStats.fit!",
-    "category": "Function",
+    "category": "function",
     "text": "fit!(estimator, X, z)\n\nBuild LHS of Kriging system from coordinates X with values z and save factorization in estimator.\n\n\n\n"
 },
 
@@ -460,7 +460,7 @@ var documenterSearchIndex = {"docs": [
     "location": "estimators.html#GeoStats.weights",
     "page": "Kriging estimators",
     "title": "GeoStats.weights",
-    "category": "Function",
+    "category": "function",
     "text": "weights(estimator, xₒ)\n\nCompute the weights λ (and Lagrange multipliers ν) for the estimator at coordinates xₒ.\n\n\n\n"
 },
 
@@ -476,7 +476,7 @@ var documenterSearchIndex = {"docs": [
     "location": "estimators.html#GeoStats.SimpleKriging",
     "page": "Kriging estimators",
     "title": "GeoStats.SimpleKriging",
-    "category": "Type",
+    "category": "type",
     "text": "SimpleKriging(X, z, γ, μ)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\nμ ∈ ℜ       - mean of z\n\nNotes\n\nSimple Kriging requires stationary variograms\n\n\n\n"
 },
 
@@ -492,7 +492,7 @@ var documenterSearchIndex = {"docs": [
     "location": "estimators.html#GeoStats.OrdinaryKriging",
     "page": "Kriging estimators",
     "title": "GeoStats.OrdinaryKriging",
-    "category": "Type",
+    "category": "type",
     "text": "OrdinaryKriging(X, z, γ)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\n\n\n\n"
 },
 
@@ -508,7 +508,7 @@ var documenterSearchIndex = {"docs": [
     "location": "estimators.html#GeoStats.UniversalKriging",
     "page": "Kriging estimators",
     "title": "GeoStats.UniversalKriging",
-    "category": "Type",
+    "category": "type",
     "text": "UniversalKriging(X, z, γ, degree)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\ndegree      - polynomial degree for the mean\n\nNotes\n\nOrdinaryKriging is recovered for 0th degree polynomial\nFor non-polynomial mean, see ExternalDriftKriging\n\n\n\n"
 },
 
@@ -524,7 +524,7 @@ var documenterSearchIndex = {"docs": [
     "location": "estimators.html#GeoStats.ExternalDriftKriging",
     "page": "Kriging estimators",
     "title": "GeoStats.ExternalDriftKriging",
-    "category": "Type",
+    "category": "type",
     "text": "ExternalDriftKriging(X, z, γ, drifts)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\ndrifts      - vector of external drift functions m: ℜᵐ ↦ ℜ\n\nNotes\n\nExternal drift functions should be smooth\nKriging system with external drift is often unstable\nInclude a constant drift (e.g. x->1) for unbiased estimation\nOrdinaryKriging is recovered for drifts = [x->1]\nFor polynomial mean, see UniversalKriging\n\n\n\n"
 },
 
@@ -556,7 +556,7 @@ var documenterSearchIndex = {"docs": [
     "location": "comparisons.html#GeoStats.VisualComparison",
     "page": "Solver comparisons",
     "title": "GeoStats.VisualComparison",
-    "category": "Type",
+    "category": "type",
     "text": "VisualComparison([plot options])\n\nCompare solvers by plotting the results side by side.\n\nExamples\n\njulia> compare([solver₁, solver₂], problem, VisualComparison())\n\n\n\n"
 },
 
@@ -572,7 +572,7 @@ var documenterSearchIndex = {"docs": [
     "location": "comparisons.html#GeoStats.CrossValidation",
     "page": "Solver comparisons",
     "title": "GeoStats.CrossValidation",
-    "category": "Type",
+    "category": "type",
     "text": "CrossValidation(k, shuffle)\n\nCompare estimation solvers using k-fold cross validation.\n\nThe result of the comparison is a dictionary mapping each variable of the problem to a vector of validation errors for each solver being compared.\n\nParameters\n\nk       - number of folds for cross-validation\nshuffle - whether or not to shuffle the data\n\nExamples\n\nCompare solver₁ and solver₂ on a problem with variable :var using 10 folds. Plot error distribution:\n\njulia> results = compare([solver₁, solver₂], problem, CrossValidation(10))\n\njulia> plt₁ = histogram(results[:var][1], label=\"solver₁\")\njulia> plt₂ = histogram(results[:var][2], label=\"solver₂\")\n\njulia> plot(plt₁, plt₂, title=\"Error distribution for each solver\")\n\nSelect solver with smallest absolute mean validation error:\n\njulia> mean_err₁ = abs(mean(results[:var][1]))\njulia> mean_err₂ = abs(mean(results[:var][2]))\n\njulia> solver = mean_err₁ < mean_err₂ ? solver₁ : solver₂\n\n\n\n"
 },
 
