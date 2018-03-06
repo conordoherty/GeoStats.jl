@@ -5,7 +5,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Home",
     "category": "page",
-    "text": "(Image: GeoStatsLogo)(Image: Build Status) (Image: GeoStats) (Image: Coverage Status) (Image: Stable Documentation) (Image: Latest Documentation) (Image: License File)High-performance implementations of geostatistical algorithms for the Julia programming language."
+    "text": "(Image: GeoStatsLogo)(Image: Build Status) (Image: GeoStats) (Image: Coverage Status) (Image: Stable Documentation) (Image: Latest Documentation) (Image: License File) (Image: Gitter)High-performance implementations of geostatistical algorithms for the Julia programming language."
 },
 
 {
@@ -13,7 +13,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Overview",
     "category": "section",
-    "text": "Geostatistics (a.k.a. spatial statistics) is the branch of statistics that deals with spatial data. In many fields of science, such as mining engineering, hidrogeology, petroleum engineering, and environmental sciences, traditional regression techniques fail to capture spatiotemporal correlation, and therefore are not satisfactory tools for decision making.GeoStats.jl is an attempt to bring together bleeding-edge research in the geostatistics community into a comprehensive framework, and to empower researchers and practioners with a toolkit for fast assessment of different modeling approaches.The design of this package is the result of many years developing geostatistical software. I hope that it can serve to promote more collaboration between geostatisticians around the globe and to standardize this incredible science.If you would like to help support the project, please star the repository on GitHub and share it with your colleagues. If you are a developer, please check GeoStatsBase.jl."
+    "text": "Geostatistics (a.k.a. spatial statistics) is the branch of statistics that deals with spatial data. In many fields of science, such as mining engineering, hidrogeology, petroleum engineering, and environmental sciences, traditional regression techniques fail to capture spatiotemporal correlation, and therefore are not satisfactory tools for decision making involving spatial resources.GeoStats.jl is an attempt to bring together bleeding-edge research in the geostatistics community into a comprehensive framework, and to empower researchers and practioners with a toolkit for fast assessment of different modeling approaches.The design of this package is the result of many years developing geostatistical software. I hope that it can serve to promote more collaboration between geostatisticians around the globe and to standardize this incredible science.If you would like to help support the project, please star the repository on GitHub and share it with your colleagues. If you are a developer, please check GeoStatsBase.jl."
 },
 
 {
