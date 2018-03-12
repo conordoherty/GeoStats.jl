@@ -249,9 +249,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "empirical_variograms.html#GeoStats.EmpiricalVariogram",
+    "location": "empirical_variograms.html#GeoStatsDevTools.EmpiricalVariogram",
     "page": "Empirical variograms",
-    "title": "GeoStats.EmpiricalVariogram",
+    "title": "GeoStatsDevTools.EmpiricalVariogram",
     "category": "type",
     "text": "EmpiricalVariogram(X, z₁, z₂=z₁; [optional parameters])\n\nComputes the empirical (a.k.a. experimental) omnidirectional (cross-)variogram from data locations X and values z₁ and z₂.\n\nEmpiricalVariogram(spatialdata, var₁, var₂=var₁; [optional parameters])\n\nAlternatively, compute the (cross-)variogram for the variables var₁ and var₂ stored in a spatialdata object.\n\nParameters\n\nnbins - number of bins (default to 20)\nmaxlag - maximum lag distance (default to maximum lag of data)\ndistance - custom distance function\n\n\n\n"
 },
@@ -273,9 +273,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStats.isstationary",
+    "location": "theoretical_variograms.html#GeoStatsDevTools.isstationary",
     "page": "Theoretical variograms",
-    "title": "GeoStats.isstationary",
+    "title": "GeoStatsDevTools.isstationary",
     "category": "function",
     "text": "isstationary(γ)\n\nCheck if variogram γ possesses the 2nd-order stationary property.\n\n\n\n"
 },
@@ -289,9 +289,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStats.GaussianVariogram",
+    "location": "theoretical_variograms.html#GeoStatsDevTools.GaussianVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStats.GaussianVariogram",
+    "title": "GeoStatsDevTools.GaussianVariogram",
     "category": "type",
     "text": "GaussianVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA Gaussian variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -305,9 +305,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStats.ExponentialVariogram",
+    "location": "theoretical_variograms.html#GeoStatsDevTools.ExponentialVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStats.ExponentialVariogram",
+    "title": "GeoStatsDevTools.ExponentialVariogram",
     "category": "type",
     "text": "ExponentialVariogram(sill=s, range=r, nugget=n, distance=d)\n\nAn exponential variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -321,9 +321,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStats.MaternVariogram",
+    "location": "theoretical_variograms.html#GeoStatsDevTools.MaternVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStats.MaternVariogram",
+    "title": "GeoStatsDevTools.MaternVariogram",
     "category": "type",
     "text": "MaternVariogram(sill=s, range=r, nugget=n, order=ν, distance=d)\n\nA Matérn variogram with sill s, range r and nugget n. The parameter ν is the order of the Bessel function. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -337,9 +337,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStats.SphericalVariogram",
+    "location": "theoretical_variograms.html#GeoStatsDevTools.SphericalVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStats.SphericalVariogram",
+    "title": "GeoStatsDevTools.SphericalVariogram",
     "category": "type",
     "text": "SphericalVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA spherical variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -353,9 +353,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStats.CubicVariogram",
+    "location": "theoretical_variograms.html#GeoStatsDevTools.CubicVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStats.CubicVariogram",
+    "title": "GeoStatsDevTools.CubicVariogram",
     "category": "type",
     "text": "CubicVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA cubic variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -369,9 +369,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStats.PentasphericalVariogram",
+    "location": "theoretical_variograms.html#GeoStatsDevTools.PentasphericalVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStats.PentasphericalVariogram",
+    "title": "GeoStatsDevTools.PentasphericalVariogram",
     "category": "type",
     "text": "PentasphericalVariogram\n\nA pentaspherical variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -385,9 +385,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStats.PowerVariogram",
+    "location": "theoretical_variograms.html#GeoStatsDevTools.PowerVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStats.PowerVariogram",
+    "title": "GeoStatsDevTools.PowerVariogram",
     "category": "type",
     "text": "PowerVariogram(scaling=s, exponent=a, nugget=n, distance=d)\n\nA power variogram with scaling s, exponent a and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -401,9 +401,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStats.SineHoleVariogram",
+    "location": "theoretical_variograms.html#GeoStatsDevTools.SineHoleVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStats.SineHoleVariogram",
+    "title": "GeoStatsDevTools.SineHoleVariogram",
     "category": "type",
     "text": "SineHoleVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA sine hole variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -417,9 +417,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStats.CompositeVariogram",
+    "location": "theoretical_variograms.html#GeoStatsDevTools.CompositeVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStats.CompositeVariogram",
+    "title": "GeoStatsDevTools.CompositeVariogram",
     "category": "type",
     "text": "CompositeVariogram(γ₁, γ₂, ..., γₙ)\n\nA composite (additive) model of variograms γ(h) = γ₁(h) + γ₂(h) + ⋯ + γₙ(h).\n\n\n\n"
 },
