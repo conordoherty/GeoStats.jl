@@ -29,7 +29,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Project organization",
     "category": "section",
-    "text": "The project is split into various packages:Package Description\nGeoStats.jl Main package containing Kriging-based solvers, and other geostatistical tools.\nGeoStatsImages.jl Training images for multiple-point geostatistical simulation.\nGslibIO.jl Utilities to read/write extended GSLIB files.\nGeoStatsBase.jl Base package containing problem and solution specifications (for developers).\nGeoStatsDevTools.jl Developer tools for writing new solvers (for developers).The main package (i.e. GeoStats.jl) is self-contained, and provides high-performance Kriging-based estimation/simulation algorithms over arbitrary domains. Other packages can be installed from the list above for additional functionality."
+    "text": "The project is split into various packages:Package Description\nGeoStats.jl Main package containing Kriging-based solvers, and other geostatistical tools.\nGeoStatsImages.jl Training images for multiple-point geostatistical simulation.\nGslibIO.jl Utilities to read/write extended GSLIB files.\nVariography.jl Variogram estimation and modeling, and related tools.\nKrigingEstimators.jl High-performance implementations of Kriging estimators.\nGeoStatsBase.jl Base package containing problem and solution specifications (for developers).\nGeoStatsDevTools.jl Developer tools for writing new solvers (for developers).The main package (i.e. GeoStats.jl) is self-contained, and provides high-performance Kriging-based estimation/simulation algorithms over arbitrary domains. Other packages can be installed from the list above for additional functionality."
 },
 
 {
@@ -249,9 +249,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "empirical_variograms.html#GeoStatsDevTools.EmpiricalVariogram",
+    "location": "empirical_variograms.html#Variography.EmpiricalVariogram",
     "page": "Empirical variograms",
-    "title": "GeoStatsDevTools.EmpiricalVariogram",
+    "title": "Variography.EmpiricalVariogram",
     "category": "type",
     "text": "EmpiricalVariogram(X, z₁, z₂=z₁; [optional parameters])\n\nComputes the empirical (a.k.a. experimental) omnidirectional (cross-)variogram from data locations X and values z₁ and z₂.\n\nEmpiricalVariogram(spatialdata, var₁, var₂=var₁; [optional parameters])\n\nAlternatively, compute the (cross-)variogram for the variables var₁ and var₂ stored in a spatialdata object.\n\nParameters\n\nnbins - number of bins (default to 20)\nmaxlag - maximum lag distance (default to maximum lag of data)\ndistance - custom distance function\n\n\n\n"
 },
@@ -273,9 +273,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStatsDevTools.isstationary",
+    "location": "theoretical_variograms.html#Variography.isstationary",
     "page": "Theoretical variograms",
-    "title": "GeoStatsDevTools.isstationary",
+    "title": "Variography.isstationary",
     "category": "function",
     "text": "isstationary(γ)\n\nCheck if variogram γ possesses the 2nd-order stationary property.\n\n\n\n"
 },
@@ -289,9 +289,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStatsDevTools.GaussianVariogram",
+    "location": "theoretical_variograms.html#Variography.GaussianVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStatsDevTools.GaussianVariogram",
+    "title": "Variography.GaussianVariogram",
     "category": "type",
     "text": "GaussianVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA Gaussian variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -305,9 +305,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStatsDevTools.ExponentialVariogram",
+    "location": "theoretical_variograms.html#Variography.ExponentialVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStatsDevTools.ExponentialVariogram",
+    "title": "Variography.ExponentialVariogram",
     "category": "type",
     "text": "ExponentialVariogram(sill=s, range=r, nugget=n, distance=d)\n\nAn exponential variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -321,9 +321,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStatsDevTools.MaternVariogram",
+    "location": "theoretical_variograms.html#Variography.MaternVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStatsDevTools.MaternVariogram",
+    "title": "Variography.MaternVariogram",
     "category": "type",
     "text": "MaternVariogram(sill=s, range=r, nugget=n, order=ν, distance=d)\n\nA Matérn variogram with sill s, range r and nugget n. The parameter ν is the order of the Bessel function. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -337,9 +337,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStatsDevTools.SphericalVariogram",
+    "location": "theoretical_variograms.html#Variography.SphericalVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStatsDevTools.SphericalVariogram",
+    "title": "Variography.SphericalVariogram",
     "category": "type",
     "text": "SphericalVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA spherical variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -353,9 +353,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStatsDevTools.CubicVariogram",
+    "location": "theoretical_variograms.html#Variography.CubicVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStatsDevTools.CubicVariogram",
+    "title": "Variography.CubicVariogram",
     "category": "type",
     "text": "CubicVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA cubic variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -369,9 +369,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStatsDevTools.PentasphericalVariogram",
+    "location": "theoretical_variograms.html#Variography.PentasphericalVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStatsDevTools.PentasphericalVariogram",
+    "title": "Variography.PentasphericalVariogram",
     "category": "type",
     "text": "PentasphericalVariogram\n\nA pentaspherical variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -385,9 +385,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStatsDevTools.PowerVariogram",
+    "location": "theoretical_variograms.html#Variography.PowerVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStatsDevTools.PowerVariogram",
+    "title": "Variography.PowerVariogram",
     "category": "type",
     "text": "PowerVariogram(scaling=s, exponent=a, nugget=n, distance=d)\n\nA power variogram with scaling s, exponent a and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -401,9 +401,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStatsDevTools.SineHoleVariogram",
+    "location": "theoretical_variograms.html#Variography.SineHoleVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStatsDevTools.SineHoleVariogram",
+    "title": "Variography.SineHoleVariogram",
     "category": "type",
     "text": "SineHoleVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA sine hole variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n"
 },
@@ -417,9 +417,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "theoretical_variograms.html#GeoStatsDevTools.CompositeVariogram",
+    "location": "theoretical_variograms.html#Variography.CompositeVariogram",
     "page": "Theoretical variograms",
-    "title": "GeoStatsDevTools.CompositeVariogram",
+    "title": "Variography.CompositeVariogram",
     "category": "type",
     "text": "CompositeVariogram(γ₁, γ₂, ..., γₙ)\n\nA composite (additive) model of variograms γ(h) = γ₁(h) + γ₂(h) + ⋯ + γₙ(h).\n\n\n\n"
 },
@@ -441,25 +441,25 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "estimators.html#GeoStats.estimate",
+    "location": "estimators.html#KrigingEstimators.estimate",
     "page": "Kriging estimators",
-    "title": "GeoStats.estimate",
+    "title": "KrigingEstimators.estimate",
     "category": "function",
     "text": "estimate(estimator, xₒ)\n\nCompute mean and variance for the estimator at coordinates xₒ.\n\n\n\n"
 },
 
 {
-    "location": "estimators.html#GeoStats.fit!",
+    "location": "estimators.html#KrigingEstimators.fit!",
     "page": "Kriging estimators",
-    "title": "GeoStats.fit!",
+    "title": "KrigingEstimators.fit!",
     "category": "function",
     "text": "fit!(estimator, X, z)\n\nBuild LHS of Kriging system from coordinates X with values z and save factorization in estimator.\n\n\n\n"
 },
 
 {
-    "location": "estimators.html#GeoStats.weights",
+    "location": "estimators.html#KrigingEstimators.weights",
     "page": "Kriging estimators",
-    "title": "GeoStats.weights",
+    "title": "KrigingEstimators.weights",
     "category": "function",
     "text": "weights(estimator, xₒ)\n\nCompute the weights λ (and Lagrange multipliers ν) for the estimator at coordinates xₒ.\n\n\n\n"
 },
@@ -473,9 +473,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "estimators.html#GeoStats.SimpleKriging",
+    "location": "estimators.html#KrigingEstimators.SimpleKriging",
     "page": "Kriging estimators",
-    "title": "GeoStats.SimpleKriging",
+    "title": "KrigingEstimators.SimpleKriging",
     "category": "type",
     "text": "SimpleKriging(X, z, γ, μ)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\nμ ∈ ℜ       - mean of z\n\nNotes\n\nSimple Kriging requires stationary variograms\n\n\n\n"
 },
@@ -489,9 +489,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "estimators.html#GeoStats.OrdinaryKriging",
+    "location": "estimators.html#KrigingEstimators.OrdinaryKriging",
     "page": "Kriging estimators",
-    "title": "GeoStats.OrdinaryKriging",
+    "title": "KrigingEstimators.OrdinaryKriging",
     "category": "type",
     "text": "OrdinaryKriging(X, z, γ)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\n\n\n\n"
 },
@@ -505,9 +505,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "estimators.html#GeoStats.UniversalKriging",
+    "location": "estimators.html#KrigingEstimators.UniversalKriging",
     "page": "Kriging estimators",
-    "title": "GeoStats.UniversalKriging",
+    "title": "KrigingEstimators.UniversalKriging",
     "category": "type",
     "text": "UniversalKriging(X, z, γ, degree)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\ndegree      - polynomial degree for the mean\n\nNotes\n\nOrdinaryKriging is recovered for 0th degree polynomial\nFor non-polynomial mean, see ExternalDriftKriging\n\n\n\n"
 },
@@ -521,9 +521,9 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "estimators.html#GeoStats.ExternalDriftKriging",
+    "location": "estimators.html#KrigingEstimators.ExternalDriftKriging",
     "page": "Kriging estimators",
-    "title": "GeoStats.ExternalDriftKriging",
+    "title": "KrigingEstimators.ExternalDriftKriging",
     "category": "type",
     "text": "ExternalDriftKriging(X, z, γ, drifts)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\ndrifts      - vector of external drift functions m: ℜᵐ ↦ ℜ\n\nNotes\n\nExternal drift functions should be smooth\nKriging system with external drift is often unstable\nInclude a constant drift (e.g. x->1) for unbiased estimation\nOrdinaryKriging is recovered for drifts = [x->1]\nFor polynomial mean, see UniversalKriging\n\n\n\n"
 },
