@@ -185,6 +185,22 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "spatialdata.html#GeoStatsDevTools.GeoGridData",
+    "page": "Spatial data",
+    "title": "GeoStatsDevTools.GeoGridData",
+    "category": "type",
+    "text": "GeoGridData(data, origin, spacing)\n\nRegularly spaced data georeferenced with origin and spacing. The data argument is a dictionary mapping variable names to Julia arrays with the actual data.\n\nNaN or missing values in the Julia arrays are interpreted as non-valid. They can be used to mask the variables on the grid.\n\nExamples\n\nGiven poro and perm two 2-dimensional Julia arrays containing values of porosity and permeability, the following code can be used to georeference the data:\n\njulia> data = Dict(:porosity => poro, :permeability => perm)\njulia> GeoGridData(data, [0.,0.,0.], [1.,1.,1.])\n\nAlternatively, one can omit origin and spacing for default values of zeros and ones:\n\njulia> GeoGridData{Float64}(data)\n\n\n\n"
+},
+
+{
+    "location": "spatialdata.html#GeoGridData-1",
+    "page": "Spatial data",
+    "title": "GeoGridData",
+    "category": "section",
+    "text": "In the case that the data is regularly spaced in a grid, the GeoGridData object provides fast access across multiple overlaid maps.GeoGridData"
+},
+
+{
     "location": "domains.html#",
     "page": "Domains",
     "title": "Domains",
@@ -221,7 +237,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Domains",
     "title": "GeoStatsDevTools.PointCollection",
     "category": "type",
-    "text": "PointCollection(coords)\n\nA collection of points with coordinate matrix coords. The number of rows is the dimensionality of the domain whereas the number of columns is the number of points.\n\n\n\n"
+    "text": "PointCollection(coords)\n\nA collection of points with coordinate matrix coords. The number of rows of the matrix is the dimensionality of the domain whereas the number of columns is the number of points in the collection.\n\n\n\n"
 },
 
 {
@@ -285,7 +301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Theoretical variograms",
     "title": "Theoretical variograms",
     "category": "section",
-    "text": "newcommandxboldsymbolx\nnewcommandRmathbbR\nnewcommand1mathbb1In an intrinsic isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in R^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)Under the additional assumption of 2nd-order stationarity, the well-known covariance is directly related via gamma(h) = cov(0) - cov(h). Anisotropic models are easily obtained by defining an ellipsoid distance in place of the Euclidean distance. For a list of available distances, please see Distances.jl.This package implements a few commonly used and other more excentric variogram models. They all share the same default parameters:sill=1\nrange=1\nnugget=0\ndistance=Euclidean()Some of them have extra parameters that can be set with keyword arguments:GaussianVariogram(nugget=.1) # set nugget effect\nMaternVariogram(order=1) # set order of Bessel functionAdditionally, a composite (additive) variogram model gamma(h) = gamma_1(h) + gamma_2(h) + cdots gamma_n(h) can be constructed from a list of variogram models:CompositeVariogram(GaussianVariogram(), ExponentialVariogram())Like the other variogram models, a composite variogram gamma can be evaluated as an isotropic model gamma(h) or as a model with a custom distance implicitly defined by taking into account its individual components gamma(x_1x_2).Finally, the 2nd-order stationarity property of a variogram can be checked with the isstationary method:isstationary"
+    "text": "newcommandxboldsymbolx\nnewcommandRmathbbR\nnewcommand1mathbb1In an intrinsic isotropic model, the variogram is only a function of the distance between any two points x_1x_2 in R^m:gamma(x_1x_2) = gamma(x_1 - x_2) = gamma(h)Under the additional assumption of 2nd-order stationarity, the well-known covariance is directly related via gamma(h) = cov(0) - cov(h). Anisotropic models are easily obtained by defining an ellipsoid distance in place of the Euclidean distance. For a list of available distances, please see Distances.jl.This package implements a few commonly used and other more excentric variogram models. They all share the same default parameters:sill=1\nrange=1\nnugget=0\ndistance=Euclidean()Some of them have extra parameters that can be set with keyword arguments:GaussianVariogram(nugget=.1) # set nugget effect\nMaternVariogram(order=1) # set order of Bessel functionAdditionally, a composite (additive) variogram model gamma(h) = gamma_1(h) + gamma_2(h) + cdots gamma_n(h) can be constructed from a list of variogram models:γ = GaussianVariogram() + ExponentialVariogram()Like the other variogram models, a composite variogram gamma can be evaluated as an isotropic model gamma(h) or as a model with a custom distance gamma(x_1x_2).Finally, the 2nd-order stationarity property of a variogram can be checked with the isstationary method:isstationary"
 },
 
 {
