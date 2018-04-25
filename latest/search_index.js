@@ -5,7 +5,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Home",
     "category": "page",
-    "text": "(Image: GeoStatsLogo)(Image: Build Status) (Image: GeoStats) (Image: Coverage Status) (Image: Stable Documentation) (Image: Latest Documentation) (Image: License File) (Image: Gitter)High-performance implementations of geostatistical algorithms for the Julia programming language."
+    "text": "(Image: GeoStatsLogo)(Image: Build Status) (Image: GeoStats) (Image: Coverage Status) (Image: Stable Documentation) (Image: Latest Documentation) (Image: License File) (Image: Gitter)Cite as (Image: DOI)High-performance implementations of geostatistical algorithms for the Julia programming language."
 },
 
 {
@@ -681,19 +681,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "about/author.html#",
-    "page": "Author",
-    "title": "Author",
-    "category": "page",
-    "text": "Júlio Hoffimann MendesI am a Ph.D. candidate in the Department of Energy Resources Engineering at Stanford University. You can find more about my research on my website. Below are some ways that we can connect:ResearchGate\nLinkedIn\nGitHub"
-},
-
-{
     "location": "about/community.html#",
     "page": "Community",
     "title": "Community",
     "category": "page",
-    "text": "All GeoStats.jl users are welcome to join our community on the gitter channel. There you can ask questions, share issues, or just chat about geostatistics.If you are a developer, please check GeoStatsBase.jl and GeoStatsDevTools.jl. There you can find documentation on how to write your own geostatistical solvers in a way that the community can readily use."
+    "text": "Everyone is welcome to join our community in our gitter channel.Below are some other ways that we can connect:ResearchGate\nLinkedIn\nGitHub"
 },
 
 {
