@@ -681,6 +681,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "citing.html#",
+    "page": "Citing",
+    "title": "Citing",
+    "category": "page",
+    "text": "If you find GeoStats.jl useful in your work, please consider citing it:(Image: JOSS) (Image: DOI)@ARTICLE{Hoffimann2018,\n  title={GeoStats.jl – High-performance geostatistics in Julia},\n  author={Hoffimann, Júlio},\n  journal={Journal of Open Source Software},\n  publisher={The Open Journal},\n  volume={3},\n  pages={692},\n  number={24},\n  ISSN={2475-9066},\n  DOI={10.21105/joss.00692},\n  url={http://dx.doi.org/10.21105/joss.00692},\n  year={2018},\n  month={Apr}\n}"
+},
+
+{
     "location": "about/community.html#",
     "page": "Community",
     "title": "Community",
