@@ -5,7 +5,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Home",
     "category": "page",
-    "text": "(Image: GeoStatsLogo)(Image: Build Status) (Image: GeoStats) (Image: Coverage Status) (Image: Stable Documentation) (Image: Latest Documentation) (Image: License File) (Image: Gitter)Cite as (Image: DOI)High-performance implementations of geostatistical algorithms for the Julia programming language."
+    "text": "(Image: GeoStatsLogo)(Image: Build Status) (Image: GeoStats) (Image: Coverage Status) (Image: Stable Documentation) (Image: Latest Documentation) (Image: License File) (Image: Gitter) (Image: JOSS) (Image: DOI)High-performance implementations of geostatistical algorithms for the Julia programming language."
 },
 
 {
@@ -677,7 +677,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Contributing",
     "title": "Code contribution",
     "category": "section",
-    "text": "If you have code that you would like to contribute to GeoStats.jl, that is awesome! Please open an issue before you create the pull request on GitHub so that we make sure your idea is aligned with our goals for the project."
+    "text": "If you have code that you would like to contribute to GeoStats.jl, that is awesome! Please open an issue before you create the pull request on GitHub so that we make sure your idea is aligned with our goals for the project.You can also develop your own solver independently, under your own license terms. Please check GeoStatsBase.jl and GeoStatsDevTools.jl for information on how to write solvers that are compatible with the framework."
 },
 
 {
