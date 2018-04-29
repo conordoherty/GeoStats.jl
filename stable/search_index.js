@@ -5,7 +5,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Home",
     "category": "page",
-    "text": "(Image: GeoStatsLogo)(Image: Build Status) (Image: GeoStats) (Image: Coverage Status) (Image: Stable Documentation) (Image: Latest Documentation) (Image: License File) (Image: Gitter)High-performance implementations of geostatistical algorithms for the Julia programming language."
+    "text": "(Image: GeoStatsLogo)(Image: Build Status) (Image: GeoStats) (Image: Coverage Status) (Image: Stable Documentation) (Image: Latest Documentation) (Image: License File) (Image: Gitter) (Image: JOSS) (Image: DOI)High-performance implementations of geostatistical algorithms for the Julia programming language."
 },
 
 {
@@ -677,15 +677,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Contributing",
     "title": "Code contribution",
     "category": "section",
-    "text": "If you have code that you would like to contribute to GeoStats.jl, that is awesome! Please open an issue before you create the pull request on GitHub so that we make sure your idea is aligned with our goals for the project."
-},
-
-{
-    "location": "about/author.html#",
-    "page": "Author",
-    "title": "Author",
-    "category": "page",
-    "text": "Júlio Hoffimann MendesI am a Ph.D. candidate in the Department of Energy Resources Engineering at Stanford University. You can find more about my research on my website. Below are some ways that we can connect:ResearchGate\nLinkedIn\nGitHub"
+    "text": "If you have code that you would like to contribute to GeoStats.jl, that is awesome! Please open an issue before you create the pull request on GitHub so that we make sure your idea is aligned with our goals for the project.You can also develop your own solver independently, under your own license terms. Please check GeoStatsBase.jl and GeoStatsDevTools.jl for information on how to write solvers that are compatible with the framework."
 },
 
 {
@@ -693,7 +685,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Community",
     "title": "Community",
     "category": "page",
-    "text": "All GeoStats.jl users are welcome to join our community on the gitter channel. There you can ask questions, share issues, or just chat about geostatistics.If you are a developer, please check GeoStatsBase.jl and GeoStatsDevTools.jl. There you can find documentation on how to write your own geostatistical solvers in a way that the community can readily use."
+    "text": "Everyone is welcome to join our community in our gitter channel.(Image: gitter)"
 },
 
 {
@@ -702,6 +694,14 @@ var documenterSearchIndex = {"docs": [
     "title": "License",
     "category": "page",
     "text": "The GeoStats.jl package is licensed under the ISC License:Copyright (c) 2015, Júlio Hoffimann Mendes <juliohm@stanford.edu>\n\nPermission to use, copy, modify, and/or distribute this software for any\npurpose with or without fee is hereby granted, provided that the above\ncopyright notice and this permission notice appear in all copies.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES\nWITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\nMERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR\nANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\nWHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN\nACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF\nOR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE."
+},
+
+{
+    "location": "about/citing.html#",
+    "page": "Citing",
+    "title": "Citing",
+    "category": "page",
+    "text": "If you find GeoStats.jl useful in your work, please consider citing it:(Image: JOSS) (Image: DOI)@ARTICLE{Hoffimann2018,\n  title={GeoStats.jl – High-performance geostatistics in Julia},\n  author={Hoffimann, Júlio},\n  journal={Journal of Open Source Software},\n  publisher={The Open Journal},\n  volume={3},\n  pages={692},\n  number={24},\n  ISSN={2475-9066},\n  DOI={10.21105/joss.00692},\n  url={http://dx.doi.org/10.21105/joss.00692},\n  year={2018},\n  month={Apr}\n}"
 },
 
 ]}
