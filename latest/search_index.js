@@ -109,7 +109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "List of solvers",
     "category": "section",
-    "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the project page on GitHub."
+    "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the project page on GitHub where a table is provided with links to accompanying repositories."
 },
 
 {
@@ -137,11 +137,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "problems_and_solvers.html#GeoStats.CookieCutter",
+    "page": "Problems and solvers",
+    "title": "GeoStats.CookieCutter",
+    "category": "type",
+    "text": "CookieCutter(master, others)\n\nA cookie-cutter simulation solver.\n\nParameters\n\nmaster - Master simulation solver (a.k.a. facies solver)\nothers - A list of pairs mapping categories to solvers\n\nExamples\n\nSimulate lithology facies with image quilting and fill property with direct Gaussian simulation:\n\njulia> fsolver  = ImgQuilt(:facies => @NT(TI=Strebelle, template=(30,30,1)))\njulia> psolver₀ = DirectGaussSim(:property => @NT(variogram=SphericalVariogram(range=10.)))\njulia> psolver₁ = DirectGaussSim(:property => @NT(variogram=SphericalVariogram(range=20.)))\njulia> solver   = CookieCutter(fsolver, [0 => psolver₀, 1 => psolver₁])\n\n\n\n"
+},
+
+{
     "location": "problems_and_solvers.html#Simulation-1",
     "page": "Problems and solvers",
     "title": "Simulation",
     "category": "section",
-    "text": "SeqGaussSim"
+    "text": "SeqGaussSimCookieCutter"
 },
 
 {
