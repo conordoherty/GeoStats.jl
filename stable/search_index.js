@@ -109,7 +109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "List of solvers",
     "category": "section",
-    "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the project page on GitHub."
+    "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the project page on GitHub where a table is provided with links to accompanying repositories."
 },
 
 {
@@ -137,11 +137,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "problems_and_solvers.html#GeoStats.CookieCutter",
+    "page": "Problems and solvers",
+    "title": "GeoStats.CookieCutter",
+    "category": "type",
+    "text": "CookieCutter(master, others)\n\nA cookie-cutter simulation solver.\n\nParameters\n\nmaster - Master simulation solver (a.k.a. facies solver)\nothers - A list of pairs mapping categories to solvers\n\nExamples\n\nSimulate lithology facies with image quilting and fill property with direct Gaussian simulation:\n\njulia> fsolver  = ImgQuilt(:facies => @NT(TI=Strebelle, template=(30,30,1)))\njulia> psolver₀ = DirectGaussSim(:property => @NT(variogram=SphericalVariogram(range=10.)))\njulia> psolver₁ = DirectGaussSim(:property => @NT(variogram=SphericalVariogram(range=20.)))\njulia> solver   = CookieCutter(fsolver, [0 => psolver₀, 1 => psolver₁])\n\n\n\n"
+},
+
+{
     "location": "problems_and_solvers.html#Simulation-1",
     "page": "Problems and solvers",
     "title": "Simulation",
     "category": "section",
-    "text": "SeqGaussSim"
+    "text": "SeqGaussSimCookieCutter"
 },
 
 {
@@ -185,19 +193,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "spatialdata.html#GeoStatsDevTools.GeoGridData",
+    "location": "spatialdata.html#RegularGridData-1",
     "page": "Spatial data",
-    "title": "GeoStatsDevTools.GeoGridData",
-    "category": "type",
-    "text": "GeoGridData(data, origin, spacing)\n\nRegularly spaced data georeferenced with origin and spacing. The data argument is a dictionary mapping variable names to Julia arrays with the actual data.\n\nNaN or missing values in the Julia arrays are interpreted as non-valid. They can be used to mask the variables on the grid.\n\nExamples\n\nGiven poro and perm two 2-dimensional Julia arrays containing values of porosity and permeability, the following code can be used to georeference the data:\n\njulia> data = Dict(:porosity => poro, :permeability => perm)\njulia> GeoGridData(data, [0.,0.,0.], [1.,1.,1.])\n\nAlternatively, one can omit origin and spacing for default values of zeros and ones:\n\njulia> GeoGridData{Float64}(data)\n\n\n\n"
-},
-
-{
-    "location": "spatialdata.html#GeoGridData-1",
-    "page": "Spatial data",
-    "title": "GeoGridData",
+    "title": "RegularGridData",
     "category": "section",
-    "text": "In the case that the data is regularly spaced in a grid, the GeoGridData object provides fast access across multiple overlaid maps.GeoGridData"
+    "text": "In the case that the data is regularly spaced in a grid, the GeoGridData object provides fast access across multiple overlaid images.RegularGridData"
 },
 
 {
@@ -637,7 +637,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Examples",
     "title": "Examples",
     "category": "section",
-    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check the Contributing page before submitting a pull request. Contributions are very welcome, specially if they educate other users."
+    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check the Contributing page. Contributions are very welcome, specially if they are educational."
 },
 
 {
