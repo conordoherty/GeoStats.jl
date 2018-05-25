@@ -193,19 +193,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "spatialdata.html#GeoStatsDevTools.GeoGridData",
+    "location": "spatialdata.html#RegularGridData-1",
     "page": "Spatial data",
-    "title": "GeoStatsDevTools.GeoGridData",
-    "category": "type",
-    "text": "GeoGridData(data, origin, spacing)\n\nRegularly spaced data georeferenced with origin and spacing. The data argument is a dictionary mapping variable names to Julia arrays with the actual data.\n\nNaN or missing values in the Julia arrays are interpreted as non-valid. They can be used to mask the variables on the grid.\n\nExamples\n\nGiven poro and perm two 2-dimensional Julia arrays containing values of porosity and permeability, the following code can be used to georeference the data:\n\njulia> data = Dict(:porosity => poro, :permeability => perm)\njulia> GeoGridData(data, [0.,0.,0.], [1.,1.,1.])\n\nAlternatively, one can omit origin and spacing for default values of zeros and ones:\n\njulia> GeoGridData{Float64}(data)\n\n\n\n"
-},
-
-{
-    "location": "spatialdata.html#GeoGridData-1",
-    "page": "Spatial data",
-    "title": "GeoGridData",
+    "title": "RegularGridData",
     "category": "section",
-    "text": "In the case that the data is regularly spaced in a grid, the GeoGridData object provides fast access across multiple overlaid maps.GeoGridData"
+    "text": "In the case that the data is regularly spaced in a grid, the GeoGridData object provides fast access across multiple overlaid images.RegularGridData"
 },
 
 {
