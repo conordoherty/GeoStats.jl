@@ -193,11 +193,35 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "spatialdata.html#PointSetData-1",
+    "page": "Spatial data",
+    "title": "PointSetData",
+    "category": "section",
+    "text": "The PointSetData object is equivalent to GeoDataFrame except that it stores the data in a simple Julia Dict instead of in a DataFrame.PointSetData"
+},
+
+{
+    "location": "spatialdata.html#GeoStatsDevTools.RegularGridData",
+    "page": "Spatial data",
+    "title": "GeoStatsDevTools.RegularGridData",
+    "category": "type",
+    "text": "RegularGridData(data, origin, spacing)\n\nRegularly spaced data georeferenced with origin and spacing. The data argument is a dictionary mapping variable names to Julia arrays with the actual data.\n\nNaN or missing values in the Julia arrays are interpreted as non-valid. They can be used to mask the variables on the grid.\n\nExamples\n\nGiven poro and perm two 2-dimensional Julia arrays containing values of porosity and permeability, the following code can be used to georeference the data:\n\njulia> data = Dict(:porosity => poro, :permeability => perm)\njulia> RegularGridData(data, [0.,0.,0.], [1.,1.,1.])\n\nAlternatively, one can omit origin and spacing for default values of zeros and ones:\n\njulia> RegularGridData{Float64}(data)\n\n\n\n"
+},
+
+{
     "location": "spatialdata.html#RegularGridData-1",
     "page": "Spatial data",
     "title": "RegularGridData",
     "category": "section",
     "text": "In the case that the data is regularly spaced in a grid, the GeoGridData object provides fast access across multiple overlaid images.RegularGridData"
+},
+
+{
+    "location": "spatialdata.html#StructuredGridData-1",
+    "page": "Spatial data",
+    "title": "StructuredGridData",
+    "category": "section",
+    "text": "A StructuredGridData is a direct generalization of RegularGridData in which points can be localized in space with indices i,j,k... even though they are not regularly spaced. This format is often found in satellite data, NetCDF, etc.StructuredGridData"
 },
 
 {
@@ -217,6 +241,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "domains.html#PointSet-1",
+    "page": "Domains",
+    "title": "PointSet",
+    "category": "section",
+    "text": "PointSet"
+},
+
+{
     "location": "domains.html#GeoStatsDevTools.RegularGrid",
     "page": "Domains",
     "title": "GeoStatsDevTools.RegularGrid",
@@ -225,27 +257,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "domains.html#Regular-grid-1",
+    "location": "domains.html#RegularGrid-1",
     "page": "Domains",
-    "title": "Regular grid",
+    "title": "RegularGrid",
     "category": "section",
     "text": "RegularGrid"
-},
-
-{
-    "location": "domains.html#GeoStatsDevTools.PointCollection",
-    "page": "Domains",
-    "title": "GeoStatsDevTools.PointCollection",
-    "category": "type",
-    "text": "PointCollection(coords)\n\nA collection of points with coordinate matrix coords. The number of rows of the matrix is the dimensionality of the domain whereas the number of columns is the number of points in the collection.\n\n\n\n"
-},
-
-{
-    "location": "domains.html#Point-collection-1",
-    "page": "Domains",
-    "title": "Point collection",
-    "category": "section",
-    "text": "PointCollection"
 },
 
 {
@@ -449,6 +465,30 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "fitting_variograms.html#",
+    "page": "Fitting variograms",
+    "title": "Fitting variograms",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "fitting_variograms.html#Fitting-variograms-1",
+    "page": "Fitting variograms",
+    "title": "Fitting variograms",
+    "category": "section",
+    "text": "Fitting theoretical variograms to empirical observations is an important preprocessing step to ensure valid mathematical models of spatial continuity for posterior estimation/simulation with variogram-based methods such as Kriging and sequential Gaussian simulation.Given an empirical variogram, the fit function can be used to perform the fit:fitCurrently the following fitting methods are implemented:"
+},
+
+{
+    "location": "fitting_variograms.html#Weighted-least-squares-1",
+    "page": "Fitting variograms",
+    "title": "Weighted least squares",
+    "category": "section",
+    "text": "WeightedLeastSquares"
+},
+
+{
     "location": "estimators.html#",
     "page": "Kriging estimators",
     "title": "Kriging estimators",
@@ -637,7 +677,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Examples",
     "title": "Examples",
     "category": "section",
-    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check the Contributing page. Contributions are very welcome, specially if they are educational."
+    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check the Contributing page. Contributions are very welcome."
 },
 
 {
