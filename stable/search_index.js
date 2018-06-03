@@ -193,11 +193,51 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "spatialdata.html#GeoStatsDevTools.PointSetData",
+    "page": "Spatial data",
+    "title": "GeoStatsDevTools.PointSetData",
+    "category": "type",
+    "text": "PointSetData(data, coords)\n\nSpatial data georeferenced with coordinate matrix coords. The data argument is a dictionary mapping variable names to Julia arrays with the actual data.\n\nSee also: PointSet\n\n\n\n"
+},
+
+{
+    "location": "spatialdata.html#PointSetData-1",
+    "page": "Spatial data",
+    "title": "PointSetData",
+    "category": "section",
+    "text": "The PointSetData object is equivalent to GeoDataFrame except that it stores the data in a simple Julia Dict instead of in a DataFrame.PointSetData"
+},
+
+{
+    "location": "spatialdata.html#GeoStatsDevTools.RegularGridData",
+    "page": "Spatial data",
+    "title": "GeoStatsDevTools.RegularGridData",
+    "category": "type",
+    "text": "RegularGridData(data, origin, spacing)\n\nRegularly spaced data georeferenced with origin and spacing. The data argument is a dictionary mapping variable names to Julia arrays with the actual data.\n\nNaN or missing values in the Julia arrays are interpreted as non-valid. They can be used to mask the variables on the grid.\n\nExamples\n\nGiven poro and perm two 2-dimensional Julia arrays containing values of porosity and permeability, the following code can be used to georeference the data:\n\njulia> data = Dict(:porosity => poro, :permeability => perm)\njulia> RegularGridData(data, [0.,0.,0.], [1.,1.,1.])\n\nAlternatively, one can omit origin and spacing for default values of zeros and ones:\n\njulia> RegularGridData{Float64}(data)\n\nSee also: RegularGrid\n\n\n\n"
+},
+
+{
     "location": "spatialdata.html#RegularGridData-1",
     "page": "Spatial data",
     "title": "RegularGridData",
     "category": "section",
     "text": "In the case that the data is regularly spaced in a grid, the GeoGridData object provides fast access across multiple overlaid images.RegularGridData"
+},
+
+{
+    "location": "spatialdata.html#GeoStatsDevTools.StructuredGridData",
+    "page": "Spatial data",
+    "title": "GeoStatsDevTools.StructuredGridData",
+    "category": "type",
+    "text": "StructuredGridData(data, X, Y, Z, ...)\n\nData spatially distributed on a structured grid where points are georeferenced by coordinates X, Y, Z, ...\n\nThe data argument is a dictionary mapping variable names to Julia arrays with the actual data.\n\nExamples\n\nA very popular structured grid data format is NetCDF. Given 2D arrays LAT and LON with coordinates and arrays with climate data precipitation, temperature, the following code can be used to construct a structured grid:\n\njulia> data = Dict(:precipitation => precipitation, :temperature => temperature)\njulia> StructuredGridData(data, LAT, LON)\n\n\n\n"
+},
+
+{
+    "location": "spatialdata.html#StructuredGridData-1",
+    "page": "Spatial data",
+    "title": "StructuredGridData",
+    "category": "section",
+    "text": "A StructuredGridData is a direct generalization of RegularGridData in which points can be localized in space with indices i,j,k... even though they are not regularly spaced. This format is often found in satellite data, NetCDF, etc.StructuredGridData"
 },
 
 {
@@ -217,6 +257,22 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "domains.html#GeoStatsDevTools.PointSet",
+    "page": "Domains",
+    "title": "GeoStatsDevTools.PointSet",
+    "category": "type",
+    "text": "PointSet(coords)\n\nA set of points with coordinate matrix coords. The number of rows of the matrix is the dimensionality of the domain whereas the number of columns is the number of points in the set.\n\n\n\n"
+},
+
+{
+    "location": "domains.html#PointSet-1",
+    "page": "Domains",
+    "title": "PointSet",
+    "category": "section",
+    "text": "PointSet"
+},
+
+{
     "location": "domains.html#GeoStatsDevTools.RegularGrid",
     "page": "Domains",
     "title": "GeoStatsDevTools.RegularGrid",
@@ -225,27 +281,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "domains.html#Regular-grid-1",
+    "location": "domains.html#RegularGrid-1",
     "page": "Domains",
-    "title": "Regular grid",
+    "title": "RegularGrid",
     "category": "section",
     "text": "RegularGrid"
-},
-
-{
-    "location": "domains.html#GeoStatsDevTools.PointCollection",
-    "page": "Domains",
-    "title": "GeoStatsDevTools.PointCollection",
-    "category": "type",
-    "text": "PointCollection(coords)\n\nA collection of points with coordinate matrix coords. The number of rows of the matrix is the dimensionality of the domain whereas the number of columns is the number of points in the collection.\n\n\n\n"
-},
-
-{
-    "location": "domains.html#Point-collection-1",
-    "page": "Domains",
-    "title": "Point collection",
-    "category": "section",
-    "text": "PointCollection"
 },
 
 {
@@ -449,6 +489,46 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "fitting_variograms.html#",
+    "page": "Fitting variograms",
+    "title": "Fitting variograms",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "fitting_variograms.html#Variography.fit",
+    "page": "Fitting variograms",
+    "title": "Variography.fit",
+    "category": "function",
+    "text": "fit(V, γ, [algo])\n\nFit theoretical variogram type V to empirical variogram γ using algorithm algo. Default algorithm is WeightedLeastSquares.\n\n\n\nfit(Variogram, γ, [algo])\n\nFit all stationary variogram types to empirical variogram γ, which are subtypes of Variogram, and return the one with minimum error as defined by the algorithm algo.\n\n\n\n"
+},
+
+{
+    "location": "fitting_variograms.html#Fitting-variograms-1",
+    "page": "Fitting variograms",
+    "title": "Fitting variograms",
+    "category": "section",
+    "text": "Fitting theoretical variograms to empirical observations is an important preprocessing step to ensure valid mathematical models of spatial continuity for posterior estimation/simulation with variogram-based methods such as Kriging and sequential Gaussian simulation.Given an empirical variogram, the fit function can be used to perform the fit:fitCurrently the following fitting methods are implemented:"
+},
+
+{
+    "location": "fitting_variograms.html#Variography.WeightedLeastSquares",
+    "page": "Fitting variograms",
+    "title": "Variography.WeightedLeastSquares",
+    "category": "type",
+    "text": "WeightedLeastSquares(weightfun)\n\nFit theoretical variogram using weighted least squares. The default weighting function weightfun is x -> 1 (i.e. no weighting)\n\n\n\n"
+},
+
+{
+    "location": "fitting_variograms.html#Weighted-least-squares-1",
+    "page": "Fitting variograms",
+    "title": "Weighted least squares",
+    "category": "section",
+    "text": "WeightedLeastSquares"
+},
+
+{
     "location": "estimators.html#",
     "page": "Kriging estimators",
     "title": "Kriging estimators",
@@ -637,7 +717,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Examples",
     "title": "Examples",
     "category": "section",
-    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check the Contributing page. Contributions are very welcome, specially if they are educational."
+    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check the Contributing page. Contributions are very welcome."
 },
 
 {
