@@ -717,7 +717,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Examples",
     "title": "Examples",
     "category": "section",
-    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. These notebooks are distributed with GeoStats.jl and can be run locally with GeoStats.examples().Want to contribute an example? Please check the Contributing page. Contributions are very welcome."
+    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. Contributions are very welcome, please check the Contributing page."
 },
 
 {
