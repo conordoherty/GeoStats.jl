@@ -27,7 +27,8 @@ solution = solve(problem, solver)
 
 # plot the solution
 plot(solution)</code></pre><p><img src="images/EstimationSolution.png" alt="EstimationSolution"/></p><h3><a class="nav-anchor" id="Low-level-API-1" href="#Low-level-API-1">Low-level API</a></h3><p>If you are interested in finer control, Kriging estimators can also be used directly:</p><pre><code class="language-">using GeoStats
-srand(2017) # hide
+using Random # hide
+Random.seed!(2017) # hide
 
 # create some data
 dim, nobs = 3, 10
