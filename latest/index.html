@@ -26,7 +26,9 @@ solver = Kriging(
 solution = solve(problem, solver)
 
 # plot the solution
-plot(solution)</code></pre><p><img src="images/EstimationSolution.png" alt="EstimationSolution"/></p><h3><a class="nav-anchor" id="Low-level-API-1" href="#Low-level-API-1">Low-level API</a></h3><p>If you are interested in finer control, Kriging estimators can also be used directly:</p><div><pre><code class="language-julia">using GeoStats
+plot(solution)</code></pre><p><img src="images/EstimationSolution.png" alt="EstimationSolution"/></p><h3><a class="nav-anchor" id="Low-level-API-1" href="#Low-level-API-1">Low-level API</a></h3><p>If you are interested in finer control, Kriging estimators can also be used directly:</p><pre><code class="language-">using GeoStats
+using Random, Statistics # hide
+Random.seed!(2017) # hide
 
 # create some data
 dim, nobs = 3, 10
@@ -46,10 +48,11 @@ uk = UniversalKriging(X, z, γ, 0)
 
 # estimate at target location
 μ, σ² = estimate(sk, xₒ)
+println(&quot;Simple Kriging:&quot;) # hide
+println(&quot;  μ = $μ, σ² = $σ²&quot;) # hide
 μ, σ² = estimate(ok, xₒ)
-μ, σ² = estimate(uk, xₒ)</code></pre><pre><code class="language-none">Simple Kriging:
-  μ = 0.7232301963921768, σ² = 0.051064311782382354
-Ordinary Kriging:
-  μ = 0.721698424586406, σ² = 0.05172790340852507
-Universal Kriging:
-  μ = 0.721698424586406, σ² = 0.05172790340852507</code></pre></div><footer><hr/><a class="next" href="problems_and_solvers.html"><span class="direction">Next</span><span class="title">Problems and solvers</span></a></footer></article></body></html>
+println(&quot;Ordinary Kriging:&quot;) # hide
+println(&quot;  μ = $μ, σ² = $σ²&quot;) # hide
+μ, σ² = estimate(uk, xₒ)
+println(&quot;Universal Kriging:&quot;) # hide
+println(&quot;  μ = $μ, σ² = $σ²&quot;) # hide</code></pre><footer><hr/><a class="next" href="problems_and_solvers.html"><span class="direction">Next</span><span class="title">Problems and solvers</span></a></footer></article></body></html>
