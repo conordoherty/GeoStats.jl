@@ -741,7 +741,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Contributing",
     "title": "Reporting issues",
     "category": "section",
-    "text": "If you are experiencing issues or have discovered a bug, please report it on GitHub. To make the resolution process easier, please include the version of Julia and GeoStats.jl in your writeup. These can be found with two commands:julia> versioninfo()\njulia> Pkg.status(\"GeoStats\")"
+    "text": "If you are experiencing issues or have discovered a bug, please report it on GitHub. To make the resolution process easier, please include the version of Julia and GeoStats.jl in your writeup. These can be found with two commands:julia> versioninfo()\npkg> status"
 },
 
 {
