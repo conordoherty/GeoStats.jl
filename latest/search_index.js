@@ -705,19 +705,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "examples.html#",
-    "page": "Examples",
-    "title": "Examples",
+    "location": "tutorials.html#",
+    "page": "Tutorials",
+    "title": "Tutorials",
     "category": "page",
     "text": ""
 },
 
 {
-    "location": "examples.html#Examples-1",
-    "page": "Examples",
-    "title": "Examples",
+    "location": "tutorials.html#Tutorials-1",
+    "page": "Tutorials",
+    "title": "Tutorials",
     "category": "section",
-    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the examples folder. Contributions are very welcome, please check the Contributing page."
+    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the GeoStatsTutorials repository. Contributions are very welcome, please check the Contributing page."
 },
 
 {
