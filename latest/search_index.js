@@ -717,7 +717,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Tutorials",
     "title": "Tutorials",
     "category": "section",
-    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in the GeoStatsTutorials repository. Contributions are very welcome, please check the Contributing page."
+    "text": "A set of Jupyter notebooks demonstrating the current functionality of the project is available in GeoStatsTutorials. Contributions are very welcome, please check the Contributing page."
 },
 
 {
