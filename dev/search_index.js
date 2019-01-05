@@ -45,7 +45,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Home",
     "title": "Low-level API",
     "category": "section",
-    "text": "If you are interested in finer control, Kriging estimators can also be used directly:using GeoStats\nusing Random, Statistics # hide\nRandom.seed!(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs)\nz = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a variogram model\nγ = GaussianVariogram(sill=1., range=1., nugget=0.)\n\n# define an estimator (i.e. build the Kriging system)\nsk = SimpleKriging(X, z, γ, mean(z))\nok = OrdinaryKriging(X, z, γ)\nuk = UniversalKriging(X, z, γ, 0)\n\n# estimate at target location\nμ, σ² = estimate(sk, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(ok, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = estimate(uk, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
+    "text": "If you are interested in finer control, Kriging estimators can also be used directly:using GeoStats\nusing Random, Statistics # hide\nRandom.seed!(2017) # hide\n\n# create some data\ndim, nobs = 3, 10\nX = rand(dim, nobs)\nz = rand(nobs)\n\n# target location\nxₒ = rand(dim)\n\n# define a variogram model\nγ = GaussianVariogram(sill=1., range=1., nugget=0.)\n\n# define an estimator (i.e. build the Kriging system)\nsk = SimpleKriging(X, z, γ, mean(z))\nok = OrdinaryKriging(X, z, γ)\nuk = UniversalKriging(X, z, γ, 0)\n\n# estimate at target location\nμ, σ² = predict(sk, xₒ)\nprintln(\"Simple Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = predict(ok, xₒ)\nprintln(\"Ordinary Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide\nμ, σ² = predict(uk, xₒ)\nprintln(\"Universal Kriging:\") # hide\nprintln(\"  μ = $μ, σ² = $σ²\") # hide"
 },
 
 {
@@ -117,7 +117,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "GeoStats.Kriging",
     "category": "type",
-    "text": "Kriging(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm Kriging estimation solver.\n\nEach pair var=>param specifies the KrigingParam param for the Kriging variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying drifts, the user is telling the algorithm to ignore degree and mean. If no option is specified, Ordinary Kriging is used by default with the variogram only.\n\nExamples\n\nSolve the variable :var₁ with Simple Kriging by specifying the mean, and the variable :var₂ with Universal Kriging by specifying the degree and the variogram model.\n\njulia> Kriging(\n  :var₁ => (mean=1.,),\n  :var₂ => (degree=1, variogram=SphericalVariogram(range=20.))\n)\n\nSolve all variables of the problem with the default parameters (i.e. Ordinary Kriging with unit Gaussian variogram):\n\njulia> Kriging()\n\n\n\n\n\n\n\n"
+    "text": "Kriging(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm Kriging estimation solver.\n\nEach pair var=>param specifies the KrigingParam param for the Kriging variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying drifts, the user is telling the algorithm to ignore degree and mean. If no option is specified, Ordinary Kriging is used by default with the variogram only.\n\nneighborhood - Search neighborhood (default to nothing)\nmaxneighbors - Maximum number of neighbors (default to 100)\n\nThe neighborhood option can be used to perform local Kriging with a sliding neighborhood. In this case, the option maxneighbors determines the maximum number of neighbors in the Kriging system.\n\nExamples\n\nSolve the variable :var₁ with Simple Kriging by specifying the mean, and the variable :var₂ with Universal Kriging by specifying the degree and the variogram model.\n\njulia> Kriging(\n  :var₁ => (mean=1.,),\n  :var₂ => (degree=1, variogram=SphericalVariogram(range=20.))\n)\n\nSolve all variables of the problem with the default parameters (i.e. Ordinary Kriging with unit Gaussian variogram):\n\njulia> Kriging()\n\n\n\n\n\n\n\n"
 },
 
 {
@@ -133,7 +133,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Problems and solvers",
     "title": "GeoStats.SeqGaussSim",
     "category": "type",
-    "text": "SeqGaussSim(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm sequential Gaussian simulation solver.\n\nEach pair var=>param specifies the SeqGaussSimParam param for the simulation variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead. See Kriging documentation for examples.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying drifts, the user is telling the algorithm to ignore degree and mean. If no option is specified, Ordinary Kriging is used by default with the variogram only.\n\npath         - Simulation path (default to :random)\nneighradius  - Radius of search neighborhood (default to 10.)\nmaxneighbors - Maximum number of neighbors (default to 10)\n\n\n\n\n\n\n\n"
+    "text": "SeqGaussSim(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm sequential Gaussian simulation solver.\n\nEach pair var=>param specifies the SeqGaussSimParam param for the simulation variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead. See Kriging documentation for examples.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying drifts, the user is telling the algorithm to ignore degree and mean. If no option is specified, Ordinary Kriging is used by default with the variogram only.\n\npath         - Simulation path (default to :random)\nneighborhood - Search neighborhood (default to BallNeighborhood(domain, 5.))\nmaxneighbors - Maximum number of neighbors (default to 100)\n\n\n\n\n\n\n\n"
 },
 
 {
@@ -325,7 +325,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Empirical variograms",
     "title": "Variography.DirectionalVariogram",
     "category": "function",
-    "text": "DirectionalVariogram(spatialdata, direction, var₁, var₂=var₁; [optional parameters])\n\nComputes the empirical (cross-)variogram for the variables var₁ and var₂ stored in spatialdata along a given direction.\n\nOptional parameters include the parameters for EmpiricalVariogram and the parameters for DirectionalPartition.\n\nNotes\n\nA DirectionalVariogram is just a function that first partitions the spatialdata using a DirectionalPartition and then passes the result to the corresponding EmpiricalVariogram constructor.\n\nSee also: EmpiricalVariogram\n\n\n\n\n\n"
+    "text": "DirectionalVariogram(spatialdata, direction, var₁, var₂=var₁; [optional parameters])\n\nComputes the empirical (cross-)variogram for the variables var₁ and var₂ stored in spatialdata along a given direction.\n\nOptional parameters include the parameters for EmpiricalVariogram and the parameters for DirectionPartitioner.\n\nNotes\n\nA DirectionalVariogram is just a function that first partitions the spatialdata using a DirectionPartitioner and then passes the result to the corresponding EmpiricalVariogram constructor.\n\nSee also: EmpiricalVariogram, DirectionPartitioner\n\n\n\n\n\n"
 },
 
 {
@@ -525,7 +525,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Fitting variograms",
     "title": "Fitting variograms",
     "category": "section",
-    "text": "Fitting theoretical variograms to empirical observations is an important preprocessing step to ensure valid mathematical models of spatial continuity for posterior estimation/simulation with variogram-based methods such as Kriging and sequential Gaussian simulation.Given an empirical variogram, the fit function can be used to perform the fit:fitCurrently the following fitting methods are implemented:"
+    "text": "Fitting theoretical variograms to empirical observations is an important preprocessing step to ensure valid mathematical models of spatial continuity for posterior estimation/simulation with variogram-based methods such as Kriging and sequential Gaussian simulation.Given an empirical variogram, the fit function can be used to perform the fit:Variography.fitCurrently the following fitting methods are implemented:"
 },
 
 {
@@ -553,19 +553,19 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "estimators/#KrigingEstimators.estimate",
+    "location": "estimators/#KrigingEstimators.fit",
     "page": "Kriging estimators",
-    "title": "KrigingEstimators.estimate",
+    "title": "KrigingEstimators.fit",
     "category": "function",
-    "text": "estimate(estimator, xₒ)\n\nCompute mean and variance for the estimator at coordinates xₒ.\n\n\n\n\n\n"
+    "text": "fit(estimator, X, z)\n\nBuild Kriging system from coordinates X and values z and return a fitted estimator.\n\n\n\n\n\n"
 },
 
 {
-    "location": "estimators/#KrigingEstimators.fit!",
+    "location": "estimators/#KrigingEstimators.predict",
     "page": "Kriging estimators",
-    "title": "KrigingEstimators.fit!",
+    "title": "KrigingEstimators.predict",
     "category": "function",
-    "text": "fit!(estimator, X, z)\n\nBuild LHS of Kriging system from coordinates X with values z and save factorization in estimator.\n\n\n\n\n\n"
+    "text": "predict(estimator, xₒ)\n\nCompute mean and variance for the estimator at coordinates xₒ.\n\n\n\n\n\n"
 },
 
 {
@@ -581,7 +581,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimators",
     "title": "Kriging estimators",
     "category": "section",
-    "text": "A Kriging estimator has the form:newcommandxboldsymbolx\nnewcommandRmathbbR\nhatZ(x_0) = lambda_1 Z(x_1) + lambda_2 Z(x_2) + cdots + lambda_n Z(x_n)quad x_i in R^m lambda_i in Rwith Zcolon R^m times Omega to R a random field.This package implements the following Kriging variants:Simple Kriging\nOrdinary Kriging\nUniversal Kriging\nExternal Drift KrigingAll these variants follow the same interface: an estimator object is first created with a given data configuration and variogram model, and then estimates are made at various locations.The object construction takes care of building the Kriging system and factorizing the LHS with an appropriate decomposition (e.g. Cholesky, LU). The estimate method performs the estimation at a given location:estimateA typical use of the interface is as follows:# build and factorize the system\nsimkrig = SimpleKriging(X, z, γ, mean(z))\n\n# estimate at various locations\nfor xₒ in locations\n  μ, σ² = estimate(simkrig, xₒ)\nendIn case the data configuration needs to be changed in a loop (e.g. sequential Gaussian simulation), one can keep all the parameters fixed and only update the factorization with the fit! method:fit!For advanced users, the Kriging weights and Lagrange multipliers at a given location can be accessed with the weights method. This method returns an AbstractWeights object containing a field λ for the weights and a field ν for the Lagrange multipliers:weightsFor example with Ordinary Kriging:# weights and Lagrange multipliers\nOKweights = weights(ordkrig, xₒ)\nOKweights.λ, OKweights.ν"
+    "text": "A Kriging estimator has the form:newcommandxboldsymbolx\nnewcommandRmathbbR\nhatZ(x_0) = lambda_1 Z(x_1) + lambda_2 Z(x_2) + cdots + lambda_n Z(x_n)quad x_i in R^m lambda_i in Rwith Zcolon R^m times Omega to R a random field.This package implements the following Kriging variants:Simple Kriging\nOrdinary Kriging\nUniversal Kriging\nExternal Drift KrigingAll these variants follow the same interface: an estimator object is first created with a given set of parameters (e.g. estimator = OrdinaryKriging(γ)), it is then combined with the data krig = fit(estimator, X, z) to obtain predictions at new locations predict(krig, xₒ).The fit function takes care of building the Kriging system and factorizing the LHS with an appropriate decomposition (e.g. Cholesky, LU):KrigingEstimators.fitThe predict function performs the estimation at a given location:predictAlternative constructors are provided for convenience that will immediately fit the Kriging parameters to the data. In this case, the data is passed as the first argument. For example:OrdinaryKriging(X, z, γ)creates a OrdinaryKriging(γ) estimator and fits it to (X,z).A typical use of the interface is as follows:# build and factorize the system\nsk = SimpleKriging(X, z, γ, mean(z))\n\n# estimate at various locations\nfor xₒ in [x₁, x₂, x₃]\n  μ, σ² = predict(sk, xₒ)\nendFor advanced users, the Kriging weights and Lagrange multipliers at a given location can be accessed with the weights method. This method returns a KrigingWeights object containing a field λ for the weights and a field ν for the Lagrange multipliers:weightsFor example with Ordinary Kriging:ok = OrdinaryKriging(X, z, γ)\nw = weights(ok, xₒ)\nw.λ, w.ν"
 },
 
 {
@@ -589,7 +589,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimators",
     "title": "KrigingEstimators.SimpleKriging",
     "category": "type",
-    "text": "SimpleKriging(X, z, γ, μ)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\nμ ∈ ℜ       - mean of z\n\nNotes\n\nSimple Kriging requires stationary variograms\n\n\n\n\n\n"
+    "text": "SimpleKriging(γ, μ)\nSimpleKriging(X, z, γ, μ)\n\nSimple Kriging with variogram model γ and constant mean μ.\n\nOptionally, pass the coordinates X and values z to the fit function.\n\nNotes\n\nSimple Kriging requires stationary variograms\n\n\n\n\n\n"
 },
 
 {
@@ -605,7 +605,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimators",
     "title": "KrigingEstimators.OrdinaryKriging",
     "category": "type",
-    "text": "OrdinaryKriging(X, z, γ)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\n\n\n\n\n\n"
+    "text": "OrdinaryKriging(γ)\nOrdinaryKriging(X, z, γ)\n\nOrdinary Kriging with variogram model γ.\n\nOptionally, pass the coordinates X and values z to the fit function.\n\n\n\n\n\n"
 },
 
 {
@@ -621,7 +621,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimators",
     "title": "KrigingEstimators.UniversalKriging",
     "category": "type",
-    "text": "UniversalKriging(X, z, γ, degree)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\ndegree      - polynomial degree for the mean\n\nNotes\n\nOrdinaryKriging is recovered for 0th degree polynomial\nFor non-polynomial mean, see ExternalDriftKriging\n\n\n\n\n\n"
+    "text": "UniversalKriging(γ, degree, dim)\nUniversalKriging(X, z, γ, degree)\n\nUniversal Kriging with variogram model γ and polynomial degree on a spatial domain of dimension dim.\n\nOptionally, pass the coordinates X and values z to the fit function.\n\nNotes\n\nOrdinaryKriging is recovered for 0th degree polynomial\nFor non-polynomial mean, see ExternalDriftKriging\n\n\n\n\n\n"
 },
 
 {
@@ -637,7 +637,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Kriging estimators",
     "title": "KrigingEstimators.ExternalDriftKriging",
     "category": "type",
-    "text": "ExternalDriftKriging(X, z, γ, drifts)\n\nParameters\n\nX ∈ ℜ^(mxn) - matrix of data locations\nz ∈ ℜⁿ      - vector of observations for X\nγ           - variogram model\ndrifts      - vector of external drift functions m: ℜᵐ ↦ ℜ\n\nNotes\n\nExternal drift functions should be smooth\nKriging system with external drift is often unstable\nInclude a constant drift (e.g. x->1) for unbiased estimation\nOrdinaryKriging is recovered for drifts = [x->1]\nFor polynomial mean, see UniversalKriging\n\n\n\n\n\n"
+    "text": "ExternalDriftKriging(γ, drifts)\nExternalDriftKriging(X, z, γ, drifts)\n\nExternal Drift Kriging with variogram model γ and external drifts functions.\n\nOptionally, pass the coordinates X and values z to the fit function.\n\nNotes\n\nExternal drift functions should be smooth\nKriging system with external drift is often unstable\nInclude a constant drift (e.g. x->1) for unbiased estimation\nOrdinaryKriging is recovered for drifts = [x->1]\nFor polynomial mean, see UniversalKriging\n\n\n\n\n\n"
 },
 
 {
@@ -806,6 +806,182 @@ var documenterSearchIndex = {"docs": [
     "title": "Citing",
     "category": "page",
     "text": "If you find GeoStats.jl useful in your work, please consider citing it:(Image: JOSS) (Image: DOI)@ARTICLE{Hoffimann2018,\n  title={GeoStats.jl – High-performance geostatistics in Julia},\n  author={Hoffimann, Júlio},\n  journal={Journal of Open Source Software},\n  publisher={The Open Journal},\n  volume={3},\n  pages={692},\n  number={24},\n  ISSN={2475-9066},\n  DOI={10.21105/joss.00692},\n  url={http://dx.doi.org/10.21105/joss.00692},\n  year={2018},\n  month={Apr}\n}"
+},
+
+{
+    "location": "developers/#",
+    "page": "Developer guide",
+    "title": "Developer guide",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "developers/#Developer-guide-1",
+    "page": "Developer guide",
+    "title": "Developer guide",
+    "category": "section",
+    "text": "This guide provides an overview of the tools implemented in the framework that can be used by developers while writing new geostatistical solvers. If you have any question, please don\'t hesitate to ask in our community channel."
+},
+
+{
+    "location": "developers/#GeoStatsBase.@estimsolver",
+    "page": "Developer guide",
+    "title": "GeoStatsBase.@estimsolver",
+    "category": "macro",
+    "text": "@estimsolver solver body\n\nA helper macro to create a estimation solver named solver with parameters specified in body. For examples, please check the documentation for @metasolver.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#GeoStatsBase.@simsolver",
+    "page": "Developer guide",
+    "title": "GeoStatsBase.@simsolver",
+    "category": "macro",
+    "text": "@estimsolver solver body\n\nA helper macro to create a simulation solver named solver with parameters specified in body. For examples, please check the documentation for @metasolver.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#Solver-macros-1",
+    "page": "Developer guide",
+    "title": "Solver macros",
+    "category": "section",
+    "text": "To define a new solver with the same interface of built-in solvers, the developer can use solver macros:@estimsolver MySolver begin\n  @param variogram = GaussianVariogram()\n  @param mean # no default parameter\n  @global verbose = true\nendThe @estimsolver macro defines a new estimation solver MySolver, a parameter type MySolverParam, and an outer constructor that accepts parameters for each variable as well as global parameters.Similarly, simulation solvers can be created with the @simsolver macro.@estimsolver\n@simsolver"
+},
+
+{
+    "location": "developers/#GeoStatsDevTools.SimplePath",
+    "page": "Developer guide",
+    "title": "GeoStatsDevTools.SimplePath",
+    "category": "type",
+    "text": "SimplePath(domain)\n\nA simple (or default) path on a spatial domain.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#GeoStatsDevTools.RandomPath",
+    "page": "Developer guide",
+    "title": "GeoStatsDevTools.RandomPath",
+    "category": "type",
+    "text": "RandomPath(domain)\n\nA random path on a spatial domain.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#GeoStatsDevTools.SourcePath",
+    "page": "Developer guide",
+    "title": "GeoStatsDevTools.SourcePath",
+    "category": "type",
+    "text": "SourcePath(domain, sources)\n\nA path over a spatial domain that starts at given source locations sources and progresses outwards.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#GeoStatsDevTools.BallNeighborhood",
+    "page": "Developer guide",
+    "title": "GeoStatsDevTools.BallNeighborhood",
+    "category": "type",
+    "text": "BallNeighborhood(domain, radius)\n\nA ball neighborhood of a given radius on a spatial domain.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#GeoStatsDevTools.CylinderNeighborhood",
+    "page": "Developer guide",
+    "title": "GeoStatsDevTools.CylinderNeighborhood",
+    "category": "type",
+    "text": "CylinderNeighborhood(domain, radius, height)\n\nA cylinder neighborhood with a given radius and height on a spatial domain.\n\nNotes\n\nThe height parameter is only half of the actual cylinder height.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#Domain-navigation-1",
+    "page": "Developer guide",
+    "title": "Domain navigation",
+    "category": "section",
+    "text": "To navigate through all locations of a (finite) spatial domain, we introduce the concept of paths. This package defines various path types such as SimplePath and RandomPath that can be used for iteration over any domain:# prints 1, 2, ..., npoints(domain)\nfor location in SimplePath(domain)\n  println(location)\nendSimplePath\nRandomPath\nSourcePathAt a given location of a domain, we can query neighboring locations with the concept of neighborhoods. Various neighborhood types such as BallNeighborhood can be used to find all locations within a specified radius:# define ball neighborhood with radius 10\nneighborhood = Ballneighborhood(domain, 10.)\n\n# find neighbors for all locations of the domain\nfor location in RandomPath(domain)\n  neighbors = neighborhood(location)\nendBallNeighborhood\nCylinderNeighborhood"
+},
+
+{
+    "location": "developers/#GeoStatsBase.SimpleMapper",
+    "page": "Developer guide",
+    "title": "GeoStatsBase.SimpleMapper",
+    "category": "type",
+    "text": "SimpleMapper\n\nA mapping strategy in which data points are assigned to their nearest point in the domain.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#GeoStatsBase.CopyMapper",
+    "page": "Developer guide",
+    "title": "GeoStatsBase.CopyMapper",
+    "category": "type",
+    "text": "CopyMapper\n\nA mapping strategy in which data points are copied directly to the domain at the same location.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#Mapping-spatial-data-1",
+    "page": "Developer guide",
+    "title": "Mapping spatial data",
+    "category": "section",
+    "text": "In GeoStats.jl, spatial data and domain types are disconnected from each other for many reasons:To enable agressive parallelism and to avoid expensive data copies\nTo give developers the power of deciding when and where data is to be copied\nTo enable higher-level comparison schemes such as cross-validationTo map spatial data onto a domain, we introduce the notion of mappers. For example, a SimpleMapper can be used to find the mapping from domain locations to data locations for a given variable:# construct a problem mapping data onto domain using SimpleMapper (default)\nproblem = EstimationProblem(..., mapper=SimpleMapper())\n\n# get the mapping for the `:precipitation` variable\nmapping = datamap(problem, :precipitation)\n\nfor (loc, datloc) in mapping\n  println(\"Domain location $loc has data at spatial data index $datloc\")\nendSimpleMapper\nCopyMapper"
+},
+
+{
+    "location": "developers/#GeoStatsDevTools.PlanePartitioner",
+    "page": "Developer guide",
+    "title": "GeoStatsDevTools.PlanePartitioner",
+    "category": "type",
+    "text": "PlanePartitioner(normal; tol=1e-6)\n\nA method for partitioning spatial data into a family of hyperplanes defined by a normal direction. Two points x and y belong to the same hyperplane when (x - y) ⋅ normal < tol.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#GeoStatsDevTools.DirectionPartitioner",
+    "page": "Developer guide",
+    "title": "GeoStatsDevTools.DirectionPartitioner",
+    "category": "type",
+    "text": "DirectionPartitioner(direction; atol=20., btol=.95)\n\nA method for partitioning spatial data along a given direction with angle tolerance atol in degrees and bandwidth tolerance btol.\n\n      ________________\n     /        | btol\n    /         |             ILLUSTRATION OF DIRECTION TOLERANCES\n    ----------------->\n    \\ ) atol\n     \\________________\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#GeoStatsDevTools.SpatialPredicatePartitioner",
+    "page": "Developer guide",
+    "title": "GeoStatsDevTools.SpatialPredicatePartitioner",
+    "category": "type",
+    "text": "SpatialPredicatePartitioner(predicate)\n\nA method for partitioning spatial data based on a predicate. Given two coordinates x and y, the value predicate(x,y) informs whether or not the points belong to the same subset.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#GeoStatsDevTools.HierarchicalPartitioner",
+    "page": "Developer guide",
+    "title": "GeoStatsDevTools.HierarchicalPartitioner",
+    "category": "type",
+    "text": "HierarchicalPartitioner(first, second)\n\nA partitioning method in which a first partition is applied and then a second partition is applied to each subset of the first.\n\n\n\n\n\n"
+},
+
+{
+    "location": "developers/#Partitioning-spatial-data-1",
+    "page": "Developer guide",
+    "title": "Partitioning spatial data",
+    "category": "section",
+    "text": "To efficiently partition spatial data, we introduce the notion of partitioners. One can loop over subsets of the data without allocating memory:for dataview in partition(spatialdata, DirectionPartitioner(direction))\n  # do something with view of data\nendComplex partition schemes can be produced hierarchically with a HierarchicalPartitioner.PlanePartitioner\nDirectionPartitioner\nSpatialPredicatePartitioner\nHierarchicalPartitioner"
+},
+
+{
+    "location": "developers/#Solver-example-1",
+    "page": "Developer guide",
+    "title": "Solver example",
+    "category": "section",
+    "text": "For illustration purposes, we write an estimation solver that, for each location of the domain, assigns the 2-norm of the coordinates as the mean and the ∞-norm as the variance:using GeoStatsBase\nusing GeoStatsDevTools\nusing LinearAlgebra: norm\n\n# implement method for new solver\nimport GeoStatsBase: solve\n\n@estimsolver NormSolver begin\n  @param pmean = 2\n  @param pvar  = Inf\nend\n\nfunction solve(problem::EstimationProblem, solver::NormSolver)\n  pdomain = domain(problem)\n\n  # results for each variable\n  μs = []; σs = []\n\n  for (var,V) in variables(problem)\n    # get user parameters\n    if var in keys(solver.params)\n      varparams = solver.params[var]\n    else\n      varparams = NormSolverParam()\n    end\n\n    # allocate memory for result\n    varμ = Vector{V}(undef, npoints(pdomain))\n    varσ = Vector{V}(undef, npoints(pdomain))\n\n    for location in SimplePath(pdomain)\n      x = coordinates(pdomain, location)\n\n      varμ[location] = norm(x, varparams.pmean)\n      varσ[location] = norm(x, varparams.pvar)\n    end\n\n    push!(μs, var => varμ)\n    push!(σs, var => varσ)\n  end\n\n  EstimationSolution(pdomain, Dict(μs), Dict(σs))\nend\n\n#################################################################\n# Create an estimation problem and test our newly defined solver\n#################################################################\n\nusing GeoStats\nusing Plots\ngr(size=(600,400)) # hide\n\n# dummy spatial data with a single point and no value\nspatialdata = PointSetData(Dict(:z => [NaN]), reshape([0.,0.], 2, 1))\n\n# estimate on a regular grid\nspatialgrid = RegularGrid{Float64}(100,100)\n\n# the problem to be solved\nproblem = EstimationProblem(spatialdata, spatialgrid, :z)\n\n# our new solver\nsolver = NormSolver()\n\nsolution = solve(problem, solver)\n\nplot(solution)\npng(\"images/normsolver.png\") # hide(Image: )"
+},
+
+{
+    "location": "links/#",
+    "page": "Index",
+    "title": "Index",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "links/#Index-1",
+    "page": "Index",
+    "title": "Index",
+    "category": "section",
+    "text": "Order   = [:type, :function]"
 },
 
 ]}
