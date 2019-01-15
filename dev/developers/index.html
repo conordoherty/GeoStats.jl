@@ -20,7 +20,7 @@ mapping = datamap(problem, :precipitation)
 
 for (loc, datloc) in mapping
   println(&quot;Domain location $loc has data at spatial data index $datloc&quot;)
-end</code></pre><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="GeoStatsBase.SimpleMapper" href="#GeoStatsBase.SimpleMapper"><code>GeoStatsBase.SimpleMapper</code></a> — <span class="docstring-category">Type</span>.</div><div><div><pre><code class="language-none">SimpleMapper</code></pre><p>A mapping strategy in which data points are assigned to their nearest point in the domain.</p></div></div></section><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="GeoStatsBase.CopyMapper" href="#GeoStatsBase.CopyMapper"><code>GeoStatsBase.CopyMapper</code></a> — <span class="docstring-category">Type</span>.</div><div><div><pre><code class="language-none">CopyMapper</code></pre><p>A mapping strategy in which data points are copied directly to the domain at the same location.</p></div></div></section><h2><a class="nav-anchor" id="Partitioning-spatial-data-1" href="#Partitioning-spatial-data-1">Partitioning spatial data</a></h2><p>To efficiently partition spatial data, we introduce the notion of partitioners. One can loop over subsets of the data without allocating memory:</p><pre><code class="language-julia">for dataview in partition(spatialdata, DirectionPartitioner(direction))
+end</code></pre><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="GeoStatsBase.SimpleMapper" href="#GeoStatsBase.SimpleMapper"><code>GeoStatsBase.SimpleMapper</code></a> — <span class="docstring-category">Type</span>.</div><div><div><pre><code class="language-none">SimpleMapper</code></pre><p>A mapping strategy in which data points are assigned to their nearest point in the domain.</p></div></div></section><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="GeoStatsBase.CopyMapper" href="#GeoStatsBase.CopyMapper"><code>GeoStatsBase.CopyMapper</code></a> — <span class="docstring-category">Type</span>.</div><div><div><pre><code class="language-none">CopyMapper</code></pre><p>A mapping strategy in which data points are copied directly to the domain at specified locations.</p></div></div></section><h2><a class="nav-anchor" id="Partitioning-spatial-data-1" href="#Partitioning-spatial-data-1">Partitioning spatial data</a></h2><p>To efficiently partition spatial data, we introduce the notion of partitioners. One can loop over subsets of the data without allocating memory:</p><pre><code class="language-julia">for dataview in partition(spatialdata, DirectionPartitioner(direction))
   # do something with view of data
 end</code></pre><p>Complex partition schemes can be produced hierarchically with a <code>HierarchicalPartitioner</code>.</p><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="GeoStatsDevTools.PlanePartitioner" href="#GeoStatsDevTools.PlanePartitioner"><code>GeoStatsDevTools.PlanePartitioner</code></a> — <span class="docstring-category">Type</span>.</div><div><div><pre><code class="language-none">PlanePartitioner(normal; tol=1e-6)</code></pre><p>A method for partitioning spatial data into a family of hyperplanes defined by a <code>normal</code> direction. Two points <code>x</code> and <code>y</code> belong to the same hyperplane when <code>(x - y) ⋅ normal &lt; tol</code>.</p></div></div></section><section class="docstring"><div class="docstring-header"><a class="docstring-binding" id="GeoStatsDevTools.DirectionPartitioner" href="#GeoStatsDevTools.DirectionPartitioner"><code>GeoStatsDevTools.DirectionPartitioner</code></a> — <span class="docstring-category">Type</span>.</div><div><div><pre><code class="language-none">DirectionPartitioner(direction; atol=20., btol=.95)</code></pre><p>A method for partitioning spatial data along a given <code>direction</code> with angle tolerance <code>atol</code> in degrees and bandwidth tolerance <code>btol</code>.</p><pre><code class="language-none">      ________________
      /        | btol
@@ -69,13 +69,7 @@ function solve(problem::EstimationProblem, solver::NormSolver)
   end
 
   EstimationSolution(pdomain, Dict(μs), Dict(σs))
-end
-
-#################################################################
-# Create an estimation problem and test our newly defined solver
-#################################################################
-
-using GeoStats
+end;</code></pre><p>We can test the newly defined solver on an estimation problem:</p><pre><code class="language-">using GeoStats
 using Plots
 gr(size=(600,400)) # hide
 
