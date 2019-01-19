@@ -709,7 +709,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Plotting",
     "title": "Plotting",
     "category": "section",
-    "text": "GeoStats.jl is integrated with the Julia Plots.jl API. This means that many objects defined in the package can be plotted directly without data format conversions.For example, below we plot various theoretical variograms with the plot command from Plots.jl:using GeoStats\nusing Plots\ngr(size=(600,400)) # hide\n\nplot(GaussianVariogram(), maxlag=3., label=\"Gaussian\")\nplot!(ExponentialVariogram(), maxlag=3., label=\"Exponential\")\nplot!(SphericalVariogram(), maxlag=3., label=\"Spherical\")\nplot!(MaternVariogram(), maxlag=3., label=\"Matern\")\npng(\"images/variograms.png\") # hide(Image: )Besides plotting GeoStats.jl objects directly, a few other plots are provided for exploring spatial data."
+    "text": "GeoStats.jl is integrated with the Julia Plots.jl API. This means that many objects defined in the package can be plotted directly without data format conversions.For example, below we plot various theoretical variograms with the plot command from Plots.jl:using GeoStats\nusing Plots\ngr(size=(600,400)) # hide\n\nplot(GaussianVariogram(), maxlag=3., label=\"Gaussian\")\nplot!(ExponentialVariogram(), maxlag=3., label=\"Exponential\")\nplot!(SphericalVariogram(), maxlag=3., label=\"Spherical\")\nplot!(MaternVariogram(), maxlag=3., label=\"Matern\")\nsavefig(\"images/variograms.svg\") # hide(Image: )and various spatial domains:plot(RegularGrid{Float64}(10,10,10))\nsavefig(\"images/regulargrid.svg\") # hide(Image: )plot(PointSet(rand(3,10)))\nsavefig(\"images/pointset.svg\") # hide(Image: )Besides plotting GeoStats.jl objects directly, a few other plots are provided for exploring spatial data."
 },
 
 {
@@ -921,6 +921,14 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "developers/#GeoStatsDevTools.UniformPartitioner",
+    "page": "Developer guide",
+    "title": "GeoStatsDevTools.UniformPartitioner",
+    "category": "type",
+    "text": "UniformPartitioner(k, [shuffle])\n\nA method for partitioning spatial data uniformly into k subsets of approximately equal size. Optionally shuffle the data (default to true).\n\n\n\n\n\n"
+},
+
+{
     "location": "developers/#GeoStatsDevTools.PlanePartitioner",
     "page": "Developer guide",
     "title": "GeoStatsDevTools.PlanePartitioner",
@@ -957,7 +965,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Developer guide",
     "title": "Partitioning spatial data",
     "category": "section",
-    "text": "To efficiently partition spatial data, we introduce the notion of partitioners. One can loop over subsets of the data without allocating memory:for dataview in partition(spatialdata, DirectionPartitioner(direction))\n  # do something with view of data\nendComplex partition schemes can be produced hierarchically with a HierarchicalPartitioner.PlanePartitioner\nDirectionPartitioner\nSpatialPredicatePartitioner\nHierarchicalPartitioner"
+    "text": "To efficiently partition spatial data, we introduce the notion of partitioners. One can loop over subsets of the data without allocating memory:for dataview in partition(spatialdata, DirectionPartitioner(direction))\n  # do something with view of data\nendComplex partition schemes can be produced hierarchically with a HierarchicalPartitioner.UniformPartitioner\nPlanePartitioner\nDirectionPartitioner\nSpatialPredicatePartitioner\nHierarchicalPartitioner"
 },
 
 {
