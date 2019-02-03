@@ -221,7 +221,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Spatial data",
     "title": "RegularGridData",
     "category": "section",
-    "text": "In the case that the data is regularly spaced in a grid, the GeoGridData object provides fast access across multiple overlaid images.RegularGridData"
+    "text": "In the case that the data is regularly spaced in a grid, the RegularGridData object provides fast access across multiple overlaid images.RegularGridData"
 },
 
 {
