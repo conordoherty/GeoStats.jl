@@ -945,14 +945,6 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "developers/#GeoStatsDevTools.SpatialPredicatePartitioner",
-    "page": "Developer guide",
-    "title": "GeoStatsDevTools.SpatialPredicatePartitioner",
-    "category": "type",
-    "text": "SpatialPredicatePartitioner(predicate)\n\nA method for partitioning spatial data based on a predicate. Given two coordinates x and y, the value predicate(x,y) informs whether or not the points belong to the same subset.\n\n\n\n\n\n"
-},
-
-{
     "location": "developers/#GeoStatsDevTools.HierarchicalPartitioner",
     "page": "Developer guide",
     "title": "GeoStatsDevTools.HierarchicalPartitioner",
@@ -965,7 +957,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Developer guide",
     "title": "Partitioning spatial data",
     "category": "section",
-    "text": "To efficiently partition spatial data, we introduce the notion of partitioners. One can loop over subsets of the data without allocating memory:for dataview in partition(spatialdata, DirectionPartitioner(direction))\n  # do something with view of data\nendComplex partition schemes can be produced hierarchically with a HierarchicalPartitioner.UniformPartitioner\nPlanePartitioner\nDirectionPartitioner\nSpatialPredicatePartitioner\nHierarchicalPartitioner"
+    "text": "To efficiently partition spatial data, we introduce the notion of partitioners. One can loop over subsets of the data without allocating memory:for dataview in partition(spatialdata, DirectionPartitioner(direction))\n  # do something with view of data\nendComplex partition schemes can be produced hierarchically with a HierarchicalPartitioner.UniformPartitioner\nPlanePartitioner\nDirectionPartitioner\nHierarchicalPartitioner"
 },
 
 {
