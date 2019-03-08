@@ -50,15 +50,15 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#",
-    "page": "Problems and solvers",
-    "title": "Problems and solvers",
+    "page": "Problems & solvers",
+    "title": "Problems & solvers",
     "category": "page",
     "text": ""
 },
 
 {
     "location": "problems_and_solvers/#Problems-and-solvers-1",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "Problems and solvers",
     "category": "section",
     "text": "One of the greatest features of GeoStats.jl is the ability to define geostatistical problems independently of the solution strategy. This design allows researchers and practioners to perform fair comparisons between different solvers. It is perhaps the single most important contribution of this project.If you are an experienced user of geostatistics or if you do research in the field, you know how hard it is to compare algorithms fairly. Often a new algorithm is proposed in the literature, and yet the task of comparing it with the state of the art is quite demanding. Even when a comparison is made by the author after a great amount of effort, it is inevitably biased.Part of this issue is attributed to the fact that a general definition of the problem is missing. What is it that we call an \"estimation problem\" in geostatistics? What about \"stochastic simulation\"? The answer to these questions is given below in the form of code."
@@ -66,7 +66,7 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#GeoStatsBase.EstimationProblem",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "GeoStatsBase.EstimationProblem",
     "category": "type",
     "text": "EstimationProblem(spatialdata, domain, targetvars)\n\nA spatial estimation problem on a given domain in which the variables to be estimated are listed in targetvars. The data of the problem is stored in spatialdata.\n\nExamples\n\nCreate an estimation problem for rainfall precipitation measurements:\n\njulia> EstimationProblem(spatialdata, domain, :precipitation)\n\nCreate an estimation problem for precipitation and CO₂:\n\njulia> EstimationProblem(spatialdata, domain, [:precipitation, :CO₂])\n\n\n\n\n\n"
@@ -74,7 +74,7 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#Estimation-problem-1",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "Estimation problem",
     "category": "section",
     "text": "An estimation problem in geostatitsics is a triplet:Spatial data (i.e. data with coordinates)\nSpatial domain (e.g. regular grid, point collection)\nTarget variables (or variables to be estimated)Each of these components is constructed separately, and then grouped (no memory is copied) in an EstimationProblem.EstimationProblemPlease check Spatial data and Domains for currently implemented data and domain types."
@@ -82,7 +82,7 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#GeoStatsBase.SimulationProblem",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "GeoStatsBase.SimulationProblem",
     "category": "type",
     "text": "SimulationProblem(spatialdata, domain, targetvars, nreals)\nSimulationProblem(domain, targetvars, nreals)\n\nA spatial simulation problem on a given domain in which the variables to be simulated are listed in targetvars.\n\nFor conditional simulation, the data of the problem is stored in spatialdata.\n\nFor unconditional simulation, a dictionary targetvars must be provided mapping variable names to their types.\n\nIn both cases, a number nreals of realizations is requested.\n\nExamples\n\nCreate a conditional simulation problem for porosity and permeability with 100 realizations:\n\njulia> SimulationProblem(spatialdata, domain, [:porosity,:permeability], 100)\n\nCreate an unconditional simulation problem for porosity and facies type with 100 realizations:\n\njulia> SimulationProblem(domain, Dict(:porosity => Float64, :facies => Int), 100)\n\nNotes\n\nTo check if a simulation problem has data (i.e. conditional vs. unconditional) use the hasdata method.\n\n\n\n\n\n"
@@ -90,7 +90,7 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#GeoStatsBase.hasdata",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "GeoStatsBase.hasdata",
     "category": "function",
     "text": "hasdata(problem)\n\nReturn true if simulation problem has data.\n\n\n\n\n\n"
@@ -98,7 +98,7 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#Simulation-problem-1",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "Simulation problem",
     "category": "section",
     "text": "Likewise, a stochastic simulation problem in geostatistics is represented with the same triplet. However, the spatial data in this case is optional in order to accomodate the concept of conditional versus unconditional simulation.SimulationProblemhasdata"
@@ -106,7 +106,7 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#List-of-solvers-1",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "List of solvers",
     "category": "section",
     "text": "Below is the list of solvers distributed with GeoStats.jl. For more solvers, please check the project page on GitHub where a table is provided with links to accompanying repositories."
@@ -114,7 +114,7 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#GeoStats.Kriging",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "GeoStats.Kriging",
     "category": "type",
     "text": "Kriging(var₁=>param₁, var₂=>param₂, ...)\n\nA polyalgorithm Kriging estimation solver.\n\nEach pair var=>param specifies the KrigingParam param for the Kriging variable var. In order to avoid boilerplate code, the constructor expects pairs of Symbol and NamedTuple instead.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying drifts, the user is telling the algorithm to ignore degree and mean. If no option is specified, Ordinary Kriging is used by default with the variogram only.\n\nmaxneighbors - Maximum number of neighbors (default to nothing)\nneighborhood - Search neighborhood (default to nothing)\ndistance     - Distance used to find nearest neighbors (default to Euclidean())\n\nThe maxneighbors option can be used to perform approximate Kriging with a subset of data points per estimation location. Two neighborhood search methods are available depending on the value of neighborhood:\n\nIf a neighborhood is provided, local Kriging is performed by sliding the neighborhood in the domain.\nIf neighborhood is not provided, the Kriging system is built using maxneighbors nearest neighbors according to a distance.\n\nExamples\n\nSolve the variable :var₁ with Simple Kriging by specifying the mean, and the variable :var₂ with Universal Kriging by specifying the degree and the variogram model.\n\njulia> Kriging(\n  :var₁ => (mean=1.,),\n  :var₂ => (degree=1, variogram=SphericalVariogram(range=20.))\n)\n\nSolve all variables of the problem with the default parameters (i.e. Ordinary Kriging with unit Gaussian variogram):\n\njulia> Kriging()\n\n\n\n\n\n\n\n"
@@ -122,7 +122,7 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#Estimation-1",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "Estimation",
     "category": "section",
     "text": "Kriging"
@@ -130,7 +130,7 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#GeoStats.SeqGaussSim",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "GeoStats.SeqGaussSim",
     "category": "type",
     "text": "SeqGaussSim(var₁=>param₁, var₂=>param₂, ...)\n\nA sequential Gaussian simulation solver.\n\nParameters\n\nvariogram - Variogram model (default to GaussianVariogram())\nmean      - Simple Kriging mean\ndegree    - Universal Kriging degree\ndrifts    - External Drift Kriging drift functions\n\nLatter options override former options. For example, by specifying drifts, the user is telling the algorithm to ignore degree and mean. If no option is specified, Ordinary Kriging is used by default with the variogram only.\n\nmaxneighbors - Maximum number of neighbors (default to 10)\nneighborhood - Search neighborhood (default to nothing)\ndistance     - Distance used to find nearest neighbors (default to Euclidean())\npath         - Simulation path (default to RandomPath)\n\nFor each location in the simulation path, a maximum number of neighbors maxneighbors is used to fit a Gaussian distribution. The nearest neighbors are searched according to a distance or according to a neighborhood when the latter is provided.\n\n\n\n\n\n\n\n"
@@ -138,7 +138,7 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#GeoStats.CookieCutter",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "GeoStats.CookieCutter",
     "category": "type",
     "text": "CookieCutter(master, others)\n\nA cookie-cutter simulation solver.\n\nParameters\n\nmaster - Master simulation solver (a.k.a. facies solver)\nothers - A list of pairs mapping categories to solvers\n\nExamples\n\nSimulate lithology facies with image quilting and fill property with direct Gaussian simulation:\n\njulia> fsolver  = ImgQuilt(:facies => (TI=Strebelle, template=(30,30,1)))\njulia> psolver₀ = DirectGaussSim(:property => (variogram=SphericalVariogram(range=10.),))\njulia> psolver₁ = DirectGaussSim(:property => (variogram=SphericalVariogram(range=20.),))\njulia> solver   = CookieCutter(fsolver, [0 => psolver₀, 1 => psolver₁])\n\n\n\n\n\n"
@@ -146,7 +146,7 @@ var documenterSearchIndex = {"docs": [
 
 {
     "location": "problems_and_solvers/#Simulation-1",
-    "page": "Problems and solvers",
+    "page": "Problems & solvers",
     "title": "Simulation",
     "category": "section",
     "text": "SeqGaussSimCookieCutter"
@@ -694,6 +694,70 @@ var documenterSearchIndex = {"docs": [
     "title": "Cross-validation",
     "category": "section",
     "text": "k-fold cross-validation is a popular statistical method for quantitative comparison of estimation solvers. The spatial data is split into k folds as the name implies and the solvers are used to estimate (or predict) one of the folds given the others.CrossValidation"
+},
+
+{
+    "location": "statistics/#",
+    "page": "Spatial statistics",
+    "title": "Spatial statistics",
+    "category": "page",
+    "text": ""
+},
+
+{
+    "location": "statistics/#Spatial-statistics-1",
+    "page": "Spatial statistics",
+    "title": "Spatial statistics",
+    "category": "section",
+    "text": "A set of geostatistical realizations represents a probability distribution. It is often useful to compute summary statistics with this set (e.g. location-wise mean and variance) and try understand spatial trends. In GeoStats.jl a set of realizations is stored in a SimulationSolution object. Currently, the following statistics are defined:"
+},
+
+{
+    "location": "statistics/#Statistics.mean-Tuple{SimulationSolution}",
+    "page": "Spatial statistics",
+    "title": "Statistics.mean",
+    "category": "method",
+    "text": "mean(solution)\n\nMean of simulation solution.\n\n\n\n\n\n"
+},
+
+{
+    "location": "statistics/#Mean-1",
+    "page": "Spatial statistics",
+    "title": "Mean",
+    "category": "section",
+    "text": "GeoStatsDevTools.mean(::SimulationSolution)"
+},
+
+{
+    "location": "statistics/#Statistics.var-Tuple{SimulationSolution}",
+    "page": "Spatial statistics",
+    "title": "Statistics.var",
+    "category": "method",
+    "text": "var(solution)\n\nVariance of simulation solution.\n\n\n\n\n\n"
+},
+
+{
+    "location": "statistics/#Variance-1",
+    "page": "Spatial statistics",
+    "title": "Variance",
+    "category": "section",
+    "text": "GeoStatsDevTools.var(::SimulationSolution)"
+},
+
+{
+    "location": "statistics/#Statistics.quantile-Tuple{SimulationSolution,Real}",
+    "page": "Spatial statistics",
+    "title": "Statistics.quantile",
+    "category": "method",
+    "text": "quantile(solution, p)\n\np-quantile of simulation solution.\n\n\n\n\n\n"
+},
+
+{
+    "location": "statistics/#Quantile-1",
+    "page": "Spatial statistics",
+    "title": "Quantile",
+    "category": "section",
+    "text": "GeoStatsDevTools.quantile(::SimulationSolution, ::Real)"
 },
 
 {
