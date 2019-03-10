@@ -525,7 +525,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Fitting variograms",
     "title": "Fitting variograms",
     "category": "section",
-    "text": "Fitting theoretical variograms to empirical observations is an important preprocessing step to ensure valid mathematical models of spatial continuity for posterior estimation/simulation with variogram-based methods such as Kriging and sequential Gaussian simulation.Given an empirical variogram, the fit function can be used to perform the fit:Variography.fitCurrently the following fitting methods are implemented:"
+    "text": "Fitting theoretical variograms to empirical observations is an important preprocessing step to ensure valid mathematical models of spatial continuity. Given an empirical variogram, the fit function can be used to perform the fit:Variography.fitCurrently the following fitting methods are implemented:"
 },
 
 {
