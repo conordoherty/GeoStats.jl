@@ -213,7 +213,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Spatial data",
     "title": "GeoStatsDevTools.RegularGridData",
     "category": "type",
-    "text": "RegularGridData(data, origin, spacing)\n\nRegularly spaced data georeferenced with origin and spacing. The data argument is a dictionary mapping variable names to Julia arrays with the actual data.\n\nNaN or missing values in the Julia arrays are interpreted as non-valid. They can be used to mask the variables on the grid.\n\nExamples\n\nGiven poro and perm two 2-dimensional Julia arrays containing values of porosity and permeability, the following code can be used to georeference the data:\n\njulia> data = Dict(:porosity => poro, :permeability => perm)\njulia> RegularGridData(data, [0.,0.,0.], [1.,1.,1.])\n\nAlternatively, one can omit origin and spacing for default values of zeros and ones:\n\njulia> RegularGridData{Float64}(data)\n\nSee also: RegularGrid\n\n\n\n\n\n"
+    "text": "RegularGridData(data, origin, spacing)\n\nRegularly spaced data georeferenced with origin and spacing. The data argument is a dictionary mapping variable names to Julia arrays with the actual data.\n\nNaN or missing values in the Julia arrays are interpreted as non-valid. They can be used to mask the variables on the grid.\n\nExamples\n\nGiven poro and perm two 2-dimensional Julia arrays containing values of porosity and permeability, the following code can be used to georeference the data:\n\njulia> data = Dict(:porosity => poro, :permeability => perm)\njulia> RegularGridData(data, (0.,0.,0.), (1.,1.,1.))\n\nAlternatively, one can omit origin and spacing for default values of zeros and ones:\n\njulia> RegularGridData{Float64}(data)\n\nSee also: RegularGrid\n\n\n\n\n\n"
 },
 
 {
@@ -445,7 +445,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Theoretical variograms",
     "title": "Variography.PentasphericalVariogram",
     "category": "type",
-    "text": "PentasphericalVariogram\n\nA pentaspherical variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n\n\n"
+    "text": "PentasphericalVariogram(sill=s, range=r, nugget=n, distance=d)\n\nA pentaspherical variogram with sill s, range r and nugget n. Optionally, use a custom distance d.\n\n\n\n\n\n"
 },
 
 {
@@ -533,7 +533,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Fitting variograms",
     "title": "Variography.WeightedLeastSquares",
     "category": "type",
-    "text": "WeightedLeastSquares(weightfun)\n\nFit theoretical variogram using weighted least squares with weighting function weightfun (e.g. h -> 1/h). If not weighting function is provided, bin counts of empirical variogram are normalized and used as weights.\n\n\n\n\n\n"
+    "text": "WeightedLeastSquares()\nWeightedLeastSquares(weightfun)\n\nFit theoretical variogram using weighted least squares with weighting function weightfun (e.g. h -> 1/h). If not weighting function is provided, bin counts of empirical variogram are normalized and used as weights.\n\n\n\n\n\n"
 },
 
 {
@@ -1005,7 +1005,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Developer guide",
     "title": "GeoStatsDevTools.DirectionPartitioner",
     "category": "type",
-    "text": "DirectionPartitioner(direction; atol=20., btol=.95)\n\nA method for partitioning spatial data along a given direction with angle tolerance atol in degrees and bandwidth tolerance btol.\n\n      ________________\n     /        | btol\n    /         |             ILLUSTRATION OF DIRECTION TOLERANCES\n    ----------------->\n    \\ ) atol\n     \\________________\n\n\n\n\n\n"
+    "text": "DirectionPartitioner(direction; tol=1e-6)\n\nA method for partitioning spatial objects along a given direction with bandwidth tolerance tol.\n\n\n\n\n\n"
 },
 
 {
