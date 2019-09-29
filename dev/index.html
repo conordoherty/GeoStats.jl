@@ -21,7 +21,7 @@ solver = Kriging(
 solution = solve(problem, solver)
 
 # plot the solution
-contourf(solution, contour_labels=true)
+contourf(solution, clabels=true)
 png(&quot;images/EstimationSolution.png&quot;) # hide</code></pre><p><img src="images/EstimationSolution.png" alt/></p><h3><a class="nav-anchor" id="Low-level-API-1" href="#Low-level-API-1">Low-level API</a></h3><p>If you are interested in finer control, some estimators can also be used directly:</p><pre><code class="language-julia">using GeoStats
 
 # create some data

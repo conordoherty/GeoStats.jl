@@ -28,7 +28,7 @@ function solve(problem::EstimationProblem, solver::NormSolver)
     varμ = Vector{V}(undef, npoints(pdomain))
     varσ = Vector{V}(undef, npoints(pdomain))
 
-    for location in SimplePath(pdomain)
+    for location in LinearPath(pdomain)
       x = coordinates(pdomain, location)
 
       varμ[location] = norm(x, varparams.pmean)
@@ -40,8 +40,9 @@ function solve(problem::EstimationProblem, solver::NormSolver)
   end
 
   EstimationSolution(pdomain, Dict(μs), Dict(σs))
-end;</code></pre><pre><code class="language-none">solve (generic function with 3 methods)</code></pre><p>We can test the newly defined solver on an estimation problem:</p><pre><code class="language-julia">using GeoStats
+end;</code></pre><pre><code class="language-none">solve (generic function with 3 methods)</code></pre><p>We can test the newly defined solver on an estimation problem:</p><pre><code class="language-">using GeoStats
 using Plots
+gr(size=(900,400)) # hide
 
 # dummy spatial data with a single point and no value
 sdata   = PointSetData(Dict(:z =&gt; [NaN]), reshape([0.,0.], 2, 1))
@@ -57,8 +58,10 @@ solver = NormSolver()
 
 solution = solve(problem, solver)
 
-contourf(solution)</code></pre><p><img src="../images/normsolver1.png" alt/></p><p>And assess the behavior of different parameters:</p><pre><code class="language-julia">solver = NormSolver(:z =&gt; (pmean=1,pvar=3))
+contourf(solution)
+png(&quot;images/normsolver1.png&quot;) # hide</code></pre><p><img src="images/normsolver1.png" alt/></p><p>And assess the behavior of different parameters:</p><pre><code class="language-">solver = NormSolver(:z =&gt; (pmean=1,pvar=3))
 
 solution = solve(problem, solver)
 
-contourf(solution)</code></pre><p><img src="../images/normsolver2.png" alt/></p><h2><a class="nav-anchor" id="Simulation-solver-example-1" href="#Simulation-solver-example-1">Simulation solver example</a></h2><p>TODO</p><footer><hr/><a class="previous" href="../developer_tools/"><span class="direction">Previous</span><span class="title">Developer tools</span></a><a class="next" href="../links/"><span class="direction">Next</span><span class="title">Index</span></a></footer></article></body></html>
+contourf(solution)
+png(&quot;images/normsolver2.png&quot;) # hide</code></pre><p><img src="images/normsolver2.png" alt/></p><h2><a class="nav-anchor" id="Simulation-solver-example-1" href="#Simulation-solver-example-1">Simulation solver example</a></h2><p>TODO</p><footer><hr/><a class="previous" href="../developer_tools/"><span class="direction">Previous</span><span class="title">Developer tools</span></a><a class="next" href="../links/"><span class="direction">Next</span><span class="title">Index</span></a></footer></article></body></html>
