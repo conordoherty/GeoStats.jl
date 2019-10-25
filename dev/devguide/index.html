@@ -59,7 +59,7 @@ plot(solution)</code></pre><h4><a class="nav-anchor" id="Writing-simulation-solv
   # ...
 
   realization
-end</code></pre><p>This function is preferred over <code>solve</code> if your algorithm is the same for every single realization (the algorithm is only a function of the random seed). In this case, GeoStats.jl will provide an implementation of <code>solve</code> for you that calls <code>solve_single</code> in parallel.</p><p>The argument <code>preproc</code> is ignored unless the function <code>preprocess</code> is also defined for the solver. The function takes a simulation problem and a solver, and returns an arbitrary object with preprocessed data:</p><pre><code class="language-julia">preprocess(problem::SimulationProblem, solver::MySimSolver) = nothing</code></pre><h4><a class="nav-anchor" id="Writing-learning-solvers-1" href="#Writing-learning-solvers-1">Writing learning solvers</a></h4><p>Similar to the other cases, writing a <code>LearningSolver</code> compatible with the framework consists of writing a simple Julia function that takes the <code>LearningProblem</code> as input along with the solver, and returns a <code>LearningSolution</code>.</p><h2><a class="nav-anchor" id="Solver-examples-1" href="#Solver-examples-1">Solver examples</a></h2><p>Below are examples of solvers written with the framework.</p><h3><a class="nav-anchor" id="Estimation-solver-example-1" href="#Estimation-solver-example-1">Estimation solver example</a></h3><p>An estimation solver that, for each location of the domain, assigns the 2-norm of the coordinates as the mean and the ∞-norm as the variance.</p><pre><code class="language-julia">using GeoStatsBase
+end</code></pre><p>This function is preferred over <code>solve</code> if your algorithm is the same for every single realization (the algorithm is only a function of the random seed). In this case, GeoStats.jl will provide an implementation of <code>solve</code> for you that calls <code>solve_single</code> in parallel.</p><p>The argument <code>preproc</code> is ignored unless the function <code>preprocess</code> is also defined for the solver. The function takes a simulation problem and a solver, and returns an arbitrary object with preprocessed data:</p><pre><code class="language-julia">preprocess(problem::SimulationProblem, solver::MySimSolver) = nothing</code></pre><h4><a class="nav-anchor" id="Writing-learning-solvers-1" href="#Writing-learning-solvers-1">Writing learning solvers</a></h4><p>Similar to the other cases, writing a <code>LearningSolver</code> compatible with the framework consists of writing a simple Julia function that takes the <code>LearningProblem</code> as input along with the solver, and returns a <code>LearningSolution</code>.</p><h2><a class="nav-anchor" id="Solver-examples-1" href="#Solver-examples-1">Solver examples</a></h2><p>Below are examples of solvers written with the framework.</p><h3><a class="nav-anchor" id="Estimation-solver-example-1" href="#Estimation-solver-example-1">Estimation solver example</a></h3><p>An estimation solver that, for each location of the domain, assigns the 2-norm of the coordinates as the mean and the ∞-norm as the variance.</p><pre><code class="language-">using GeoStatsBase
 using LinearAlgebra: norm
 
 # implement method for new solver
@@ -100,8 +100,9 @@ function solve(problem::EstimationProblem, solver::NormSolver)
   end
 
   EstimationSolution(pdomain, Dict(μs), Dict(σs))
-end;</code></pre><pre><code class="language-none">solve (generic function with 6 methods)</code></pre><p>We can test the newly defined solver on an estimation problem:</p><pre><code class="language-julia">using GeoStats
+end;</code></pre><p>We can test the newly defined solver on an estimation problem:</p><pre><code class="language-">using GeoStats
 using Plots
+gr(size=(900,400)) # hide
 
 # dummy spatial data with a single point and no value
 sdata   = PointSetData(Dict(:z =&gt; [NaN]), reshape([0.,0.], 2, 1))
@@ -117,11 +118,13 @@ solver = NormSolver()
 
 solution = solve(problem, solver)
 
-contourf(solution)</code></pre><p><img src="../images/normsolver1.png" alt/></p><p>And assess the behavior of different parameters:</p><pre><code class="language-julia">solver = NormSolver(:z =&gt; (pmean=1,pvar=3))
+contourf(solution)
+png(&quot;images/normsolver1.png&quot;) # hide</code></pre><p><img src="images/normsolver1.png" alt/></p><p>And assess the behavior of different parameters:</p><pre><code class="language-">solver = NormSolver(:z =&gt; (pmean=1,pvar=3))
 
 solution = solve(problem, solver)
 
-contourf(solution)</code></pre><p><img src="../images/normsolver2.png" alt/></p><h3><a class="nav-anchor" id="Simulation-solver-example-1" href="#Simulation-solver-example-1">Simulation solver example</a></h3><p>A simulation solver that, for each location of the domain, assigns a random sample from a Gaussian distribution.</p><pre><code class="language-julia">using GeoStatsBase
+contourf(solution)
+png(&quot;images/normsolver2.png&quot;) # hide</code></pre><p><img src="images/normsolver2.png" alt/></p><h3><a class="nav-anchor" id="Simulation-solver-example-1" href="#Simulation-solver-example-1">Simulation solver example</a></h3><p>A simulation solver that, for each location of the domain, assigns a random sample from a Gaussian distribution.</p><pre><code class="language-">using GeoStatsBase
 
 # implement method for new solver
 import GeoStatsBase: solve_single
@@ -144,8 +147,9 @@ function solve_single(problem::SimulationProblem, var::Symbol,
 
   # rescale and return
   μ .+ sqrt(σ²) .* z
-end;</code></pre><pre><code class="language-none">solve_single (generic function with 4 methods)</code></pre><p>We can test the newly defined solver in a simulation problem:</p><pre><code class="language-julia">using GeoStats
+end;</code></pre><p>We can test the newly defined solver in a simulation problem:</p><pre><code class="language-">using GeoStats
 using Plots
+gr(size=(900,300)) # hide
 
 # simulate on a regular grid
 sdomain = RegularGrid{Float64}(100, 100)
@@ -158,7 +162,8 @@ solver = RandSolver(:z =&gt; (mean=10.,var=10.))
 
 solution = solve(problem, solver)
 
-heatmap(solution)</code></pre><p><img src="../images/randsolver1.png" alt/></p><p>Note, however, that we did not define the <code>preprocess</code> function for the solver. This function can be used to avoid recalculations for each realization, and to set default parameters for variables that are not explicitly set by users in the solver constructor:</p><pre><code class="language-julia">import GeoStatsBase: preprocess
+heatmap(solution)
+png(&quot;images/randsolver1.png&quot;) # hide</code></pre><p><img src="images/randsolver1.png" alt/></p><p>Note, however, that we did not define the <code>preprocess</code> function for the solver. This function can be used to avoid recalculations for each realization, and to set default parameters for variables that are not explicitly set by users in the solver constructor:</p><pre><code class="language-">import GeoStatsBase: preprocess
 
 function preprocess(problem::SimulationProblem, solver::RandSolver)
   # result of preprocessing
@@ -177,11 +182,9 @@ function preprocess(problem::SimulationProblem, solver::RandSolver)
   end
 
   preproc
-end;</code></pre><pre><code class="language-none">preprocess (generic function with 5 methods)</code></pre><p>We can call the <code>preprocess</code> function on problems with multiple variables to check that the solver is producing default values for variables other than the one passed during construction:</p><pre><code class="language-julia">problem = SimulationProblem(sdomain, (:z=&gt;Float64, :w=&gt;Float64), 3)
+end;</code></pre><p>We can call the <code>preprocess</code> function on problems with multiple variables to check that the solver is producing default values for variables other than the one passed during construction:</p><pre><code class="language-">problem = SimulationProblem(sdomain, (:z=&gt;Float64, :w=&gt;Float64), 3)
 
-preprocess(problem, solver)</code></pre><pre><code class="language-none">Dict{Symbol,NamedTuple} with 2 entries:
-  :w =&gt; (mean = 0, var = 1)
-  :z =&gt; (mean = 10.0, var = 10.0)</code></pre><p>This <code>preproc</code> output is passed by GeoStats.jl as the last argument to the <code>solve_single</code> function, which could be reimplemented as follows:</p><pre><code class="language-julia">function solve_single(problem::SimulationProblem, var::Symbol,
+preprocess(problem, solver)</code></pre><p>This <code>preproc</code> output is passed by GeoStats.jl as the last argument to the <code>solve_single</code> function, which could be reimplemented as follows:</p><pre><code class="language-">function solve_single(problem::SimulationProblem, var::Symbol,
                       solver::RandSolver, preproc)
   pdomain = domain(problem)
 
@@ -193,4 +196,4 @@ preprocess(problem, solver)</code></pre><pre><code class="language-none">Dict{Sy
 
   # rescale and return
   μ .+ sqrt(σ²) .* z
-end;</code></pre><pre><code class="language-none">solve_single (generic function with 4 methods)</code></pre><h3><a class="nav-anchor" id="Learning-solver-example-1" href="#Learning-solver-example-1">Learning solver example</a></h3><p>TODO</p><footer><hr/><a class="previous" href="../plotting/"><span class="direction">Previous</span><span class="title">Plotting</span></a><a class="next" href="../contributing/"><span class="direction">Next</span><span class="title">Contributing</span></a></footer></article></body></html>
+end;</code></pre><h3><a class="nav-anchor" id="Learning-solver-example-1" href="#Learning-solver-example-1">Learning solver example</a></h3><p>TODO</p><footer><hr/><a class="previous" href="../plotting/"><span class="direction">Previous</span><span class="title">Plotting</span></a><a class="next" href="../contributing/"><span class="direction">Next</span><span class="title">Contributing</span></a></footer></article></body></html>
