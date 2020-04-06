@@ -7624,3 +7624,6 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
     margin-bottom: 1.0rem; }
     #documenter .docs-sidebar form.docs-search > input::placeholder {
       color: #fff; }
+
+#documenter .content p {
+  text-align: justify; }
