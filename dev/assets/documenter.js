@@ -57,7 +57,20 @@ $(document).ready(function() {
       "right": "\\]",
       "display": true
     }
-  ]
+  ],
+  "macros": {
+    "\\x": "\\boldsymbol{x}",
+    "\\z": "\\boldsymbol{z}",
+    "\\g": "\\boldsymbol{g}",
+    "\\G": "\\boldsymbol{G}",
+    "\\1": "\\mathbb{1}",
+    "\\R": "\\mathbb{R}",
+    "\\f": "\\boldsymbol{f}",
+    "\\F": "\\boldsymbol{F}",
+    "\\l": "\\boldsymbol{l}",
+    "\\C": "\\boldsymbol{C}",
+    "\\c": "\\boldsymbol{c}"
+  }
 }
 
   );
