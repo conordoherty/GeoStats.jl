@@ -67,7 +67,7 @@ $(document).ready(function() {
     "\\R": "\\mathbb{R}",
     "\\f": "\\boldsymbol{f}",
     "\\F": "\\boldsymbol{F}",
-    "\\l": "\\boldsymbol{l}",
+    "\\l": "\\boldsymbol{\\lambda}",
     "\\C": "\\boldsymbol{C}",
     "\\c": "\\boldsymbol{c}"
   }
