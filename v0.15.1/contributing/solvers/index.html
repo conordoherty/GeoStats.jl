@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Writing solvers · GeoStats.jl</title><link href="https://fonts.googleapis.com/css?family=Lato|Roboto+Mono" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script><link href="../../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="https://fonts.googleapis.com/css?family=Montserrat|Source+Code+Pro&amp;display=swap" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.svg" alt="GeoStats.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit">GeoStats.jl</span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><a class="tocitem" href="../../workflow/">Basic workflow</a></li><li><span class="tocitem">Reference guide</span><ul><li><a class="tocitem" href="../../data/">Data</a></li><li><a class="tocitem" href="../../domains/">Domains</a></li><li><input class="collapse-toggle" id="menuitem-3-3" type="checkbox"/><label class="tocitem" for="menuitem-3-3"><span class="docs-label">Operations</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../../operations/partitioning/">Partitioning</a></li><li><a class="tocitem" href="../../operations/sampling/">Sampling</a></li><li><a class="tocitem" href="../../operations/weighting/">Weighting</a></li><li><a class="tocitem" href="../../operations/searching/">Searching</a></li><li><a class="tocitem" href="../../operations/discretizing/">Discretizing</a></li><li><a class="tocitem" href="../../operations/miscellaneous/">Miscellaneous</a></li></ul></li><li><a class="tocitem" href="../../statistics/">Statistics</a></li><li><a class="tocitem" href="../../problems/">Problems</a></li><li><a class="tocitem" href="../../solvers/">Solvers</a></li><li><a class="tocitem" href="../../validation/">Validation</a></li><li><input class="collapse-toggle" id="menuitem-3-8" type="checkbox"/><label class="tocitem" for="menuitem-3-8"><span class="docs-label">Variography</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../../variography/empirical/">Empirical variograms</a></li><li><a class="tocitem" href="../../variography/theoretical/">Theoretical variograms</a></li><li><a class="tocitem" href="../../variography/fitting/">Fitting variograms</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-3-9" type="checkbox"/><label class="tocitem" for="menuitem-3-9"><span class="docs-label">Kriging</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../../kriging/estimators/">Estimators</a></li><li><a class="tocitem" href="../../kriging/solver/">Solver</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-3-10" type="checkbox"/><label class="tocitem" for="menuitem-3-10"><span class="docs-label">Point Patterns</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../../pointpatterns/pointprocs/">Processes</a></li><li><a class="tocitem" href="../../pointpatterns/pointops/">Operations</a></li></ul></li><li><a class="tocitem" href="../../plotting/">Plotting</a></li><li><a class="tocitem" href="../../geometries/">Geometries</a></li></ul></li><li><span class="tocitem">Contributing</span><ul><li><a class="tocitem" href="../guidelines/">Guidelines</a></li><li><input class="collapse-toggle" id="menuitem-4-2" type="checkbox" checked/><label class="tocitem" for="menuitem-4-2"><span class="docs-label">Developer guide</span><i class="docs-chevron"></i></label><ul class="collapsed"><li class="is-active"><a class="tocitem" href>Writing solvers</a><ul class="internal"><li><a class="tocitem" href="#Basics"><span>Basics</span></a></li><li><a class="tocitem" href="#Examples"><span>Examples</span></a></li></ul></li></ul></li></ul></li><li><span class="tocitem">Resources</span><ul><li><a class="tocitem" href="../../resources/education/">Education</a></li><li><a class="tocitem" href="../../resources/fileformats/">File formats</a></li></ul></li><li><span class="tocitem">About</span><ul><li><a class="tocitem" href="../../about/community/">Community</a></li><li><a class="tocitem" href="../../about/license/">License</a></li><li><a class="tocitem" href="../../about/citing/">Citing</a></li></ul></li><li><a class="tocitem" href="../../links/">Index</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Contributing</a></li><li><a class="is-disabled">Developer guide</a></li><li class="is-active"><a href>Writing solvers</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Writing solvers</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/JuliaEarth/GeoStats.jl/blob/master/docs/src/contributing/solvers.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Writing-solvers"><a class="docs-heading-anchor" href="#Writing-solvers">Writing solvers</a><a id="Writing-solvers-1"></a><a class="docs-heading-anchor-permalink" href="#Writing-solvers" title="Permalink"></a></h1><p>After reading this guide, you should be able to write your own geostatistical solver, and enjoy a large set of features <em>for free</em>, including distributed parallel execution, a suite of meta algorithms, and various plot recipes. If you have any questions, please don&#39;t hesitate to ask in our <a href="https://gitter.im/JuliaEarth/GeoStats.jl">gitter channel</a>.</p><h2 id="Basics"><a class="docs-heading-anchor" href="#Basics">Basics</a><a id="Basics-1"></a><a class="docs-heading-anchor-permalink" href="#Basics" title="Permalink"></a></h2><p>Currently, there are three types of spatial problems defined in the framework:</p><pre><code class="language-julia">EstimationProblem
+SimulationProblem
+LearningProblem</code></pre><p>Any <code>EstimationSolver</code> in the framework returns an <code>EstimationSolution</code>, which consists of the domain of the <code>EstimationProblem</code> plus two dictionaries: <code>mdict</code> mapping the variable names (a <code>Symbol</code>) of the problem to mean values, and <code>vdict</code> mapping the same variable names to variance values:</p><pre><code class="language-julia">EstimationSolution(domain, mdict, vdict)</code></pre><p>Any <code>SimulationSolver</code> in the framework returns a <code>SimulationSolution</code>, which consists of the domain of the <code>SimulationProblem</code> plus a dictionary <code>rdict</code> mapping the variable names (a <code>Symbol</code>) of the problem to a vector of (flattened) realizations:</p><pre><code class="language-julia">SimulationSolution(domain, rdict)</code></pre><p>Any <code>LearningSolver</code> in the framework returns spatial data with variables learned for the specified learning task.</p><p>The task of writing a solver for a geostatistical problem consists of writing a simple function in Julia that takes the problem as input and returns the solution. In the following sections we illustrate the development process and share working examples that could be copied/pasted as starters.</p><h3 id="Writing-estimation-solvers"><a class="docs-heading-anchor" href="#Writing-estimation-solvers">Writing estimation solvers</a><a id="Writing-estimation-solvers-1"></a><a class="docs-heading-anchor-permalink" href="#Writing-estimation-solvers" title="Permalink"></a></h3><h4 id="Create-the-package"><a class="docs-heading-anchor" href="#Create-the-package">Create the package</a><a id="Create-the-package-1"></a><a class="docs-heading-anchor-permalink" href="#Create-the-package" title="Permalink"></a></h4><p>Install the <code>PkgTemplates.jl</code> package and create a new project:</p><pre><code class="language-julia">using PkgTemplates
+
+generate_interactive(&quot;MySolver&quot;)</code></pre><p>This command will create a folder named <code>~/user/.julia/vx.y/MySolver</code> with all the files that are necessary to load the new package:</p><pre><code class="language-julia">using MySolver</code></pre><p>Choose a license for your solver. If you don&#39;t have major restrictions, I suggest using the <code>ISC</code> license. This license is equivalent to the <code>MIT</code> and <code>BSD 2-Clause</code> licenses, plus it eliminates <a href="https://en.wikipedia.org/wiki/ISC_license">unncessary language</a>. Try to choose a <a href="https://opensource.org/licenses">permissive license</a> so that your solver can be used, and improved by private companies.</p><h4 id="Import-GeoStatsBase"><a class="docs-heading-anchor" href="#Import-GeoStatsBase">Import GeoStatsBase</a><a id="Import-GeoStatsBase-1"></a><a class="docs-heading-anchor-permalink" href="#Import-GeoStatsBase" title="Permalink"></a></h4><p>After the package is created, open the main source file <code>MySolver.jl</code> and add the following line:</p><pre><code class="language-julia">using GeoStatsBase
+import GeoStatsBase: solve</code></pre><p>These lines bring all the symbols defined in <code>GeoStatsBase</code> into scope, and tell Julia that the method <code>solve</code> will be specialized for the new solver. Next, give your solver a name:</p><pre><code class="language-julia">struct MyCoolSolver &lt;: AbstractEstimationSolver
+  # optional parameters go here
+end</code></pre><p>and export it so that it becomes available to users of your package:</p><pre><code class="language-julia">export MyCoolSolver</code></pre><p>At this point, the <code>MySolver.jl</code> file should have the following content:</p><pre><code class="language-julia">module MySolver
+
+using GeoStatsBase
+import GeoStatsBase: solve
+
+export MyCoolSolver
+
+struct MyCoolSolver &lt;: AbstractEstimationSolver
+  # optional parameters go here
+end
+
+end # module</code></pre><h4 id="Write-the-algorithm"><a class="docs-heading-anchor" href="#Write-the-algorithm">Write the algorithm</a><a id="Write-the-algorithm-1"></a><a class="docs-heading-anchor-permalink" href="#Write-the-algorithm" title="Permalink"></a></h4><p>Now that your solver type is defined, write your algorithm. Write a function called <code>solve</code> that takes an estimation problem and your solver, and returns an estimation solution:</p><pre><code class="language-julia">function solve(problem::EstimationProblem, solver::MyCoolSolver)
+  pdomain = domain(problem)
+
+  mean = Dict{Symbol,Vector}()
+  variance = Dict{Symbol,Vector}()
+
+  for (var,V) in variables(problem)
+    push!(mean, var =&gt; rand(nelms(pdomain)))
+    push!(variance, var =&gt; rand(nelms(pdomain)))
+  end
+
+  EstimationSolution(pdomain, mean, variance)
+end</code></pre><p>Paste this function somewhere in your package, and you are all set.</p><h4 id="Test-the-solver"><a class="docs-heading-anchor" href="#Test-the-solver">Test the solver</a><a id="Test-the-solver-1"></a><a class="docs-heading-anchor-permalink" href="#Test-the-solver" title="Permalink"></a></h4><p>To test your new solver, load the <code>GeoStats.jl</code> package and solve a simple problem:</p><pre><code class="language-julia">using GeoStats
+using MySolver
+
+sdata    = readgeotable(&quot;samples.csv&quot;, coordnames=[:x,:y])
+sdomain  = RegularGrid(100, 100)
+problem  = EstimationProblem(sdata, sdomain, :value)
+
+solution = solve(problem, MyCoolSolver())
+
+plot(solution)</code></pre><h3 id="Writing-simulation-solvers"><a class="docs-heading-anchor" href="#Writing-simulation-solvers">Writing simulation solvers</a><a id="Writing-simulation-solvers-1"></a><a class="docs-heading-anchor-permalink" href="#Writing-simulation-solvers" title="Permalink"></a></h3><p>The process of writing a simulation solver is very similar, but there is an alternative function to <code>solve</code> called <code>solvesingle</code> that is <em>preferred</em>. The function <code>solvesingle</code> takes a simulation problem, one of the variables to be simulated, a solver, and a preprocessed input, and returns a <em>vector</em> with the simulation results:</p><pre><code class="language-julia">function solvesingle(problem::SimulationProblem, covars::NamedTuple,
+                     solver::MySimSolver, preproc)
+  # retrieve problem info
+  pdata = data(problem)
+  pdomain = domain(problem)
+
+  real4var = map(covars.names) do var
+    # output is a single realization for each covariable
+    real = Vector{V}(undef, nelms(pdomain))
+
+    # fill realization with hard data
+    for (loc, datloc) in datamap(problem, var)
+      real[loc] = pdata[datloc,var]
+    end
+
+    # algorithm goes here
+    # ...
+
+    var =&gt; real
+  end
+
+  Dict(real4var)
+end</code></pre><p>This function is preferred over <code>solve</code> if your algorithm is the same for every single realization (the algorithm is only a function of the random seed). In this case, GeoStats.jl will provide an implementation of <code>solve</code> for you that calls <code>solvesingle</code> in parallel.</p><p>The argument <code>preproc</code> is ignored unless the function <code>preprocess</code> is also defined for the solver. The function takes a simulation problem and a solver, and returns an arbitrary object with preprocessed data:</p><pre><code class="language-julia">preprocess(problem::SimulationProblem, solver::MySimSolver) = nothing</code></pre><h3 id="Writing-learning-solvers"><a class="docs-heading-anchor" href="#Writing-learning-solvers">Writing learning solvers</a><a id="Writing-learning-solvers-1"></a><a class="docs-heading-anchor-permalink" href="#Writing-learning-solvers" title="Permalink"></a></h3><p>Similar to the other cases, writing a <code>LearningSolver</code> compatible with the framework consists of writing a simple Julia function that takes the <code>LearningProblem</code> as input along with the solver, and returns spatial data with learned variables.</p><h2 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h2><h3 id="Estimation"><a class="docs-heading-anchor" href="#Estimation">Estimation</a><a id="Estimation-1"></a><a class="docs-heading-anchor-permalink" href="#Estimation" title="Permalink"></a></h3><p>An estimation solver that, for each location of the domain, assigns the 2-norm of the coordinates as the mean and the ∞-norm as the variance.</p><pre><code class="language-julia">using GeoStatsBase
+using LinearAlgebra: norm
+
+# implement method for new solver
+import GeoStatsBase: solve
+
+@estimsolver NormSolver begin
+  @param pmean = 2
+  @param pvar  = Inf
+end
+
+function solve(problem::EstimationProblem, solver::NormSolver)
+  pdomain = domain(problem)
+
+  # results for each variable
+  μs = []; σs = []
+
+  for covars in covariables(problem, solver)
+    for var in covars.names
+      # get user parameters
+      varparams = covars.params[(var,)]
+
+      # get variable type
+      V = variables(problem)[var]
+
+      # allocate memory for result
+      varμ = Vector{V}(undef, nelms(pdomain))
+      varσ = Vector{V}(undef, nelms(pdomain))
+
+      for location in traverse(pdomain, LinearPath())
+        x = coordinates(pdomain, location)
+
+        varμ[location] = norm(x, varparams.pmean)
+        varσ[location] = norm(x, varparams.pvar)
+      end
+
+      push!(μs, var =&gt; varμ)
+      push!(σs, var =&gt; varσ)
+    end
+  end
+
+  EstimationSolution(pdomain, Dict(μs), Dict(σs))
+end;</code></pre><pre class="documenter-example-output">solve (generic function with 5 methods)</pre><p>We can test the newly defined solver on an estimation problem:</p><pre><code class="language-julia">using GeoStats
+using Plots
+
+# dummy spatial data with a single point and no value
+sdata   = georef((z=[NaN],), reshape([0.,0.], 2, 1))
+
+# estimate on a regular grid
+sdomain = RegularGrid(100, 100)
+
+# the problem to be solved
+problem = EstimationProblem(sdata, sdomain, :z)
+
+# our new solver
+solver = NormSolver()
+
+solution = solve(problem, solver)
+
+contourf(solution)</code></pre><p><img src="../../images/normsolver1.png" alt/></p><p>And assess the behavior of different parameters:</p><pre><code class="language-julia">solver = NormSolver(:z =&gt; (pmean=1,pvar=3))
+
+solution = solve(problem, solver)
+
+contourf(solution)</code></pre><p><img src="../../images/normsolver2.svg" alt/></p><h3 id="Simulation"><a class="docs-heading-anchor" href="#Simulation">Simulation</a><a id="Simulation-1"></a><a class="docs-heading-anchor-permalink" href="#Simulation" title="Permalink"></a></h3><p>A simulation solver that, for each location of the domain, assigns a random sample from a Gaussian distribution.</p><pre><code class="language-julia">using GeoStatsBase
+
+# implement method for new solver
+import GeoStatsBase: solvesingle
+
+@simsolver RandSolver begin
+  @param mean = 0
+  @param var  = 1
+end
+
+function solvesingle(problem::SimulationProblem, covars::NamedTuple,
+                     solver::RandSolver, preproc)
+  pdomain = domain(problem)
+
+  real4var = map(covars.names) do var
+    # retrieve solver parameters
+    varparams = covars.params[(var,)]
+    μ, σ² = varparams.mean, varparams.var
+
+    # i.i.d. samples ~ Normal(0,1)
+    z = rand(nelms(pdomain))
+
+    # rescale and return
+    var =&gt; μ .+ sqrt(σ²) .* z
+  end
+
+  Dict(real4var)
+end;</code></pre><pre class="documenter-example-output">solvesingle (generic function with 3 methods)</pre><p>We can test the newly defined solver in a simulation problem:</p><pre><code class="language-julia">using GeoStats
+using Plots
+
+# simulate on a regular grid
+sdomain = RegularGrid(100, 100)
+
+# the problem to be solved
+problem = SimulationProblem(sdomain, :z =&gt; Float64, 3)
+
+# our new solver
+solver = RandSolver(:z =&gt; (mean=10.,var=10.))
+
+solution = solve(problem, solver)
+
+heatmap(solution)</code></pre><p><img src="../../images/randsolver1.svg" alt/></p><p>Note, however, that we did not define the <code>preprocess</code> function for the solver. This function can be used to avoid recalculations for each realization, and to set default parameters for variables that are not explicitly set by users in the solver constructor:</p><pre><code class="language-julia">import GeoStatsBase: preprocess
+
+function preprocess(problem::SimulationProblem, solver::RandSolver)
+  preproc = Dict()
+  for covars in covariables(problem, solver)
+    for varname in covars.names
+      varparams = covars.params[(varname,)]
+      preproc[varname] = (mean=varparams.mean, var=varparams.var)
+    end
+  end
+
+  preproc
+end;</code></pre><pre class="documenter-example-output">preprocess (generic function with 5 methods)</pre><p>We can call the <code>preprocess</code> function on problems with multiple variables to check that the solver is producing default values for variables other than the one passed during construction:</p><pre><code class="language-julia">problem = SimulationProblem(sdomain, (:z=&gt;Float64, :w=&gt;Float64), 3)
+
+preprocess(problem, solver)</code></pre><pre class="documenter-example-output">Dict{Any,Any} with 2 entries:
+  :w =&gt; (mean = 0, var = 1)
+  :z =&gt; (mean = 10.0, var = 10.0)</pre><p>This <code>preproc</code> output is passed by GeoStats.jl as the last argument to the <code>solvesingle</code> function, which could be reimplemented as follows:</p><pre><code class="language-julia">function solvesingle(problem::SimulationProblem, covars::NamedTuple,
+                     solver::RandSolver, preproc)
+  pdomain = domain(problem)
+
+  real4var = map(covars.names) do var
+    # retrieve solver parameters
+    μ, σ² = preproc[var]
+
+    # i.i.d. samples ~ Normal(0,1)
+    z = rand(nelms(pdomain))
+
+    # rescale and return
+    var =&gt; μ .+ sqrt(σ²) .* z
+  end
+
+  Dict(real4var)
+end;</code></pre><pre class="documenter-example-output">solvesingle (generic function with 3 methods)</pre><h3 id="Learning"><a class="docs-heading-anchor" href="#Learning">Learning</a><a id="Learning-1"></a><a class="docs-heading-anchor-permalink" href="#Learning" title="Permalink"></a></h3><p>A learning solver that clusters data into super pixels:</p><pre><code class="language-julia">using GeoStatsBase
+
+# implement method for new solver
+import GeoStatsBase: solvesingle
+
+struct SLICSolver &lt;: AbstractLearningSolver
+  k::Int # approximate number of super pixels
+  m::Float64 # SLIC tradeoff parameter
+end
+
+function solve(problem::LearningProblem, solver::SLICSolver)
+  @assert task(problem) isa ClusteringTask &quot;invalid problem&quot;
+
+  # retrieve problem info
+  ptask  = task(problem)
+  feats  = collect(features(ptask))
+  tdata  = targetdata(problem)
+  output = outputvars(ptask)[1]
+
+  # find super pixels
+  slic = SLICPartitioner(solver.k, solver.m, vars=feats)
+  part = partition(tdata, slic)
+
+  # label for each point in target data
+  labels = Vector{Int}(undef, nelms(tdata))
+  for (i, inds) in enumerate(subsets(part))
+    labels[inds] .= i
+  end
+
+  # return learning solution
+  georef((; output =&gt; labels), domain(tdata))
+end;</code></pre><pre class="documenter-example-output">solve (generic function with 1 method)</pre><p>We can test the newly defined solver in a learning problem:</p><pre><code class="language-julia">using GeoStats
+using Plots
+
+Ω = georef((Z=[10sin(i/10) + j for i in 1:100, j in 1:100],))
+
+t = ClusteringTask(:Z, :SUPERPIXEL)
+
+p = LearningProblem(Ω, Ω, t)
+
+s = solve(p, SLICSolver(50, 0.01))
+
+plot(plot(Ω), plot(s, c=:viridis))</code></pre><p><img src="../../images/slicsolver.svg" alt/></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../guidelines/">« Guidelines</a><a class="docs-footer-nextpage" href="../../resources/education/">Education »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Thursday 27 August 2020 16:28">Thursday 27 August 2020</span>. Using Julia version 1.5.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
