@@ -150,7 +150,7 @@ function solvesingle(problem::SimulationProblem, covars::NamedTuple,
   end
 
   Dict(real4var)
-end;</code></pre><pre class="documenter-example-output">solvesingle (generic function with 3 methods)</pre><p>We can test the newly defined solver in a simulation problem:</p><pre><code class="language-julia">using GeoStats
+end;</code></pre><pre class="documenter-example-output">solvesingle (generic function with 5 methods)</pre><p>We can test the newly defined solver in a simulation problem:</p><pre><code class="language-julia">using GeoStats
 using Plots
 
 # simulate on a regular grid
@@ -176,7 +176,7 @@ function preprocess(problem::SimulationProblem, solver::RandSolver)
   end
 
   preproc
-end;</code></pre><pre class="documenter-example-output">preprocess (generic function with 5 methods)</pre><p>We can call the <code>preprocess</code> function on problems with multiple variables to check that the solver is producing default values for variables other than the one passed during construction:</p><pre><code class="language-julia">problem = SimulationProblem(sdomain, (:z=&gt;Float64, :w=&gt;Float64), 3)
+end;</code></pre><pre class="documenter-example-output">preprocess (generic function with 6 methods)</pre><p>We can call the <code>preprocess</code> function on problems with multiple variables to check that the solver is producing default values for variables other than the one passed during construction:</p><pre><code class="language-julia">problem = SimulationProblem(sdomain, (:z=&gt;Float64, :w=&gt;Float64), 3)
 
 preprocess(problem, solver)</code></pre><pre class="documenter-example-output">Dict{Any,Any} with 2 entries:
   :w =&gt; (mean = 0, var = 1)
@@ -196,7 +196,7 @@ preprocess(problem, solver)</code></pre><pre class="documenter-example-output">D
   end
 
   Dict(real4var)
-end;</code></pre><pre class="documenter-example-output">solvesingle (generic function with 3 methods)</pre><h3 id="Learning"><a class="docs-heading-anchor" href="#Learning">Learning</a><a id="Learning-1"></a><a class="docs-heading-anchor-permalink" href="#Learning" title="Permalink"></a></h3><p>A learning solver that clusters data into super pixels:</p><pre><code class="language-julia">using GeoStatsBase
+end;</code></pre><pre class="documenter-example-output">solvesingle (generic function with 5 methods)</pre><h3 id="Learning"><a class="docs-heading-anchor" href="#Learning">Learning</a><a id="Learning-1"></a><a class="docs-heading-anchor-permalink" href="#Learning" title="Permalink"></a></h3><p>A learning solver that clusters data into super pixels:</p><pre><code class="language-julia">using GeoStatsBase
 
 # implement method for new solver
 import GeoStatsBase: solvesingle
@@ -238,4 +238,4 @@ p = LearningProblem(Ω, Ω, t)
 
 s = solve(p, SLICSolver(50, 0.01))
 
-plot(plot(Ω), plot(s, c=:viridis))</code></pre><p><img src="../../images/slicsolver.svg" alt/></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../guidelines/">« Guidelines</a><a class="docs-footer-nextpage" href="../../resources/education/">Education »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Thursday 27 August 2020 15:37">Thursday 27 August 2020</span>. Using Julia version 1.5.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+plot(plot(Ω), plot(s, c=:viridis))</code></pre><p><img src="../../images/slicsolver.svg" alt/></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../guidelines/">« Guidelines</a><a class="docs-footer-nextpage" href="../../resources/education/">Education »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> on <span class="colophon-date" title="Wednesday 9 September 2020 01:17">Wednesday 9 September 2020</span>. Using Julia version 1.5.1.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
