@@ -59,17 +59,17 @@ $(document).ready(function() {
     }
   ],
   "macros": {
+    "\\1": "\\mathbb{1}",
     "\\x": "\\boldsymbol{x}",
     "\\z": "\\boldsymbol{z}",
-    "\\g": "\\boldsymbol{g}",
-    "\\G": "\\boldsymbol{G}",
-    "\\1": "\\mathbb{1}",
     "\\R": "\\mathbb{R}",
+    "\\g": "\\boldsymbol{g}",
+    "\\l": "\\boldsymbol{\\lambda}",
     "\\f": "\\boldsymbol{f}",
     "\\F": "\\boldsymbol{F}",
-    "\\l": "\\boldsymbol{\\lambda}",
     "\\C": "\\boldsymbol{C}",
-    "\\c": "\\boldsymbol{c}"
+    "\\c": "\\boldsymbol{c}",
+    "\\G": "\\boldsymbol{G}"
   }
 }
 
