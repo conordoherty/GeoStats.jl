@@ -64,6 +64,7 @@ $(document).ready(function() {
     "\\z": "\\boldsymbol{z}",
     "\\R": "\\mathbb{R}",
     "\\g": "\\boldsymbol{g}",
+    "\\cov": "\\text{cov}",
     "\\l": "\\boldsymbol{\\lambda}",
     "\\f": "\\boldsymbol{f}",
     "\\F": "\\boldsymbol{F}",
